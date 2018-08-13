@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>指挥决策系统</title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" /> 	
+	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" /> 	
+	<link rel="stylesheet" href="lib/leaflet/css/leaflet.css" />	
+	<link rel="stylesheet" href="css/site.css" />    
+    <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/leaflet/js/leaflet.js"></script>
+	<script type="text/javascript" src="js/site.js"></script>
+	<link rel="icon" href="images/favicon.ico">
+    <script type="text/javascript">
+
+      function applyMargins() {
+        var leftToggler = $(".mini-submenu-left");
+        var rightToggler = $(".mini-submenu-right");
+        if (leftToggler.is(":visible")) {
+          $("#map .ol-zoom")
+            .css("margin-left", 0)
+            .removeClass("zoom-top-opened-sidebar")
+            .addClass("zoom-top-collapsed");
+        } else {
+          $("#map .ol-zoom")
+            .css("margin-left", $(".sidebar-left").width())
+            .removeClass("zoom-top-opened-sidebar")
+            .removeClass("zoom-top-collapsed");
+        }
+        if (rightToggler.is(":visible")) {
+          $("#map .ol-rotate")
+            .css("margin-right", 0)
+            .removeClass("zoom-top-opened-sidebar")
+            .addClass("zoom-top-collapsed");
+        } else {
+          $("#map .ol-rotate")
+            .css("margin-right", $(".sidebar-right").width())
+            .removeClass("zoom-top-opened-sidebar")
+            .removeClass("zoom-top-collapsed");
+        }
+      }
+
+      function isConstrained() {
+        return $("div.mid").width() == $(window).width();
+      }
+
+      function applyInitialUIState() {
+        if (isConstrained()) {
+          $(".sidebar-left .sidebar-body").fadeOut('slide');
+          $(".sidebar-right .sidebar-body").fadeOut('slide');
+          $('.mini-submenu-left').fadeIn();
+          $('.mini-submenu-right').fadeIn();
+        }
+      }
+
+      $(function(){
+        $('.sidebar-left .slide-submenu').on('click',function() {
+          var thisEl = $(this);
+          thisEl.closest('.sidebar-body').fadeOut('slide',function(){
+            $('.mini-submenu-left').fadeIn();
+            applyMargins();
+          });
+        });
+
+        $('.mini-submenu-left').on('click',function() {
+          var thisEl = $(this);
+          $('.sidebar-left .sidebar-body').toggle('slide');
+          thisEl.hide();
+          applyMargins();
+        });
+
+        $('.sidebar-right .slide-submenu').on('click',function() {
+          var thisEl = $(this);
+          thisEl.closest('.sidebar-body').fadeOut('slide',function(){
+            $('.mini-submenu-right').fadeIn();
+            applyMargins();
+          });
+        });
+
+        $('.mini-submenu-right').on('click',function() {
+          var thisEl = $(this);
+          $('.sidebar-right .sidebar-body').toggle('slide');
+          thisEl.hide();
+          applyMargins();
+        });
+
+        $(window).on("resize", applyMargins);
+
+        var map = L.map("map").setView([22.5786500000, 113.0816100000], 11);
+
+		var baseLayers = {
+		  "高德地图": L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+			subdomains: "1234"
+		  }),
+		  '高德影像': L.layerGroup([L.tileLayer('http://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}', {
+			subdomains: "1234"
+		  }), L.tileLayer('http://t{s}.tianditu.cn/DataServer?T=cta_w&X={x}&Y={y}&L={z}', {
+			subdomains: "1234"
+		  })]),
+		  "立体地图": L.tileLayer('https://a.tiles.mapbox.com/v3/examples.c7d2024a/{z}/{x}/{y}.png', {
+			attribution: 'Map &copy; Pacific Rim Coordination Center (PRCC).  Certain data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			key: 'BC9A493B41014CAABB98F0471D759707',
+			styleId: 22677
+		  }),
+		  "Foursquare": L.tileLayer('https://a.tiles.mapbox.com/v3/foursquare.map-0y1jh28j/{z}/{x}/{y}.png', {
+			attribution: 'Map &copy; Pacific Rim Coordination Center (PRCC).  Certain data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			key: 'BC9A493B41014CAABB98F0471D759707',
+			styleId: 22677
+		  }),
+		  'GeoQ灰色底图': L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}').addTo(map)
+		};
+
+		var layercontrol = L.control.layers(baseLayers, {}, {
+		  position: "bottomright"
+		}).addTo(map);
+
+		//添加控制框
+		map.removeControl(map.zoomControl);
+		L.control.zoom({ position: "bottomright" }).addTo(map);
+		L.control.scale().addTo(map);
+		
+        applyInitialUIState();
+        applyMargins();
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+	  <!-- 导航条 -->
+      <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img alt="指挥决策系统" src="images/logo.png"></image></a>
+			<a class="navbar-brand" href="#">指挥决策系统</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">事件核查</a></li>
+              <li><a href="#">预案启动</a></li>
+			  <li><a href="#">现场指挥</a></li>
+			  <li><a href="#">事故总结</a></li>
+            </ul>
+			
+            <ul class="nav navbar-nav navbar-right">			
+              <li><a href="#"><span class="fa fa-bell" aria-hidden="true"></span></a></li>
+			  <li><a href="#"><span class="fa fa-user-circle" aria-hidden="true"></span></a></li>			  
+            </ul>
+			<div class="nav navbar-nav navbar-right" style="height:50px; z-index:37;">
+				<iframe id="fancybox-frame" name="fancybox-frame1534136791957" frameborder="0" scrolling="no" hspace="0"  src="http://i.tianqi.com/index.php?c=code&a=getcode&id=42&h=54&w=214"></iframe>
+			</div>
+			<form class="navbar-form navbar-right" role="search">              
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search">
+					<span class="input-group-addon" aria-hidden="true">查 询</span>
+				</div>
+            </form>  
+            
+            </div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	  </nav>
+	</div>
+	<div class="navbar-offset"></div>
+	<!-- 地图窗口 -->
+    <div id="map">
+    </div>
+      
+  <div class="row main-row">
+        <div class="col-sm-4 col-md-3 sidebar sidebar-left pull-left">
+          <div class="panel-group sidebar-body" id="accordion-left">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" href="#layers">
+                    <i class="fa fa-list-alt"></i>
+                    Layers
+                  </a>
+                  <span class="pull-right slide-submenu">
+                    <i class="fa fa-chevron-left"></i>
+                  </span>
+                </h4>
+              </div>
+              <div id="layers" class="panel-collapse collapse in">
+                <div class="panel-body list-group">				
+                  <a href="#" class="list-group-item">
+                    <i class="fa fa-globe"></i> Open Street Map
+                  </a>
+                  <a href="#" class="list-group-item">
+                    <i class="fa fa-globe"></i> Bing
+                  </a>
+                  <a href="#" class="list-group-item">
+                    <i class="fa fa-globe"></i> WMS
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" href="#properties">
+                    <i class="fa fa-list-alt"></i>
+                    Properties
+                  </a>
+                </h4>
+              </div>
+              <div id="properties" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <p>
+                  Lorem ipsum dolor sit amet, vel an wisi propriae. Sea ut graece gloriatur. Per ei quando dicant vivendum. An insolens appellantur eos, doctus convenire vis et, at solet aeterno intellegebat qui.
+                  </p>
+                  <p>
+                  Elitr minimum inciderint qui no. Ne mea quaerendum scriptorem consequuntur. Mel ea nobis discere dignissim, aperiam patrioque ei ius. Stet laboramus eos te, his recteque mnesarchum an, quo id adipisci salutatus. Quas solet inimicus eu per. Sonet conclusionemque id vis.
+                  </p>
+                  <p>
+                  Eam vivendo repudiandae in, ei pri sint probatus. Pri et lorem praesent periculis, dicam singulis ut sed. Omnis patrioque sit ei, vis illud impetus molestiae id. Ex viderer assentior mel, inani liber officiis pro et. Qui ut perfecto repudiandae, per no hinc tation labores.
+                  </p>
+                  <p>
+                  Pro cu scaevola antiopam, cum id inermis salutatus. No duo liber gloriatur. Duo id vitae decore, justo consequat vix et. Sea id tale quot vitae.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 col-md-6 mid"></div>
+        <div class="col-sm-4 col-md-3 sidebar sidebar-right pull-right">
+          <div class="panel-group sidebar-body" id="accordion-right">
+		    <!--Event Summary start-->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" href="#taskpane">
+                    <i class="fa fa-cogs"></i>
+                    事故详情
+                  </a>
+                  <span class="pull-right slide-submenu">
+                    <i class="fa fa-chevron-right"></i>
+                  </span>
+                </h4>
+              </div>
+              <div id="taskpane" class="panel-collapse collapse in">
+                <div class="panel-body">
+				
+                  <div class="sortable row-fluid ui-sortable">
+						<div class="well span3 top-block-blue">
+							<div>事故发生时间</div>
+							<br />
+							<div>09:32:21</div>
+						</div>
+
+						<div class="well span3 top-block-red">
+							<div>事故持续时间</div>
+							<br />
+							<div>00:21:33</div>
+						</div>
+					</div>
+			
+                </div>
+              </div>
+            </div>
+			<!--Event summary End-->
+			<!--Event Summary start-->
+			<div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" href="#taskpane">
+                    <i class="fa fa-hourglass"></i>
+                    事故发展历程
+                  </a>
+                  <span class="pull-right slide-submenu">
+                    <i class="fa fa-chevron-right"></i>
+                  </span>
+                </h4>
+              </div>
+              <div id="taskpane" class="panel-collapse collapse in">
+                <div class="panel-body">
+					<ul class="stepper stepper-vertical pl-0">
+
+                       <!-- First Step -->
+                        <li class="completed">
+                            <a href="#!">
+                                <span class="circle">1</span>
+                                <span class="label">2018-05-24 08:44:33</span>
+                            </a>
+							<div class="row step-content grey">								
+								<div class="col-md-10"><p>接通某单位报警电话</p> </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>   								
+                            </div>
+                        </li>
+						<li class="completed">
+                            <a href="#!">
+                                <span class="circle">2</span>
+                                <span class="label">2018-05-24 09:04:00</span>
+                            </a>
+							<div class="row step-content">
+								<div class="col-md-10"><p>通过电话核实事情发展情况</p>  </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>                              
+                            </div>
+                        </li>
+						<li class="completed">
+                            <a href="#!">
+                                <span class="circle">3</span>
+                                <span class="label">2018-05-24 09:15:00</span>
+                            </a>
+							<div class="row step-content">								
+								<div class="col-md-10"><p>通知值班领导</p>  </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>     								
+                            </div>
+                        </li>
+
+                        <!-- Second Step -->
+                        <li class="active">
+
+                            <!--Section Title -->
+                            <a href="#!">
+                                <span class="circle">4</span>
+                                <span class="label">2018-05-24 09:30:00</span>
+                            </a>
+
+                            <!-- Section Description -->
+                            <div class="row step-content grey lighten-3">
+								<div class="col-md-10"><p>接到值班领导下达的处置，通知负责单位</p></div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>                                                              
+                            </div>
+                        </li>
+
+                    </ul>
+                  
+			
+                </div>
+              </div>
+            </div>
+			<!--Event Summary end-->
+		  </div>
+        </div>
+      </div>
+      
+	  
+	  <div class="mini-submenu mini-submenu-left pull-left">
+        <i class="fa fa-list-alt"></i>
+      </div>
+      <div class="mini-submenu mini-submenu-right pull-right">
+        <i class="fa fa-tasks"></i>
+      </div>
+    </div>
+  </body>
+</html>
