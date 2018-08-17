@@ -66,13 +66,14 @@ function buildChart()
 				trigger: 'item',
 				formatter: "{a} <br/>{b} : {c} ({d}%)"
 			},	
+			color:['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
 			calculable : true,			
             series : [
 				{
-					name: '访问来源',
+					name: '应急力量',
 					type: 'pie',
 					radius : [30, 80],
-					center : '50%',
+					center : ['50%', '50%'],
 					roseType:'area',
 					label: {
                         normal: {

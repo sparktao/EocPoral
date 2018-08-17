@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>指挥决策系统</title>
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="lib/bootstrap-table/bootstrap-table.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" /> 	
 	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" /> 	
 	<link rel="stylesheet" href="lib/leaflet/css/leaflet.css" />	
 	<link rel="stylesheet" href="css/site.css" />    
     <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="lib/leaflet/js/leaflet.js"></script>
-	<script type="text/javascript" src="js/echarts.common.min.js"></script>
+	<script type="text/javascript" src="lib/leaflet/js/leaflet.js"></script>	
+	<script type="text/javascript" src="lib/bootstrap-table/bootstrap-table.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js"></script>
 	<script type="text/javascript" src="js/site.js"></script>
 	<link rel="icon" href="images/favicon.ico">
     <script type="text/javascript">
@@ -184,7 +186,7 @@
               <div class="panel-heading">
                 <h4 class="panel-title">
                   <a data-toggle="collapse" href="#layers">
-                    <i class="fa fa-list-alt"></i>
+                    <i class="fa fa-video-camera"></i>
                     视频核查
                   </a>
                   <span class="pull-right slide-submenu">
@@ -193,24 +195,28 @@
                 </h4>
               </div>
               <div id="layers" class="panel-collapse collapse in">
-                <div class="panel-body list-group">				
-                  <a href="#" class="list-group-item">
-                    <i class="fa fa-globe"></i> Open Street Map
-                  </a>
-                  <a href="#" class="list-group-item">
-                    <i class="fa fa-globe"></i> Bing
-                  </a>
-                  <a href="#" class="list-group-item">
-                    <i class="fa fa-globe"></i> WMS
-                  </a>
-                </div>
+                <div class="panel-body" style="margin:auto;">
+					<table data-toggle="table"	
+							data-classes="table table-video"
+							data-url="json/data1.json">
+						<thead>
+						<tr>
+							<th data-field="tag" class="col-md-2" data-halign="center" data-align="center">视频标号</th>
+							<th data-field="name" class="col-md-6" data-halign="center" data-align="center">
+								<i class="glyphicon glyphicon-star"></i>
+								视频位置
+							</th>
+						</tr>
+						</thead>					
+					</table>
+				</div>				
               </div>
             </div>
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
                   <a data-toggle="collapse" href="#properties">
-                    <i class="fa fa-list-alt"></i>
+                    <i class="fa fa-users"></i>
                     应急力量查询
                   </a>
                 </h4>
@@ -265,13 +271,13 @@
 						<div class="well span3 top-block-blue">
 							<div>事故发生时间</div>
 							<br />
-							<div>09:32:21</div>
+							<div style="font-size: 32px;">09:32:21</div>
 						</div>
 
 						<div class="well span3 top-block-red">
 							<div>事故持续时间</div>
 							<br />
-							<div>00:21:33</div>
+							<div style="font-size: 32px;">00:21:33</div>
 						</div>
 					</div>
 			
