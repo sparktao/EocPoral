@@ -1,43 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" name="viewport">
-	<meta data-lcd-included-files="" id="include_highlights_from">
-    <link href="../../samples/favicon.ico" rel="shortcut icon">
-	
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>指挥决策系统</title>
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="lib/bootstrap-table/bootstrap-table.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" /> 	
 	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" /> 	
+	<link rel="stylesheet" href="lib/leaflet/css/leaflet.css" />	
 	<link rel="stylesheet" href="css/site.css" />    
     <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/leaflet/js/leaflet.js"></script>	
 	<script type="text/javascript" src="lib/bootstrap-table/bootstrap-table.js"></script>
 	<script type="text/javascript" src="js/echarts.min.js"></script>
 	<script type="text/javascript" src="js/site.js"></script>
 	<link rel="icon" href="images/favicon.ico">
-    
     <script type="text/javascript">
-          window.__lcdBasePath = '../../';
-          window.__lcdMobileTemplate = false;
-    </script>
-    <script src="../../samples/lib/Promise.js" type="text/javascript"></script>
-    <script src="../../samples/lib/fetch.js" type="text/javascript"></script>
-    <script src="../../samples/lib/classlist.js" type="text/javascript"></script>
-    <script src="../../samples/template/init.js" type="text/javascript"></script>
-    <script src="../../samples/lib/requirejs/require-2.3.5.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        __AMD_CONFIG_BASE_URL__ = '../../';
-    </script>
-    <script src="../../samples/amdconfig.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        require(["samples/EocPortal/main"]);
-    </script>
-	
-	<script type="text/javascript">
 
       function applyMargins() {
         var leftToggler = $(".mini-submenu-left");
@@ -111,6 +92,39 @@
         });
 
         $(window).on("resize", applyMargins);
+
+        var map = L.map("map").setView([22.5786500000, 113.0816100000], 11);
+
+		var baseLayers = {
+		  "高德地图": L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+			subdomains: "1234"
+		  }),
+		  '高德影像': L.layerGroup([L.tileLayer('http://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}', {
+			subdomains: "1234"
+		  }), L.tileLayer('http://t{s}.tianditu.cn/DataServer?T=cta_w&X={x}&Y={y}&L={z}', {
+			subdomains: "1234"
+		  })]),
+		  "立体地图": L.tileLayer('https://a.tiles.mapbox.com/v3/examples.c7d2024a/{z}/{x}/{y}.png', {
+			attribution: 'Map &copy; Pacific Rim Coordination Center (PRCC).  Certain data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			key: 'BC9A493B41014CAABB98F0471D759707',
+			styleId: 22677
+		  }),
+		  "Foursquare": L.tileLayer('https://a.tiles.mapbox.com/v3/foursquare.map-0y1jh28j/{z}/{x}/{y}.png', {
+			attribution: 'Map &copy; Pacific Rim Coordination Center (PRCC).  Certain data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			key: 'BC9A493B41014CAABB98F0471D759707',
+			styleId: 22677
+		  }),
+		  'GeoQ灰色底图': L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}').addTo(map)
+		};
+
+		var layercontrol = L.control.layers(baseLayers, {}, {
+		  position: "bottomright"
+		}).addTo(map);
+
+		//添加控制框
+		map.removeControl(map.zoomControl);
+		L.control.zoom({ position: "bottomright" }).addTo(map);
+		L.control.scale().addTo(map);
 		
         applyInitialUIState();
         applyMargins();
@@ -163,21 +177,8 @@
 	<div class="navbar-offset"></div>
 	<!-- 地图窗口 -->
     <div id="map">
-         <div class="logo" id="logo"></div>
-         <div class="topcenter" id="toasts"></div>
-         <div id="onmap"></div>         
     </div>
-<!--
-    <div id="no3dsupportforcanvasmaps">
-       <h3>
-          3D maps are only supported by WebGL maps.
-          <br>
-            <a href="#" onclick="document.location.search=document.location.search + '&amp;webgl';">Load a WebGL map
-              instead.
-            </a>
-         </h3>
-    </div>
--->      
+      
   <div class="row main-row">
         <div class="col-sm-4 col-md-3 sidebar sidebar-left pull-left">
           <div class="panel-group sidebar-body" id="accordion-left">
@@ -237,21 +238,10 @@
                 </h4>
               </div>
               <div id="roundInfo" class="panel-collapse collapse in">
-                <div class="panel-body" style="margin:0px">
-				<a href="#" class="btn btn-primary btn-lg disabled" role="button"><span class=""></span>Primary link</a>
-                  <table data-toggle="table"	
-							data-classes="table table-video"
-							data-url="json/data2.json">
-						<thead>
-						<tr>
-							<th data-field="name" class="col-md-2" data-halign="center" data-align="center">名称</th>
-							<th data-field="distance" class="col-md-6" data-halign="center" data-align="center">
-								<i class="glyphicon glyphicon-star"></i>
-								距事故点距离
-							</th>
-						</tr>
-						</thead>					
-					</table>                 
+                <div class="panel-body">
+                  <p>
+                  Lorem ipsum dolor sit amet, vel an wisi propriae. Sea ut graece gloriatur. Per ei quando dicant vivendum. An insolens appellantur eos, doctus convenire vis et, at solet aeterno intellegebat qui.
+                  </p>                  
                 </div>
               </div>
             </div>
