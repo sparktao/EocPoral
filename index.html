@@ -137,7 +137,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">事件核查</a></li>
-              <li><a href="#">预案启动</a></li>
+              <li><a href="plan.html" target="_blank">预案启动</a></li>
 			  <li><a href="#">现场指挥</a></li>
 			  <li><a href="#">事故总结</a></li>
             </ul>
@@ -222,6 +222,9 @@
               </div>
               <div id="properties" class="panel-collapse collapse in">
                 <div class="panel-body">
+				<div class="btn-group btn-group-justified" role="group" style="position:absolute;width:90%;">
+						<a href="#" class="btn btn-primary" role="button"><span class="fa fa-search"></span>应急人员</a>
+					</div>
                   <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 					<div id="main" style="width: 100%;height:250px;"></div>                
                 </div>
@@ -237,8 +240,10 @@
                 </h4>
               </div>
               <div id="roundInfo" class="panel-collapse collapse in">
-                <div class="panel-body" style="margin:0px">
-				<a href="#" class="btn btn-primary btn-lg disabled" role="button"><span class=""></span>Primary link</a>
+                <div class="panel-body" style="margin:auto">
+					<div class="btn-group btn-group-justified" role="group" aria-label="...">
+						<a href="#" class="btn btn-primary" role="button"><span class="fa fa-search"></span>查询距离设置</a>
+					</div>
                   <table data-toggle="table"	
 							data-classes="table table-video"
 							data-url="json/data2.json">
