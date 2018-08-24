@@ -1,14 +1,165 @@
-﻿body { 
+﻿@import "../../common/balloon/luciad-balloon.css";
+@import "../../resources/font/luciad/style.css";
+@import "../../common/attribution/AttributionComponent.css";
+@import "../../common/control/ControlGroup.css";
+@import "../../common/control/LayerTreeControl.css";
+@import "../../common/navigation/ZoomControl.css";
+@import "../../common/navigation/PanControl.css";
+@import "../../common/mouseLocation/MouseLocationComponent.css";
+@import "../../common/scaleIndicator/ScaleIndicator.css";
+@import "../../common/tooltip/TooltipHoverController.css";
+
+body { 
 	overflow: hidden; 
 	color: #fff;
 	font-size:18px;
 	font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.navbar-offset { margin-top: 70px; }
+#eventChronologyModal.modal{
+}
+#eventChronologyModal .modal-header {
+  background-color: #2D3555;
+}
+#eventChronologyModal .modal-body {
+  background-color: #1A1E35;
+  overflow-x:hidden;
+  overflow-y: auto;
+  height:500px;
+}
+
+/***************map style **************************/
+progress {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 150px;
+  height: 12px;
+  background-color: #808080;
+  color: #c1d92a;
+  border: 1px solid #c1d92a;
+}
+progress::-moz-progress-bar { background: #c1d92a; }
+progress::-webkit-progress-value { background: #c1d92a; }
+
+
+#no3dsupportforcanvasmaps {
+  position: fixed;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 1);
+  display: table;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#no3dsupportforcanvasmaps h3 {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.mapcanvas.map3d #no3dsupportforcanvasmaps {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mapcanvas.map3d #map {
+  height: 100% !important;
+}
+
+#map {
+  background-color: #181818;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 0;
+  margin: 0 0;
+  z-index: 35;
+}
+
+#onmap {
+  z-index: 200;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* #snippet logocss */
+.logo {
+  position: absolute;
+  width: 118px;
+  height: 33px;
+  bottom: 10px;
+  right: 10px;
+  z-index: 700;
+  font-family: 'LuciadRIA' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  letter-spacing: 0;
+  font-size: 32px;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  pointer-events: none;
+}
+
+.logo::before {
+  content: "\e958";
+}
+
+/* #endsnippet logocss */
+
+
+.toasts {
+  width: 60%;
+}
+
+.toast {
+  text-align: start;
+  padding: 1em;
+  margin-top: 2em;
+  z-index: 1000;
+  font-size: larger;
+  font-weight: bold;
+  transition: opacity 300ms ease-in;
+  background-color: rgba(50, 50, 50, 0.7);
+  color: white;
+}
+
+.toast.error {
+  border: 1px solid #d40a00;
+}
+
+.toast.warning {
+  border: 1px solid #ffb000;
+}
+
+
+
+/* #endsnippet logocss */
+
+
+/************************
 #map { position: absolute; top: 50px; bottom: 0px; left: 0px; right: 0px; z-index: 35;  }
 #map .ol-zoom { font-size: 1.2em; }
+****************/
 
+.navbar-offset { margin-top: 70px; }
 .zoom-top-opened-sidebar { margin-top: 5px; }
 .zoom-top-collapsed { margin-top: 45px; }
 

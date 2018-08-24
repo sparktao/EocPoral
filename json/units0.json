@@ -1,0 +1,45 @@
+{
+	"type": "FeatureCollection",
+	"features": [{
+		"type": "Feature",
+		"id": "city_1",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-122.40083, 37.78944]
+		},
+		"geometry_name": "geometry",
+		"properties": {
+			"uid": 1,
+			"NAME": "车辆1",
+			"TYPE": ""
+		}
+	},
+	{
+		"type": "Feature",
+		"id": "city_2",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-122.39861, 37.78027]
+		},
+		"geometry_name": "geometry",
+		"properties": {
+			"uid": 2,
+			"NAME": "车辆2",
+			"TYPE": ""
+		}
+	},
+	{
+		"type": "Feature",
+		"id": "city_3",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-122.39222, 37.78527]
+		},
+		"geometry_name": "geometry",
+		"properties": {
+			"uid": 3,
+			"NAME": "车辆3",
+			"TYPE": ""
+		}
+	}]
+}

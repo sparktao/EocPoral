@@ -19,7 +19,6 @@
 	<script type="text/javascript" src="js/echarts.min.js"></script>
 	<script type="text/javascript" src="js/site.js"></script>
 	<link rel="icon" href="images/favicon.ico">
-    
     <script type="text/javascript">
           window.__lcdBasePath = '../../';
           window.__lcdMobileTemplate = false;
@@ -307,7 +306,10 @@
                   <a data-toggle="collapse" href="#eventdetailspane">
                     <i class="fa fa-hourglass"></i>
                     事故发展历程
-                  </a>                  
+                  </a>  
+				<a data-toggle="modal" href="#eventChronologyModal">
+                    <span class="pull-right"><i class="fa fa-list-ol"></i></span>                  
+				</a>				  
                 </h4>
               </div>
               <div id="eventdetailspane" class="panel-collapse collapse in">
@@ -348,27 +350,23 @@
 
                         <!-- Second Step -->
                         <li class="active">
-
                             <!--Section Title -->
                             <a href="#!">
                                 <span class="circle">4</span>
                                 <span class="label">2018-05-24 09:30:00</span>
                             </a>
-
                             <!-- Section Description -->
                             <div class="row step-content grey lighten-3">
 								<div class="col-md-10"><p>接到值班领导下达的处置，通知负责单位</p></div>
 								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>                                                              
                             </div>
                         </li>
-
                     </ul>
-                  
-			
                 </div>
               </div>
             </div>
-			<!--Event Summary end-->
+			<!--Event Summary end-->		
+			
 		  </div>
         </div>
       </div>
@@ -380,6 +378,150 @@
       <div class="mini-submenu mini-submenu-right pull-right">
         <i class="fa fa-tasks"></i>
       </div>
+	  
+	  <div class="modal fade" id="eventChronologyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="width:32px;"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">事故发展历程</h4>
+                </div>
+                <div class="modal-body" >
+				    <ul class="stepper stepper-vertical pl-0">
+
+                       <!-- First Step -->
+                        <li class="completed">
+                            <a href="#!">
+                                <span class="circle">12</span>
+                                <span class="label">2018-09-11 08:44:33</span>
+                            </a>
+							<div class="row step-content grey">								
+								<div class="col-md-10"><p>接通某单位报警电话</p> </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>   								
+                            </div>
+                        </li>
+						<li class="completed">
+                            <a href="#!">
+                                <span class="circle">11</span>
+                                <span class="label">2018-09-10 09:04:00</span>
+                            </a>
+							<div class="row step-content">
+								<div class="col-md-10"><p>通过电话核实事情发展情况</p>  </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>                              
+                            </div>
+                        </li>
+						<li class="completed">
+                            <a href="#!">
+                                <span class="circle">10</span>
+                                <span class="label">2018-09-08 20:15:00</span>
+                            </a>
+							<div class="row step-content">								
+								<div class="col-md-10"><p>通知值班领导</p>  </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>     								
+                            </div>
+                        </li>
+
+                        <!-- Second Step -->
+                        <li class="completed">
+                            <!--Section Title -->
+                            <a href="#!">
+                                <span class="circle">9</span>
+                                <span class="label">2018-09-07 09:30:00</span>
+                            </a>
+                            <!-- Section Description -->
+                            <div class="row step-content grey lighten-3">
+								<div class="col-md-10"><p>接到值班领导下达的处置，通知负责单位</p></div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>                                                              
+                            </div>
+                        </li>
+						<li class="completed">
+                            <a href="#!">
+                                <span class="circle">8</span>
+                                <span class="label">2018-09-01 08:44:33</span>
+                            </a>
+							<div class="row step-content grey">								
+								<div class="col-md-10"><p>接通某单位报警电话</p> </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>   								
+                            </div>
+                        </li>
+						<li class="completed">
+                            <a href="#!">
+                                <span class="circle">7</span>
+                                <span class="label">2018-08-28 09:04:00</span>
+                            </a>
+							<div class="row step-content">
+								<div class="col-md-10"><p>通过电话核实事情发展情况</p>  </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>                              
+                            </div>
+                        </li>
+						<li class="completed">
+                            <a href="#!">
+                                <span class="circle">6</span>
+                                <span class="label">2018-08-26 09:15:00</span>
+                            </a>
+							<div class="row step-content">								
+								<div class="col-md-10"><p>通知值班领导</p>  </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>     								
+                            </div>
+                        </li>
+
+                        <li class="completed">
+                            <a href="#!">
+                                <span class="circle">5</span>
+                                <span class="label">2018-08-25 09:30:00</span>
+                            </a>
+                            <div class="row step-content grey lighten-3">
+								<div class="col-md-10"><p>接到值班领导下达的处置，通知负责单位</p></div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>                                                              
+                            </div>
+                        </li>
+						<li class="completed">
+                            <a href="#!">
+                                <span class="circle">4</span>
+                                <span class="label">2018-08-24 08:44:33</span>
+                            </a>
+							<div class="row step-content grey">								
+								<div class="col-md-10"><p>接到值班领导下达的处置，通知负责单位</p> </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>   								
+                            </div>
+                        </li>
+						<li class="completed">
+                            <a href="#!">
+                                <span class="circle">3</span>
+                                <span class="label">2018-08-20 09:04:00</span>
+                            </a>
+							<div class="row step-content">
+								<div class="col-md-10"><p>通知值班领导</p>  </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>                              
+                            </div>
+                        </li>
+						<li class="completed">
+                            <a href="#!">
+                                <span class="circle">2</span>
+                                <span class="label">2018-08-20 09:15:00</span>
+                            </a>
+							<div class="row step-content">								
+								<div class="col-md-10"><p>通过电话核实事情发展情况</p>  </div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>     								
+                            </div>
+                        </li>
+
+                        <li class="completed">
+                            <a href="#!">
+                                <span class="circle">1</span>
+                                <span class="label">2018-08-20 09:30:00</span>
+                            </a>
+                            <div class="row step-content grey lighten-3">
+								<div class="col-md-10"><p>接通某单位报警电话</p></div>
+								<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>                                                              
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+	
     </div>
   </body>
 </html>

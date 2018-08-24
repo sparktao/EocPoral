@@ -1,0 +1,19 @@
+{ "type": "FeatureCollection",
+"features": [
+{
+"type": "Feature",
+"id":"city_1",
+"geometry":{"type":"Point","coordinates":[-122.3930556,37.7847222]},
+"geometry_name":"geometry",
+"properties":{"uid":1,"NAME":"警报1","TYPE":""}
+}
+,
+{
+"type": "Feature",
+"id":"city_2",
+"geometry":{"type":"Point","coordinates":[-122.3947222,37.78777778]},
+"geometry_name":"geometry",
+"properties":{"uid":2,"NAME":"警报2","TYPE":""}
+}
+]
+}
