@@ -257,91 +257,15 @@ cursor: pointer;
 
 /*--------------custom bootstrap step start-------------------------------*/
 /*Form Wizard*/
-.stepper-vertical {
-    position: relative;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-}
-.pl-0, .px-0 {
-    padding-left: 0!important;
-}
 
-.stepper-vertical li {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: start;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    position: relative;
-}
+.step { position: relative; min-height: 32px /* circle-size */ ; }
+.step > div:first-child { position: static; height: 0; }
+.step > div:last-child { margin-left: 32px ; padding-left: 16px; }
+.step .circle { background: #4285f4; width: 32px; height: 32px; line-height: 32px; border-radius: 16px; position: relative; color: white; text-align: center; }
+.step .line { position: absolute; border-left: 1px solid gainsboro; left: 16px; bottom: 10px; top: 42px; }
+.step:last-child .line { display: none; }
+.step .title { line-height: 32px; font-weight: bold; }
 
-.stepper li.active a .circle, .stepper li.completed a .circle {
-    background-color: #4285f4!important;
-}
-.stepper-vertical li a .circle {
-    -webkit-box-ordinal-group: 2;
-    -webkit-order: 1;
-    -ms-flex-order: 1;
-    order: 1;
-}
-.stepper li a .circle {
-    display: inline-block;
-    color: #fff;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    background: rgba(0,0,0,.38);
-    width: 22px;
-    height: 22px;
-    text-align: center;
-    line-height: 22px;
-    margin-right: 5px;
-}
-
-.stepper-vertical li:not(:last-child):after {
-    content: "";
-    position: absolute;
-    width: 1px;
-    height: -webkit-calc(100% - 32px);
-    height: calc(100% - 32px);
-    left: 12px;
-    top: 28px;
-    background-color: #fff;
-}
-
-.stepper-vertical li .step-content {
-    display: block;
-    margin-top: 0;
-    margin-left: 3.13rem;
-    padding: .94rem;
-	width:100%;
-}
-
-.grey.lighten-3 {
-    background-color: #083A77!important;
-}
 
 
 /*--------------custom bootstrap step end-------------------------------*/
