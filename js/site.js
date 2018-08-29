@@ -169,9 +169,27 @@ var eventDetailList = [];
 function InitSteppers()
 {
 	$.getJSON( "json/data3.json", function( data ) {
-  
-	$.each( data, function( i, item ) {		  
-			eventDetailList.push( '<div class="step">' 
+    var tcount = data.length;
+	$.each( data, function( i, item ) {	
+			if(i == tcount-1)
+			{
+				eventDetailList.push( '<div class="step">' 
+								+			'<div>'
+								+				'<div class="circle">' + item.id + '</div>'
+								+				'<div class="line"></div>'
+								+			'</div>'
+								+			 '<div>'
+								+				'<div class="title yellow">' + item.title + '</div>'
+								+				'<div class="row">'							
+								+					'<div class="col-md-10 yellow"><p>' + item.description + '</p> </div>'
+								+					'<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>  ' 								
+								+				'</div>'
+								+			'</div>'
+								+       '</div>' );
+			}
+			else
+			{
+				eventDetailList.push( '<div class="step">' 
 								+			'<div>'
 								+				'<div class="circle">' + item.id + '</div>'
 								+				'<div class="line"></div>'
@@ -184,6 +202,7 @@ function InitSteppers()
 								+				'</div>'
 								+			'</div>'
 								+       '</div>' );
+			}
 		  });
 		  for(var i=0; i<4; i++) {
 			$( "#eventdetailsbody" ).append(eventDetailList[i]);

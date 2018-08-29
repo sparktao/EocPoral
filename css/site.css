@@ -265,6 +265,7 @@ cursor: pointer;
 .step .line { position: absolute; border-left: 1px solid gainsboro; left: 16px; bottom: 10px; top: 42px; }
 .step:last-child .line { display: none; }
 .step .title { line-height: 32px; font-weight: bold; }
+.step .yellow {color:yellow;}
 
 
 
