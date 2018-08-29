@@ -10,14 +10,36 @@
 	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" /> 	
 	<link rel="stylesheet" href="lib/leaflet/css/leaflet.css" />	
 	<link rel="stylesheet" href="css/site.css" />    
+	<link rel="stylesheet" href="lib/d3/css/d3-context-menu.css" >
+	<link rel="stylesheet" href="lib/bootstrap-dialog/css/bootstrap-dialog.min.css">
+	
     <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="lib/leaflet/js/leaflet.js"></script>
 	<script type="text/javascript" src="js/echarts.min.js"></script>
 	<script type="text/javascript" src="js/site.js"></script>
+	<script type="text/javascript" src="lib/d3/js/d3.js"></script>
+	<script type="text/javascript" src="lib/d3/js/d3-context-menu.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+	
 	<link rel="icon" href="images/favicon.ico">
 	
 	<style>
+.call-dialog{
+   position: absolute;
+   left: 10%;
+   /* now you must set a margin left under zero - value is a half width your window */
+   /*margin-left: -312px;*/
+   /* this same situation is with height - example */
+   height: 500px;
+   top: 10%;
+   /*margin-top: -250px;*/
+} 
+
+.bootstrap-dialog .modal-header.bootstrap-dialog-draggable {
+                cursor: move;
+}
+
 #planModal.modal::before {
   content: "";	  
 display: inline-block;
@@ -44,120 +66,230 @@ display: inline-block;
   
     <script type="text/javascript">
 	
-	function btnClickCallEmergency()
-    {
-      alert("110/120/119报警");
-    }
+	var menu = [{
+			title: '呼叫110',
+			action: function (data, index) {
+				//console.log('Item clicked', 'element:', this, 'data:', data, 'index:', index);
+			}
+		}, {
+			title: '呼叫120',
+			action: function (data, index) {
+				//console.log('Item clicked', 'element:', this, 'data:', data, 'index:', index);
+			}
+		}, {
+			title: '呼叫119',
+			action: function (data, index) {
+				//console.log('Item clicked', 'element:', this, 'data:', data, 'index:', index);
+			}
+		},
+	];
 
-      function applyMargins() {
-        var leftToggler = $(".mini-submenu-left");
-        var rightToggler = $(".mini-submenu-right");
-        if (leftToggler.is(":visible")) {
-          $("#map .ol-zoom")
-            .css("margin-left", 0)
-            .removeClass("zoom-top-opened-sidebar")
-            .addClass("zoom-top-collapsed");
-        } else {
-          $("#map .ol-zoom")
-            .css("margin-left", $(".sidebar-left").width())
-            .removeClass("zoom-top-opened-sidebar")
-            .removeClass("zoom-top-collapsed");
-        }
-        if (rightToggler.is(":visible")) {
-          $("#map .ol-rotate")
-            .css("margin-right", 0)
-            .removeClass("zoom-top-opened-sidebar")
-            .addClass("zoom-top-collapsed");
-        } else {
-          $("#map .ol-rotate")
-            .css("margin-right", $(".sidebar-right").width())
-            .removeClass("zoom-top-opened-sidebar")
-            .removeClass("zoom-top-collapsed");
-        }
-      }
+	function addContextMenuByID(sId) {
 
-      function isConstrained() {
-        return $("div.mid").width() == $(window).width();
-      }
+		d3.select(sId).on("mouseover", setCursor);
+		
+		d3.select(sId).on("click", onClick);
 
-      function applyInitialUIState() {
-        if (isConstrained()) {
-          $(".sidebar-left .sidebar-body").fadeOut('slide');
-          $(".sidebar-right .sidebar-body").fadeOut('slide');
-          $('.mini-submenu-left').fadeIn();
-          $('.mini-submenu-right').fadeIn();
-        }
-      }
+		/*d3.select(sId).on('contextmenu', d3.contextMenu(menu, {
+				theme: function () {
+				if (useDarkTheme) {
+				return 'd3-context-menu-theme dark';
+				} else {
+				return 'd3-context-menu-theme';
+				}
+				},
+				onOpen: function (data, index) {
+					//console.log('Menu Opened!', 'element:', this, 'data:', data, 'index:', index);
+				},
+				onClose: function (data, index) {
+					//console.log('Menu Closed!', 'element:', this, 'data:', data, 'index:', index);
+				},
+				position: function (data, index) {
+					var bounds = this.getBoundingClientRect();
+					if (data === 'green') {
+						// first circle will have the menu aligned top-right
+						return {
+							left: bounds.left + bounds.width + 10,
+							top: bounds.top
+						}
+					}
+				}
+			})); // attach menu to element*/
+	}
 
-      $(function(){
-        $('.sidebar-left .slide-submenu').on('click',function() {
-          var thisEl = $(this);
-          thisEl.closest('.sidebar-body').fadeOut('slide',function(){
-            $('.mini-submenu-left').fadeIn();
-            applyMargins();
-          });
-        });
+	function setCursor() {
+		this.style.cursor = 'hand';
+	}
+	
+	var dialogCalling;
 
-        $('.mini-submenu-left').on('click',function() {
-          var thisEl = $(this);
-          $('.sidebar-left .sidebar-body').toggle('slide');
-          thisEl.hide();
-          applyMargins();
-        });
+	function refreshCallingState() {
+		
+		dialogCalling.setMessage('通话中...');
+	}
+	
+	function hangUp() {
+		
+		//alert();
+	}
 
-        $('.sidebar-right .slide-submenu').on('click',function() {
-          var thisEl = $(this);
-          thisEl.closest('.sidebar-body').fadeOut('slide',function(){
-            $('.mini-submenu-right').fadeIn();
-            applyMargins();
-          });
-        });
+	function onClick() {
 
-        $('.mini-submenu-right').on('click',function() {
-          var thisEl = $(this);
-          $('.sidebar-right .sidebar-body').toggle('slide');
-          thisEl.hide();
-          applyMargins();
-        });
+		var t1 = window.setTimeout(refreshCallingState, 1000 * 2);
 
-        $(window).on("resize", applyMargins);
+		dialogCalling = new BootstrapDialog({
+				type: BootstrapDialog.TYPE_SUCCESS,
+				size: BootstrapDialog.SIZE_SMALL,
+				//cssClass: 'call-dialog',
+				title: '电话-110',
+				message: '拨号中...',
+				draggable: true,
+				closable: false,
+				buttons: [{
+						label: '挂断',
+						icon: 'glyphicon glyphicon-phone-alt',
+						cssClass: 'btn-danger',
+						action: function (dialogRef) {
+							dialogRef.close();
+							hangUp();
+						}
+					}
+				]
+			});
 
-        var map = L.map("map").setView([22.5786500000, 113.0816100000], 11);
+		dialogCalling.open();
+	}
+
+	d3.xml("/diagram/plan-flow.svg").mimeType("image/svg+xml").get(function (error, xml) {
+		if (error)
+		{
+		    alert("加载预案失败！");
+			throw error;
+		}
+
+		var svgDiv = document.getElementById("svgDiv");
+
+		svgDiv.appendChild(xml.documentElement);
+
+		addContextMenuByID("#Group-27-Copy-9");
+
+	});
+	
+	
+	
+				
+
+	function applyMargins() {
+		var leftToggler = $(".mini-submenu-left");
+		var rightToggler = $(".mini-submenu-right");
+		if (leftToggler.is(":visible")) {
+			$("#map .ol-zoom")
+			.css("margin-left", 0)
+			.removeClass("zoom-top-opened-sidebar")
+			.addClass("zoom-top-collapsed");
+		} else {
+			$("#map .ol-zoom")
+			.css("margin-left", $(".sidebar-left").width())
+			.removeClass("zoom-top-opened-sidebar")
+			.removeClass("zoom-top-collapsed");
+		}
+		if (rightToggler.is(":visible")) {
+			$("#map .ol-rotate")
+			.css("margin-right", 0)
+			.removeClass("zoom-top-opened-sidebar")
+			.addClass("zoom-top-collapsed");
+		} else {
+			$("#map .ol-rotate")
+			.css("margin-right", $(".sidebar-right").width())
+			.removeClass("zoom-top-opened-sidebar")
+			.removeClass("zoom-top-collapsed");
+		}
+	}
+
+	function isConstrained() {
+		return $("div.mid").width() == $(window).width();
+	}
+
+	function applyInitialUIState() {
+		if (isConstrained()) {
+			$(".sidebar-left .sidebar-body").fadeOut('slide');
+			$(".sidebar-right .sidebar-body").fadeOut('slide');
+			$('.mini-submenu-left').fadeIn();
+			$('.mini-submenu-right').fadeIn();
+		}
+	}
+
+	$(function () {
+		$('.sidebar-left .slide-submenu').on('click', function () {
+			var thisEl = $(this);
+			thisEl.closest('.sidebar-body').fadeOut('slide', function () {
+				$('.mini-submenu-left').fadeIn();
+				applyMargins();
+			});
+		});
+
+		$('.mini-submenu-left').on('click', function () {
+			var thisEl = $(this);
+			$('.sidebar-left .sidebar-body').toggle('slide');
+			thisEl.hide();
+			applyMargins();
+		});
+
+		$('.sidebar-right .slide-submenu').on('click', function () {
+			var thisEl = $(this);
+			thisEl.closest('.sidebar-body').fadeOut('slide', function () {
+				$('.mini-submenu-right').fadeIn();
+				applyMargins();
+			});
+		});
+
+		$('.mini-submenu-right').on('click', function () {
+			var thisEl = $(this);
+			$('.sidebar-right .sidebar-body').toggle('slide');
+			thisEl.hide();
+			applyMargins();
+		});
+
+		$(window).on("resize", applyMargins);
+
+		var map = L.map("map").setView([22.5786500000, 113.0816100000], 11);
 
 		var baseLayers = {
-		  "高德地图": L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
-			subdomains: "1234"
-		  }),
-		  '高德影像': L.layerGroup([L.tileLayer('http://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}', {
-			subdomains: "1234"
-		  }), L.tileLayer('http://t{s}.tianditu.cn/DataServer?T=cta_w&X={x}&Y={y}&L={z}', {
-			subdomains: "1234"
-		  })]),
-		  "立体地图": L.tileLayer('https://a.tiles.mapbox.com/v3/examples.c7d2024a/{z}/{x}/{y}.png', {
-			attribution: 'Map &copy; Pacific Rim Coordination Center (PRCC).  Certain data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-			key: 'BC9A493B41014CAABB98F0471D759707',
-			styleId: 22677
-		  }),
-		  "Foursquare": L.tileLayer('https://a.tiles.mapbox.com/v3/foursquare.map-0y1jh28j/{z}/{x}/{y}.png', {
-			attribution: 'Map &copy; Pacific Rim Coordination Center (PRCC).  Certain data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-			key: 'BC9A493B41014CAABB98F0471D759707',
-			styleId: 22677
-		  }),
-		  'GeoQ灰色底图': L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}').addTo(map)
+			"高德地图": L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+				subdomains: "1234"
+			}),
+			'高德影像': L.layerGroup([L.tileLayer('http://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}', {
+						subdomains: "1234"
+					}), L.tileLayer('http://t{s}.tianditu.cn/DataServer?T=cta_w&X={x}&Y={y}&L={z}', {
+						subdomains: "1234"
+					})]),
+			"立体地图": L.tileLayer('https://a.tiles.mapbox.com/v3/examples.c7d2024a/{z}/{x}/{y}.png', {
+				attribution: 'Map &copy; Pacific Rim Coordination Center (PRCC).  Certain data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+				key: 'BC9A493B41014CAABB98F0471D759707',
+				styleId: 22677
+			}),
+			"Foursquare": L.tileLayer('https://a.tiles.mapbox.com/v3/foursquare.map-0y1jh28j/{z}/{x}/{y}.png', {
+				attribution: 'Map &copy; Pacific Rim Coordination Center (PRCC).  Certain data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+				key: 'BC9A493B41014CAABB98F0471D759707',
+				styleId: 22677
+			}),
+			'GeoQ灰色底图': L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}').addTo(map)
 		};
 
 		var layercontrol = L.control.layers(baseLayers, {}, {
-		  position: "bottomright"
-		}).addTo(map);
+				position: "bottomright"
+			}).addTo(map);
 
 		//添加控制框
 		map.removeControl(map.zoomControl);
-		L.control.zoom({ position: "bottomright" }).addTo(map);
+		L.control.zoom({
+			position: "bottomright"
+		}).addTo(map);
 		L.control.scale().addTo(map);
-		
-        applyInitialUIState();
-        applyMargins();
-      });
+
+		applyInitialUIState();
+		applyMargins();
+	});
     </script>
   </head>
   <body>
@@ -207,9 +339,7 @@ display: inline-block;
 	<!-- 地图窗口 -->
     <div id="map">
     </div>
-	
-	
-      
+	 
   <div class="row main-row">
         <div class="col-sm-4 col-md-3 sidebar sidebar-left pull-left">
           <div class="panel-group sidebar-body" id="accordion-left">
@@ -386,408 +516,14 @@ display: inline-block;
 	  
 	  
 	  <div class="modal fade" id="planModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document" style="width:1650px;">
+        <div class="modal-dialog modal-lg" role="document" style="width:1280px;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">预案启动</h4>
                 </div>
                 <div class="modal-body" >
-				    
-					<svg width="1620px" height="900px" viewBox="0 0 1625 910" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
-    <title></title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <rect id="path-1" x="0" y="0" width="160" height="40" rx="4"></rect>
-        <filter x="-10.0%" y="-35.0%" width="120.0%" height="180.0%" filterUnits="objectBoundingBox" id="filter-2">
-            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0.274509804   0 0 0 0 0.439215686   0 0 0 0 0.992156863  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <rect id="path-3" x="0" y="0" width="160" height="40" rx="4"></rect>
-        <filter x="-10.0%" y="-35.0%" width="120.0%" height="180.0%" filterUnits="objectBoundingBox" id="filter-4">
-            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0.274509804   0 0 0 0 0.439215686   0 0 0 0 0.992156863  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <rect id="path-5" x="0" y="0" width="160" height="40" rx="4"></rect>
-        <filter x="-10.0%" y="-35.0%" width="120.0%" height="180.0%" filterUnits="objectBoundingBox" id="filter-6">
-            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0.274509804   0 0 0 0 0.439215686   0 0 0 0 0.992156863  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <rect id="path-7" x="0" y="0" width="160" height="40" rx="4"></rect>
-        <filter x="-10.0%" y="-35.0%" width="120.0%" height="180.0%" filterUnits="objectBoundingBox" id="filter-8">
-            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0.274509804   0 0 0 0 0.439215686   0 0 0 0 0.992156863  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <rect id="path-9" x="0" y="0" width="160" height="40" rx="4"></rect>
-        <filter x="-10.0%" y="-35.0%" width="120.0%" height="180.0%" filterUnits="objectBoundingBox" id="filter-10">
-            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0.274509804   0 0 0 0 0.439215686   0 0 0 0 0.992156863  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <rect id="path-11" x="0" y="0" width="160" height="40" rx="4"></rect>
-        <filter x="-10.0%" y="-35.0%" width="120.0%" height="180.0%" filterUnits="objectBoundingBox" id="filter-12">
-            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0.274509804   0 0 0 0 0.439215686   0 0 0 0 0.992156863  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <rect id="path-13" x="0" y="0" width="160" height="40" rx="4"></rect>
-        <filter x="-10.0%" y="-35.0%" width="120.0%" height="180.0%" filterUnits="objectBoundingBox" id="filter-14">
-            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0.274509804   0 0 0 0 0.439215686   0 0 0 0 0.992156863  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <rect id="path-15" x="0" y="0" width="1282" height="40" rx="4"></rect>
-    </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard-2">
-            <g id="Group-35-Copy">
-                <g id="Group-46" transform="translate(95.000000, 80.000000)">
-                    <g id="Group-38" transform="translate(0.000000, 63.000000)">
-                        <g id="Group-23" transform="translate(0.000000, 261.000000)">
-                            <rect id="Rectangle-33-Copy" fill="#4F5875" x="0" y="0" width="120" height="40" rx="4"></rect>
-                            <text id="预案启动" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                                <tspan x="16" y="28">预案启动</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-37" transform="translate(0.000000, 606.000000)">
-                            <rect id="Rectangle-33-Copy-4" fill="#4F5875" x="0" y="0" width="120" height="40" rx="4"></rect>
-                            <text id="现场恢复" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                                <tspan x="16" y="28">现场恢复</tspan>
-                            </text>
-                        </g>
-                        <g id="Group">
-                            <rect id="Rectangle-33" fill="#4F5875" x="0" y="0" width="120" height="217" rx="4"></rect>
-                            <text id="事故核查" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                                <tspan x="16" y="117">事故核查</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-36" transform="translate(0.000000, 345.000000)">
-                            <rect id="Rectangle-33-Copy-3" fill="#4F5875" x="0" y="0" width="120" height="214" rx="4"></rect>
-                            <text id="现场指挥" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                                <tspan x="16" y="115">现场指挥</tspan>
-                            </text>
-                        </g>
-                    </g>
-                    <g id="Group-39" transform="translate(152.000000, 0.000000)">
-                        <g id="Group-27">
-                            <g id="Rectangle-28">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
-                                <use fill="#4670FD" fill-rule="evenodd" xlink:href="#path-1"></use>
-                            </g>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="40" width="2" height="23"></rect>
-                            <text id="街道办" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                                <tspan x="47" y="28">街道办</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-7" transform="translate(0.000000, 63.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="40" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="45" width="2" height="42"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#FE4690"></path>
-                            <text id="街道办人员-前往现场核查" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="45" y="15">街道办人员</tspan>
-                                <tspan x="38" y="35">前往现场核查</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-9" transform="translate(0.000000, 237.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="40" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="45" width="2" height="42"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4" onclick="btnClickCallEmergency()" onmouseover="this.style.cursor='hand'"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#FEDE03"></path>
-                            <text id="110/120/119报警" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000" onclick="btnClickCallEmergency()" onmouseover="this.style.cursor='hand'">
-                                <tspan x="28.165" y="25">110/120/119报警</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-15" transform="translate(0.000000, 669.000000)">
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#04C1FB"></path>
-                            <text id="事故总结" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="52" y="25">事故总结</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-8" transform="translate(0.000000, 150.000000)">
-                            <circle id="Oval-9-Copy" fill="#4670FD" cx="80" cy="40" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="45" width="2" height="42"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#FF9002"></path>
-                            <text id="向上汇报事-故现场情况" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="45" y="15">向上汇报事</tspan>
-                                <tspan x="45" y="35">故现场情况</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-14" transform="translate(0.000000, 365.000000)">
-                            <circle id="Oval-9-Copy" fill="#4670FD" cx="80" cy="170" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="175" width="2" height="129"></rect>
-                            <path d="M80,0.815390503 L80,129.755129" id="Path-9" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6"></path>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="130" width="160" height="40" rx="4"></rect>
-                            <path d="M4,130 L4,170 L4,170 C1.790861,170 2.705415e-16,168.209139 0,166 L0,134 C-2.705415e-16,131.790861 1.790861,130 4,130 Z" id="Rectangle-29" fill="#FF9002"></path>
-                            <text id="接警后交警赶往现场" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="17" y="155">接警后交警赶往现场</tspan>
-                            </text>
-                        </g>
-                    </g>
-                    <g id="Group-40" transform="translate(344.000000, 0.000000)">
-                        <g id="Group-27-Copy-17" transform="translate(0.000000, 669.000000)">
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#04C1FB"></path>
-                            <text id="恢复交通" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="52" y="25">恢复交通</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-16" transform="translate(0.000000, 366.000000)">
-                            <circle id="Oval-9-Copy" fill="#4670FD" cx="80" cy="169" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="174" width="2" height="129"></rect>
-                            <path d="M79,0 L79,128.939739" id="Path-9" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6"></path>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="129" width="160" height="40" rx="4"></rect>
-                            <path d="M4,129 L4,169 L4,169 C1.790861,169 2.705415e-16,167.209139 0,165 L0,133 C-2.705415e-16,130.790861 1.790861,129 4,129 Z" id="Rectangle-29" fill="#FF9002"></path>
-                            <text id="事故现场实行交通管制" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="10" y="154">事故现场实行交通管制</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-10" transform="translate(0.000000, 150.000000)">
-                            <circle id="Oval-9-Copy" fill="#4670FD" cx="80" cy="40" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="45" width="2" height="129"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#FF9002"></path>
-                            <text id="接警后交警赶往现场" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="17" y="25">接警后交警赶往现场</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy">
-                            <path d="M79,33 L79,149.755129" id="Path-9" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6"></path>
-                            <g id="Rectangle-28">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
-                                <use fill="#4670FD" fill-rule="evenodd" xlink:href="#path-3"></use>
-                            </g>
-                            <text id="交通局" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                                <tspan x="47" y="28">交通局</tspan>
-                            </text>
-                        </g>
-                    </g>
-                    <g id="Group-41" transform="translate(533.000000, 0.000000)">
-                        <g id="Group-27-Copy-12" transform="translate(0.000000, 41.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="407" r="5"></circle>
-                            <path d="M80,0.034166125 L80,367" id="Path-9" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6"></path>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="412" width="2" height="42"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="367" width="160" height="40" rx="4"></rect>
-                            <path d="M4,367 L4,407 L4,407 C1.790861,407 2.705415e-16,405.209139 0,403 L0,371 C-2.705415e-16,368.790861 1.790861,367 4,367 Z" id="Rectangle-29" fill="#FE4690"></path>
-                            <text id="划分警戒安全区域-禁止无关人员入内" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="24" y="382">划分警戒安全区域</tspan>
-                                <tspan x="24" y="402">禁止无关人员入内</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-13" transform="translate(0.000000, 495.000000)">
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#FF9002"></path>
-                            <text id="人员疏散" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="52" y="25">人员疏散</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-2">
-                            <g id="Rectangle-28">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
-                                <use fill="#4670FD" fill-rule="evenodd" xlink:href="#path-5"></use>
-                            </g>
-                            <text id="公安局" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                                <tspan x="47" y="28">公安局</tspan>
-                            </text>
-                        </g>
-                    </g>
-                    <g id="Group-42" transform="translate(722.000000, 0.000000)">
-                        <g id="Group-27-Copy-18" transform="translate(0.000000, 364.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="84" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="89" width="2" height="42"></rect>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="0" width="2" height="44"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="44" width="160" height="40" rx="4"></rect>
-                            <path d="M4,44 L4,84 L4,84 C1.790861,84 2.705415e-16,82.209139 0,80 L0,48 C-2.705415e-16,45.790861 1.790861,44 4,44 Z" id="Rectangle-29" fill="#FE4690"></path>
-                            <text id="调配专业应急救-援队赶往事故现场" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="31" y="59">调配专业应急救</tspan>
-                                <tspan x="24" y="79">援队赶往事故现场</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-20" transform="translate(0.000000, 582.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="40" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="45" width="2" height="42"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#FEDE03"></path>
-                            <text id="划分警戒安全区域-禁止无关人员入内" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="24" y="15">划分警戒安全区域</tspan>
-                                <tspan x="24" y="35">禁止无关人员入内</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-19" transform="translate(0.000000, 495.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="40" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="45" width="2" height="42"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#FF9002"></path>
-                            <text id="人员疏散" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="52" y="25">人员疏散</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-21" transform="translate(0.000000, 669.000000)">
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#04C1FB"></path>
-                            <text id="彻底清理现场-清楚所有隐患" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="38" y="15">彻底清理现场</tspan>
-                                <tspan x="38" y="35">清楚所有隐患</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-11" transform="translate(0.000000, 33.000000)">
-                            <circle id="Oval-9-Copy" fill="#4670FD" cx="80" cy="157" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="162" width="2" height="129"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="117" width="160" height="40" rx="4"></rect>
-                            <path d="M80,0 L80,116.755129" id="Path-9" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6"></path>
-                            <path d="M4,117 L4,157 L4,157 C1.790861,157 2.705415e-16,155.209139 0,153 L0,121 C-2.705415e-16,118.790861 1.790861,117 4,117 Z" id="Rectangle-29" fill="#FF9002"></path>
-                            <text id="安监员赶往现场核查" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="17" y="142">安监员赶往现场核查</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-3">
-                            <g id="Rectangle-28">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
-                                <use fill="#4670FD" fill-rule="evenodd" xlink:href="#path-7"></use>
-                            </g>
-                            <text id="安监局" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                                <tspan x="47" y="28">安监局</tspan>
-                            </text>
-                        </g>
-                    </g>
-                    <g id="Group-43" transform="translate(904.000000, 0.000000)">
-                        <g id="Group-27-Copy-22" transform="translate(0.000000, 41.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="407" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="412" width="2" height="42"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="367" width="160" height="40" rx="4"></rect>
-                            <path d="M79,0 L79,366.965834" id="Path-9" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6"></path>
-                            <path d="M4,367 L4,407 L4,407 C1.790861,407 2.705415e-16,405.209139 0,403 L0,371 C-2.705415e-16,368.790861 1.790861,367 4,367 Z" id="Rectangle-29" fill="#FE4690"></path>
-                            <text id="120急救，-调配救护车赶往现场" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="47.793" y="382">120急救，</tspan>
-                                <tspan x="17" y="402">调配救护车赶往现场</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-23" transform="translate(0.000000, 495.000000)">
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#FF9002"></path>
-                            <text id="通知事故现场5公里范围内-具备治疗条件医" font-family="PingFangSC-Regular, PingFang SC" font-size="12" font-weight="normal" fill="#000000">
-                                <tspan x="10.4" y="16">通知事故现场5公里范围内</tspan>
-                                <tspan x="8" y="33">具备治疗条件医院准备救援</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-4">
-                            <g id="Rectangle-28">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-10)" xlink:href="#path-9"></use>
-                                <use fill="#4670FD" fill-rule="evenodd" xlink:href="#path-9"></use>
-                            </g>
-                            <text id="卫生局" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                                <tspan x="47" y="28">卫生局</tspan>
-                            </text>
-                        </g>
-                    </g>
-                    <g id="Group-44" transform="translate(1082.000000, 0.000000)">
-                        <g id="Group-27-Copy-24" transform="translate(0.000000, 41.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="407" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="412" width="2" height="42"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="367" width="160" height="40" rx="4"></rect>
-                            <path d="M80,0 L80,366.965834" id="Path-9" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6"></path>
-                            <path d="M4,367 L4,407 L4,407 C1.790861,407 2.705415e-16,405.209139 0,403 L0,371 C-2.705415e-16,368.790861 1.790861,367 4,367 Z" id="Rectangle-29" fill="#FE4690"></path>
-                            <text id="调配消防车赶往现场" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="17" y="392">调配消防车赶往现场</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-26" transform="translate(0.000000, 582.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="40" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="45" width="2" height="42"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#FEDE03"></path>
-                            <text id="划分警戒安全区域-禁止无关人员入内" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="24" y="15">划分警戒安全区域</tspan>
-                                <tspan x="24" y="35">禁止无关人员入内</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-25" transform="translate(0.000000, 495.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="40" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="45" width="2" height="42"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#FF9002"></path>
-                            <text id="通知事故现场5公里范围内-具备治疗条件医" font-family="PingFangSC-Regular, PingFang SC" font-size="12" font-weight="normal" fill="#000000">
-                                <tspan x="10.4" y="16">通知事故现场5公里范围内</tspan>
-                                <tspan x="8" y="33">具备治疗条件医院准备救援</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-27" transform="translate(0.000000, 669.000000)">
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#04C1FB"></path>
-                            <text id="清理现场" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="52" y="25">清理现场</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-5">
-                            <g id="Rectangle-28">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-12)" xlink:href="#path-11"></use>
-                                <use fill="#4670FD" fill-rule="evenodd" xlink:href="#path-11"></use>
-                            </g>
-                            <text id="消防队" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                                <tspan x="47" y="28">消防队</tspan>
-                            </text>
-                        </g>
-                    </g>
-                    <g id="Group-45" transform="translate(1274.000000, 0.000000)">
-                        <g id="Group-27-Copy-28" transform="translate(0.000000, 41.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="407" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="412" width="2" height="42"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="367" width="160" height="40" rx="4"></rect>
-                            <path d="M79,0 L79,366.965834" id="Path-9" stroke="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6"></path>
-                            <path d="M4,367 L4,407 L4,407 C1.790861,407 2.705415e-16,405.209139 0,403 L0,371 C-2.705415e-16,368.790861 1.790861,367 4,367 Z" id="Rectangle-29" fill="#FE4690"></path>
-                            <text id="调配环保监测-队伍前往现场" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="38" y="382">调配环保监测</tspan>
-                                <tspan x="38" y="402">队伍前往现场</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-29" transform="translate(0.000000, 495.000000)">
-                            <circle id="Oval-9" fill="#4670FD" cx="80" cy="40" r="5"></circle>
-                            <rect id="Rectangle-32" fill="#464D60" x="79" y="45" width="2" height="129"></rect>
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#FF9002"></path>
-                            <text id="汽油扩散浓度监测，范围测定" font-family="PingFangSC-Regular, PingFang SC" font-size="12" font-weight="normal" fill="#000000">
-                                <tspan x="4" y="24">汽油扩散浓度监测，范围测定</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-30" transform="translate(0.000000, 669.000000)">
-                            <rect id="Rectangle-28" fill="#BABBC4" x="0" y="0" width="160" height="40" rx="4"></rect>
-                            <path d="M4,0 L4,40 L4,40 C1.790861,40 2.705415e-16,38.209139 0,36 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-29" fill="#04C1FB"></path>
-                            <text id="事故现场" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#000000">
-                                <tspan x="52" y="25">事故现场</tspan>
-                            </text>
-                        </g>
-                        <g id="Group-27-Copy-6">
-                            <g id="Rectangle-28">
-                                <use fill="black" fill-opacity="1" filter="url(#filter-14)" xlink:href="#path-13"></use>
-                                <use fill="#4670FD" fill-rule="evenodd" xlink:href="#path-13"></use>
-                            </g>
-                            <text id="环保局" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                                <tspan x="47" y="28">环保局</tspan>
-                            </text>
-                        </g>
-                    </g>
-                    <g id="Group-33" transform="translate(152.000000, 324.000000)">
-                        <g id="Rectangle-33-Copy-2">
-                            <use fill="#1B1F37" fill-rule="evenodd" xlink:href="#path-15"></use>
-                            <rect stroke="#979797" stroke-width="2" x="1" y="1" width="1280" height="38" rx="4"></rect>
-                        </g>
-                        <text id="警情研判，事故定级，启动预案" font-family="PingFangSC-Regular, PingFang SC" font-size="22" font-weight="normal" fill="#FFFFFF">
-                            <tspan x="487" y="28">警情研判，事故定级，启动预案</tspan>
-                        </text>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>
-					
+				    <div id="svgDiv"></div>
 					<button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#0077FF;width:120px;color:#FFFFFF;display:block;margin:0 auto">关 闭</button>
                 </div>
             </div>
