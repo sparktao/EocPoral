@@ -213,6 +213,20 @@ function loopSteppers()
 	},5000);
  }
 
+ function InitStepperModal()
+ {
+	 $('#eventChronologyModal').on('show.bs.modal', function (e) {
+	   for(var i=eventDetailList.length-1; i> -1; i--)
+	   {
+		   $("#eventChronologyBody").append(eventDetailList[i]);
+	   }
+	});
+	
+	 $('#eventChronologyModal').on('hidden.bs.modal', function (e) {
+	   $("#eventChronologyBody").empty();
+	});
+	 
+ }
 
 
 /***************************************Stepper ******************************/
@@ -222,5 +236,6 @@ $(function() {// 初始化内容
 	buildChart();
 	InitSteppers();
 	loopSteppers();
+	InitStepperModal();
 	buildAccidentTrendChart();	
 });  
