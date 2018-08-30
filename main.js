@@ -7,6 +7,8 @@ define([
   "luciad/view/style/PinEndPosition",
   "luciad/reference/ReferenceProvider",
   "luciad/shape/ShapeFactory",
+  "luciad/shape/ShapeType",
+  "luciad/view/controller/EditController",
   "luciad/model/store/MemoryStore",
   "luciad/view/feature/FeatureLayer",
   "luciad/view/feature/FeaturePainter",
@@ -14,6 +16,7 @@ define([
   "../common/LayerConfigUtil",
   "../common/ShapePainter",
   "../common/IconFactory",
+  "./Luciad/js/CirclePainter",
   "../template/sample",
   "loader/domReady!"
 ], function(GeoJsonCodec,
@@ -24,6 +27,8 @@ define([
             PinEndPosition,
             ReferenceProvider,
             ShapeFactory,
+            ShapeType,
+			EditController,
             MemoryStore,
             FeatureLayer,
             FeaturePainter,
@@ -31,9 +36,10 @@ define([
             LayerConfigUtil,
             ShapePainter,
 			IconFactory,
+			CirclePainter,
             templateSample) {
 
-	var map = templateSample.makeMap("map", {includeLayerControl:false});
+	var map = templateSample.makeMap("map", {includeLayerControl:false, includeElevation:true, includeZoomControl:true});
 	var CRS84 = ReferenceProvider.getReference("CRS:84");
 	var fillColors = ["#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4", "#2c7fb8", "#253494"];
 	var lineColors = ["#ddddaa", "#a7c994", "#5fad9b", "#2196a4", "#0c5f98", "#051474"];
@@ -82,7 +88,7 @@ define([
 	  }
 	};
 
-	var store = new UrlStore({target: "data/buildings.json", codec: extrudedCodec});
+	var store = new UrlStore({target: "Luciad/data/buildings.json", codec: extrudedCodec});
 		return new FeatureModel(store, {
 		  reference: modelRef
 		});
@@ -106,7 +112,7 @@ define([
 
 	return new FeatureLayer(buildingsModel, {
 	  id: "Buildings",
-	  selectable: true,
+	  selectable: false,
 	  editable: false,
 	  painter: featurePainter,
 	  label: "San Francisco Buildings"
@@ -124,12 +130,12 @@ define([
 			geoCanvas.drawIcon(shape.focusPoint, {
 			  width: iconFeatureLayerDefaultIconSize + "px",
 			  height: iconFeatureLayerDefaultIconSize + "px",
-			  url: state.selected?"themePic/eventSelect.png" : "themePic/event_" + feature.properties.TYPE + ".png"
+			  url: state.selected?"Luciad/themePic/eventSelect.png" : "Luciad/themePic/event_" + feature.properties.TYPE + ".png"
 			  //anchorX : 0 + "px"
 			});
 			geoCanvas.drawShape(ShapeFactory.createPolyline(shape.reference, [shape.focusPoint, ShapeFactory.createPoint(shape.reference, [shape.focusPoint.x, shape.focusPoint.y])]), {
 				stroke: {
-				color: "rgb(128,128,128)",
+				color: "rgb(253,42,9)",
 				width: 1
 				}
 			});
@@ -142,8 +148,8 @@ define([
 			  width: 1
 			}
 		};
-		var htmlTemplateNormal = '<div style="background-color: rgb(40,40,40); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name, $type</div>';
-		var htmlTemplateSelect = '<div style="background-color: rgb(80,10,10); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name, $type</div>';
+		var htmlTemplateNormal = '<div style="background-color: rgba(253,42,9,0.8); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name, $type</div>';
+		var htmlTemplateSelect = '<div style="background-color: rgba(80,10,10,0.8); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name, $type</div>';
 		eventPainter.paintLabel = function(labelCanvas, feature, shape, layer, map, state) {
 			var html;
 			if (state.selected || options.labelsAlwaysVisible) {
@@ -172,7 +178,7 @@ define([
 			geoCanvas.drawIcon(shape.focusPoint, {
 			  width: iconFeatureLayerDefaultIconSize + "px",
 			  height: iconFeatureLayerDefaultIconSize + "px",
-			  url: state.selected?"themePic/alarmSelect.png" : "themePic/alarm.png"
+			  url: state.selected?"Luciad/themePic/alarmSelect.png" : "Luciad/themePic/alarm.png"
 			  //anchorX : 0 + "px"
 			});
 			geoCanvas.drawShape(ShapeFactory.createPolyline(shape.reference, [shape.focusPoint, ShapeFactory.createPoint(shape.reference, [shape.focusPoint.x, shape.focusPoint.y])]), {
@@ -214,7 +220,7 @@ define([
 			geoCanvas.drawIcon(shape.focusPoint, {
 			  width: 64 + "px",
 			  height: 64 + "px",
-			  url: state.selected?"themePic/unitSelect.png" : "themePic/unit.png"
+			  url: state.selected?"Luciad/themePic/unitSelect.png" : "Luciad/themePic/unit.png"
 			  //anchorX : 0 + "px"
 			});
 		};
@@ -263,30 +269,15 @@ define([
 		return featureLayer;
 	}
 
-	var eventFeatureLayer = createIconFeatureLayer("Event", "data/events.json", createEventPainter({labelsAlwaysVisible: true}));
-	var alarmFeatureLayer = createIconFeatureLayer("Event", "data/alarms.json", createAlarmPainter({labelsAlwaysVisible: true}));
-	var unitFeatureLayer = createIconFeatureLayer("Event", "data/units.json", createUnitPainter({labelsAlwaysVisible: true}));
+	var eventFeatureLayer = createIconFeatureLayer("Event", "Luciad/data/events.json", createEventPainter({labelsAlwaysVisible: true}));
+	var alarmFeatureLayer = createIconFeatureLayer("Alarm", "Luciad/data/alarms.json", createAlarmPainter({labelsAlwaysVisible: true}));
+	var unitFeatureLayer = createIconFeatureLayer("Unit", "Luciad/data/unitsSimulatior/units0.json", createUnitPainter({labelsAlwaysVisible: true}));
 	//CustomLayerLoad End//
 
 	//tempCircleLayer Begin//
 	var tempCircleFeatureLayer;
 	function createTempCircle(centerPoint, Radius) {
 		var reference = CRS84;
-
-		var fillCirclePainter = new FeaturePainter();
-		fillCirclePainter.paintBody = function(geoCanvas, feature, shape, map, layer, state) {
-			geoCanvas.drawShape(shape, {
-			  stroke: {
-				color: "rgb(0,0,255)",
-				width: 5,
-				dash: [10, 5]
-			  },
-			  fill: {
-				color: ("rgba(43, 150, 33, 0.3)")
-			  },
-			zOrder: 0
-			});
-		};
 
 		tempCircleFeatureLayer = new FeatureLayer(new FeatureModel(new MemoryStore({
 		  data: [
@@ -295,8 +286,8 @@ define([
 		}), {
 		  reference: reference
 		}), {
-		  label: "Lines",
-		  painter: fillCirclePainter,
+		  label: "redlineCircleLayer",
+		  painter: new CirclePainter(),
 		  selectable: true
 		});
 		
@@ -309,17 +300,20 @@ define([
 	}
 	//tempCircleLayer End//
 	
+
 	var count = 0;
-	var timer=window.setInterval(function(){
-		count++;
-		
-		if(unitFeatureLayer!=null)
-			map.layerTree.removeChild(unitFeatureLayer);
-	
-		
-		unitFeatureLayer = createIconFeatureLayer("tempRedlineCircle", "json/units" + count%7 + ".json", createUnitPainter({labelsAlwaysVisible: true}));
-		
-	},5000);
+       var timer=window.setInterval(function(){
+              count++;
+              
+              if(unitFeatureLayer!=null)
+                     map.layerTree.removeChild(unitFeatureLayer);
+       
+              
+              unitFeatureLayer = createIconFeatureLayer("tempRedlineCircle", "Luciad/data/unitsSimulatior/units" + count%7 + ".json", createUnitPainter({labelsAlwaysVisible: true}));
+              
+       },5000
+	);
+
 
 	//Create model, layer, and add the result to the layer tree
 	var buildingsModel = createBuildingsModel();
@@ -332,5 +326,30 @@ define([
 	-4261299.032250457,
 	3886789.332955691
 	]), 55.78790525145676, -23.351176380543002, 0.0);
-
+	
+	map.on("SelectionChanged", function(e) {
+		selectedFeature = null;
+		if (e.selectionChanges.length > 0) {
+			//Find first select feature begin
+			var iFirstFindSelectIndex;
+			for(iFirstFindSelectIndex=0;iFirstFindSelectIndex<e.selectionChanges.length;iFirstFindSelectIndex++){
+				if(e.selectionChanges[iFirstFindSelectIndex].selected.length > 0){
+					break;
+				}
+			}
+			if(iFirstFindSelectIndex == e.selectionChanges.length)
+				return;
+			//Find first select feature end
+			
+			
+		  selectedFeature = e.selectionChanges[iFirstFindSelectIndex].selected[0];
+		  if(e.selectionChanges[iFirstFindSelectIndex].layer.label == 'redlineCircleLayer'){
+			  map.controller = new EditController(e.selectionChanges[iFirstFindSelectIndex].layer, selectedFeature, {finishOnSingleClick: true});
+			  map.controller.onDeactivate = function(map) {
+			  	alert(this._editingContext._object.geometry.radius);
+				EditController.prototype.onDeactivate.apply(this, arguments);
+			  }
+		  }
+		}
+  });
 });
