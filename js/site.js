@@ -163,7 +163,7 @@ function buildAccidentTrendChart()
 	
 }
 
-/***************************************Stepper ******************************/
+/***************************************Stepper Start******************************/
 var eventDetailList = [];
 
 function InitSteppers()
@@ -248,7 +248,45 @@ function loopSteppers()
  }
 
 
-/***************************************Stepper ******************************/
+/***************************************Stepper End******************************/
+
+/***************************************EventInfo Start******************************/
+
+var eventInfoComponent = null;
+function EventInfoComponent(){
+	var _self = this;
+	this.eventInfoList=[];
+	this.currentEventInfo="undefined";
+	
+	this.Load = function() {
+		$.getJSON( "Luciad/data/events.json", function( data ) {
+			$.each( data.features, function( i, item ) {
+				var ev = {};
+				ev.id = item.properties.uid;
+				ev.name = item.properties.NAME;
+				ev.coordinates = item.geometry.coordinates;
+				_self.eventInfoList.push(ev);
+			});
+		});
+	};
+	
+	this.setCurrentEventInfoById = function(uid) {
+		$.each( _self.eventInfoList, function( i, item ) {	
+			if(item.id == uid) {
+				_self.SetCurrentEventInfo(item);
+			}
+		});
+	};
+	
+	this.SetCurrentEventInfo = function(eventinfo) {
+		_self.currentEventInfo = eventinfo;
+		$("#eventInfoNameDiv").html("事件名称：" + _self.currentEventInfo.name);
+	}
+}
+
+
+
+/***************************************EventInfo Start******************************/
 
 $(function() {// 初始化内容
     
@@ -256,5 +294,12 @@ $(function() {// 初始化内容
 	InitSteppers();
 	loopSteppers();
 	InitStepperModal();
+	eventInfoComponent = new EventInfoComponent();
+	eventInfoComponent.Load();
+	
+	$('.sidebar-right .event-search').on('click',function() {
+          alert();
+	});
+	
 	buildAccidentTrendChart();	
 });  

@@ -160,8 +160,10 @@ define([
 			  
 			  if(state.selected)
 			  {
-				alert("eventSelected");
-				
+				//alert("eventSelected");
+				if(!!eventInfoComponent) {
+					eventInfoComponent.setCurrentEventInfoById(feature.properties.uid);
+				}
 				removeTempCircle();
 				createTempCircle(ShapeFactory.createPoint(shape.reference, [shape.focusPoint.x, shape.focusPoint.y]), 500);
 			  }
