@@ -1,0 +1,37 @@
+*[role="tooltip"] {
+  position : absolute;
+  visibility : visible;
+  background : rgb(23,28,24);
+  -webkit-box-shadow: 5px 5px 2px rgba(13, 20, 28, 0.7);
+  -moz-box-shadow: 5px 5px 2px rgba(13, 20, 28, 0.7);
+  -o-box-shadow: 5px 5px 2px rgba(13, 20, 28, 0.7);
+  box-shadow: 5px 5px 2px rgba(13, 20, 28, 0.7);
+}
+
+*[role="tooltip"].show {
+  visibility : visible;
+}
+
+*[role="tooltip"] .featureID, *[role="tooltip"] .properties {
+  display: block;
+  padding: 10px;
+  margin: 0;
+}
+
+*[role="tooltip"] .properties {
+  border: 1px solid #fff;
+  border-width: 1px 0 0 0;
+  color : #fff;
+}
+
+*[role="tooltip"] .property {
+  display: block;
+}
+
+*[role="tooltip"] .featureIDLabel, *[role="tooltip"] .propertyLabel {
+  color : rgb(188,219,40);
+}
+
+*[role="tooltip"] .featureIDValue {
+  color : #fff;
+}
