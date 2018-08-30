@@ -5,16 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>指挥决策系统</title>
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" /> 	
+    
+	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />   
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" /> 	
+    <link rel="stylesheet" href="lib/bootstrap-table/bootstrap-table.css">
 	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" /> 	
 	<link rel="stylesheet" href="lib/leaflet/css/leaflet.css" />	
-	<link rel="stylesheet" href="css/site.css" />    
+	<link rel="stylesheet" href="css/site.css" />
+	<link rel="stylesheet" href="lib/bootstrap-popover/css/tooltip.css" />
 	<link rel="stylesheet" href="lib/d3/css/d3-context-menu.css" >
 	<link rel="stylesheet" href="lib/bootstrap-dialog/css/bootstrap-dialog.min.css">
 	
     <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-popover/js/transition.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-popover/js/tooltip.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-popover/js/popover.js"></script>
     <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-table/bootstrap-table.js"></script>
 	<script type="text/javascript" src="lib/leaflet/js/leaflet.js"></script>
 	<script type="text/javascript" src="js/echarts.min.js"></script>
 	<script type="text/javascript" src="js/site.js"></script>
@@ -57,6 +64,18 @@ display: inline-block;
 }
 .modal-body {
   background-color: #1A1E35;
+}
+
+.popover {
+    background: #2D3555;
+}
+
+.popover-title {
+    background: #2D3555;
+}
+
+.table-hover > tbody > tr:hover {
+background-color: #2D3555;
 }
   </style>
   
@@ -286,6 +305,67 @@ display: inline-block;
 		applyInitialUIState();
 		applyMargins();
 	});
+	
+	
+	function onClickCall(e) {
+		var phone = e.getAttribute("data-id");
+		//var name = e.getAttribute("data-name");
+		//alert("Id: " + id + " ; Name: " + name);
+		
+		alert("phone: " + phone);
+	}
+	
+	function onClickWechat(e) {
+		var id = e.getAttribute("data-id");
+		//var name = e.getAttribute("data-name");
+		//alert("Id: " + id + " ; Name: " + name);
+		
+		alert("Id: " + id);
+	}
+	
+	$(function () {
+		$('[data-toggle="popover"]').popover({
+			html: true,
+			content: '<div id="contentTable" style="background:#2D3555; color:#FFF"><table id="myTable"></table></div>'
+		}).on('shown.bs.popover', function () {
+			$('#myTable').bootstrapTable({
+				url: 'json/resource.json',
+
+				pagination: true, //是否开启分页（*）
+				pageNumber: 1, //初始化加载第一页，默认第一页
+				pageSize: 3, //每页的记录行数（*）
+				//pageList: [2, 3, 4], //可供选择的每页的行数（*）
+				sidePagination: "client", //分页方式：client客户端分页，server服务端分页（*）
+
+				columns: [{
+						field: 'name',
+						title: '姓名'
+					}/*, {
+						field: 'distance',
+						title: 'Item Name'
+					}*/, {
+						field: null,
+						title: '电话',
+						align: 'center',
+						formatter: function (value, row, index) {
+							var element =
+								"<a class='phone0' data-id='" + row.phone + "' onclick='onClickCall(this)' href='#'><i class='fa fa-phone'></i></a>";
+							return element;
+						}
+					}, {
+						field: null,
+						title: '微信',
+						align: 'center',
+						formatter: function (value, row, index) {
+							var element =
+								"<a class='wechat' data-id='" + row.id + "' onclick='onClickWechat(this)' href='#'><i class='fa fa-weixin'></i></a> ";
+							return element;
+						}
+					}
+				]
+			});
+		});
+	});
     </script>
   </head>
   <body>
@@ -373,11 +453,13 @@ display: inline-block;
               </div>
               <div id="properties" class="panel-collapse collapse in">
                 <div class="panel-body">
-				<div class="btn-group btn-group-justified" role="group" style="position:absolute;width:90%;">
-						<a href="#" class="btn btn-primary" role="button"><span class="fa fa-search"></span>应急人员</a>
+				    <div class="btn-group btn-group-justified" role="group" style="position:absolute;width:90%;">
+					  <a href="#" class="btn btn-primary" role="button" data-toggle="popover" data-placement="right" data-container="body" title="人员" data-content=""><span class="fa fa-search"></span>应急人员</a>
 					</div>
-                  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-					<div id="main" style="width: 100%;height:250px;"></div>                
+                    <div style="padding-top:40px">
+                      <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+					  <div id="main" style="width: 100%;height:220px;"></div>   
+                    </div>              
                 </div>
               </div>
             </div>
