@@ -16,7 +16,7 @@
     <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="lib/bootstrap-table/bootstrap-table.js"></script>
 	<script type="text/javascript" src="js/echarts.min.js"></script>
-	
+	<script type="text/javascript" src="js/flv.js?v=2"></script> 
 	<link rel="icon" href="images/logo.ico">
     <script type="text/javascript">
           window.__lcdBasePath = '../../';
@@ -35,7 +35,25 @@
         require(["samples/EocPortal/main"]);
     </script>
 	<script type="text/javascript" src="js/site.js"></script>
-	
+	<style>
+		.leftVideo {
+            display: inline;
+            width: 100%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: auto;
+        }
+		.controls {
+            display: block;
+            width: 100%;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 8px;
+            margin-bottom: 10px;
+        }
+	</style>
 	<script type="text/javascript">
       function applyMargins() {
         var leftToggler = $(".mini-submenu-left");
@@ -261,41 +279,65 @@
           </div>
         </div>
         <div class="col-sm-4 col-md-3 mid"></div>
-        <div id="searchpanel" class="col-sm-4 col-md-3 sidebar">
+        <div class="col-sm-4 col-md-3 sidebar">
 			<div class="panel-group sidebar-body" id="accordion-right111">
-		    <!--Event Summary start-->
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" href="#eventsearchlist">
-                    <i class="fa fa-map-marker"></i>
-                    周边查询
-                  </a>				  
-                  <span class="pull-right">
-					<a href="javascript:eventSearchListComponent.hide();">
-						<i class="fa fa-window-close"></i>
-					</a>
-                  </span>
-                </h4>
-              </div>
-              <div id="eventsearchlist" class="panel-collapse collapse in">
-                <div class="panel-body">				
-					<table data-toggle="table"	
-							data-classes="table table-video"
-							data-url="json/data1.json">
-						<thead>
-						<tr>
-							<th data-field="tag" class="col-md-2" data-halign="center" data-align="center">视频标号</th>
-							<th data-field="name" class="col-md-6" data-halign="center" data-align="center">
-								<i class="glyphicon glyphicon-star"></i>
-								视频位置
-							</th>
-						</tr>
-						</thead>					
-					</table>			
-                </div>
-              </div>
-            </div>
+				<!--Event Summary start-->
+				<div id="searchpanel" class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a data-toggle="collapse" href="#eventsearchlist">
+						<i class="fa fa-map-marker"></i>
+						周边查询
+					  </a>	
+					  <a href="javascript:eventSearchListComponent.hide();">					  
+						<span class="pull-right"><i class="fa fa-window-close"></i></span>
+					  </a>
+					  <a href="javascript:videoComponent.show();">					  
+						<span class="pull-right" style="padding-right:20px;"><i class="fa fa-video-camera"></i></span>
+					  </a>
+					</h4>
+				  </div>
+				  <div id="eventsearchlist" class="panel-collapse collapse in">
+					<div class="panel-body">				
+						<table data-toggle="table"	
+								data-classes="table table-video"
+								data-url="json/data1.json">
+							<thead>
+							<tr>
+								<th data-field="tag" class="col-md-2" data-halign="center" data-align="center">视频标号</th>
+								<th data-field="name" class="col-md-6" data-halign="center" data-align="center">
+									<i class="glyphicon glyphicon-star"></i>
+									视频位置
+								</th>
+							</tr>
+							</thead>					
+						</table>			
+					</div>
+				  </div>
+				</div>
+				<!--Video Summary start-->
+				<div id="videopanel" class="panel panel-default">
+				  <div class="panel-heading">
+					<h4 class="panel-title">
+					  <a data-toggle="collapse" href="#videopanelbody">
+						<i class="fa fa-video-camera"></i>
+						视频
+					  </a>				  
+					  <span class="pull-right">
+						<a href="javascript:videoComponent.hide();">
+							<i class="fa fa-window-close"></i>
+						</a>
+					  </span>
+					</h4>
+				  </div>
+				  <div id="videopanelbody" class="panel-collapse collapse in">
+					<div class="panel-body">				
+						<video name="leftVideoElement" class="leftVideo" id="leftVideoElement" controls autoplay>
+							Your browser is too old which doesn't support HTML5 video.
+						</video> 	
+					</div>
+				  </div>
+				</div>
 			</div>
 		</div>
 		<div class="col-sm-4 col-md-3 sidebar sidebar-right pull-right">
@@ -432,3 +474,84 @@
     </div>
   </body>
 </html>
+
+<script>
+	var flvPlayerLeft;
+		var flvPlayerRight;
+		var flvPlayerBottom;
+		if (flvjs.isSupported()) {
+            startVideo();
+        }
+		document.addEventListener('visibilitychange', function() { 
+			var isHidden = document.hidden; 
+				if (isHidden) { 
+					// 动画视频暂停 
+					destoryVideo();
+				} else { 
+					// 动画视频开始 
+					startVideo();
+				} 
+		});
+	
+		function GetRequest() { 
+		alert('GetRequest');
+			var url = location.search; //获取url中"?"符后的字串 
+			var theRequest = new Object(); 
+			if (url.indexOf("?") != -1) { 
+				var str = url.substr(1); 
+				strs = str.split("&"); 
+				for(var i = 0; i < strs.length; i ++) { 
+					theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]); 
+				} 
+			} 
+			return theRequest; 
+		} 
+		
+		function startSingleVideoChannel(pos,no,isPlay){
+			var elementId = pos+'VideoElement'
+			var videoElement1 = document.getElementById(elementId);
+            var flvPlayer = flvjs.createPlayer({
+                type: 'flv',
+                isLive: true,
+                hasAudio: false,
+                hasVideo: true,
+                url: 'http://10.136.162.198:8080/live?app=live&stream=demo'+no
+            },
+			{
+				//autoCleanupMaxBackwardDuration: 5,
+                //autoCleanupMinBackwardDuration: 3,
+				enableWorker: true,
+				enableStashBuffer: false,
+				stashInitialSize: 128,
+			});
+			if(pos=='left')
+				flvPlayerLeft = flvPlayer;
+			
+            flvPlayer.attachMediaElement(videoElement1);
+            flvPlayer.load();
+			if(isPlay)
+				flvPlayer.play();
+		}	
+
+        function startVideo(){
+            startSingleVideoChannel('left',0,false);
+        }
+
+        leftVideoElement.addEventListener('click', function(){
+            alert( '是否支持点播视频：' + flvjs.getFeatureList().mseFlvPlayback + ' 是否支持httpflv直播流：' + flvjs.getFeatureList().mseLiveFlvPlayback );
+			reloadVideo();
+        })
+
+        function destoryVideo(){
+            flvPlayer.pause();
+            flvPlayer.unload();
+            flvPlayer.detachMediaElement();
+            flvPlayer.destroy();
+            flvPlayer = null;
+        }
+
+        function reloadVideo(){
+            destoryVideo();
+            startVideo();
+        }
+	</script>

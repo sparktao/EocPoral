@@ -313,6 +313,23 @@ function EventSearchListComponent()
 
 var eventSearchListComponent = new EventSearchListComponent();
 
+function VideoComponent()
+{
+	var _self = this;
+	
+	this.show = function()
+	{
+		$("#videopanel").show();		
+	}
+	
+	this.hide = function()
+	{
+		$("#videopanel").hide();			
+	}	
+}
+
+var videoComponent = new VideoComponent();
+
 /***************************************EventInfo Start******************************/
 
 $(function() {// 初始化内容
@@ -325,6 +342,7 @@ $(function() {// 初始化内容
 	eventInfoComponent.Load();	
 	
 	eventSearchListComponent.hide();
+	videoComponent.hide();
 	//定时器
 	setInterval(function(){
 		var nowdate=new Date();
