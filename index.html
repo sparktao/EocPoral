@@ -11,16 +11,12 @@
 	<link rel="stylesheet" href="lib/bootstrap-table/bootstrap-table.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" /> 	
 	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" /> 	
-	<link rel="stylesheet" href="css/site.css" /> 
-    <link rel="stylesheet" href="lib/bootstrap-popover/css/tooltip.css" />	
+	<link rel="stylesheet" href="css/site.css" />    
     <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="lib/bootstrap-popover/js/transition.js"></script>
-	<script type="text/javascript" src="lib/bootstrap-popover/js/tooltip.js"></script>
-	<script type="text/javascript" src="lib/bootstrap-popover/js/popover.js"></script>
 	<script type="text/javascript" src="lib/bootstrap-table/bootstrap-table.js"></script>
 	<script type="text/javascript" src="js/echarts.min.js"></script>
-	<script type="text/javascript" src="js/site.js"></script>
+	
 	<link rel="icon" href="images/logo.ico">
     <script type="text/javascript">
           window.__lcdBasePath = '../../';
@@ -38,32 +34,8 @@
     <script type="text/javascript">
         require(["samples/EocPortal/main"]);
     </script>
+	<script type="text/javascript" src="js/site.js"></script>
 	
-	<style>
-.call-dialog{
-   position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-} 
-
-.bootstrap-dialog .modal-header.bootstrap-dialog-draggable {
-                cursor: move;
-}
-
-.popover {
-    background: #2D3555;
-}
-
-.popover-title {
-    background: #2D3555;
-}
-
-.table-hover > tbody > tr:hover {
-background-color: #2D3555;
-}
-  </style>
-  
 	<script type="text/javascript">
       function applyMargins() {
         var leftToggler = $(".mini-submenu-left");
@@ -141,67 +113,6 @@ background-color: #2D3555;
         applyInitialUIState();
         applyMargins();
       });
-	  
-	  function onClickCall(e) {
-		var phone = e.getAttribute("data-id");
-		//var name = e.getAttribute("data-name");
-		//alert("Id: " + id + " ; Name: " + name);
-		
-		alert("phone: " + phone);
-	}
-	
-	function onClickWechat(e) {
-		var id = e.getAttribute("data-id");
-		//var name = e.getAttribute("data-name");
-		//alert("Id: " + id + " ; Name: " + name);
-		
-		alert("Id: " + id);
-	}
-	
-	$(function () {
-		$('[data-toggle="popover"]').popover({
-			html: true,
-			content: '<div id="contentTable" style="background:#2D3555; color:#FFF"><table id="myTable"></table></div>'
-		}).on('shown.bs.popover', function () {
-			$('#myTable').bootstrapTable({
-				url: 'json/resource.json',
-
-				pagination: true, //是否开启分页（*）
-				pageNumber: 1, //初始化加载第一页，默认第一页
-				pageSize: 3, //每页的记录行数（*）
-				//pageList: [2, 3, 4], //可供选择的每页的行数（*）
-				sidePagination: "client", //分页方式：client客户端分页，server服务端分页（*）
-
-				columns: [{
-						field: 'name',
-						title: '姓名'
-					}/*, {
-						field: 'distance',
-						title: 'Item Name'
-					}*/, {
-						field: null,
-						title: '电话',
-						align: 'center',
-						formatter: function (value, row, index) {
-							var element =
-								"<a class='phone0' data-id='" + row.phone + "' onclick='onClickCall(this)' href='#'><i class='fa fa-phone'></i></a>";
-							return element;
-						}
-					}, {
-						field: null,
-						title: '微信',
-						align: 'center',
-						formatter: function (value, row, index) {
-							var element =
-								"<a class='wechat' data-id='" + row.id + "' onclick='onClickWechat(this)' href='#'><i class='fa fa-weixin'></i></a> ";
-							return element;
-						}
-					}
-				]
-			});
-		});
-	});
-	  
     </script>
   </head>
   <body>
@@ -309,13 +220,11 @@ background-color: #2D3555;
               </div>
               <div id="properties" class="panel-collapse collapse in">
                 <div class="panel-body">
-				    <div class="btn-group btn-group-justified" role="group" style="position:absolute;width:90%;">
-					    <a href="#" class="btn btn-primary" role="button" data-toggle="popover" data-placement="right" data-container="body" title="人员" data-content=""><span class="fa fa-search"></span>应急人员</a>
+				<div class="btn-group btn-group-justified" role="group" style="position:absolute;width:90%;">
+						<a href="#" class="btn btn-primary" role="button"><span class="fa fa-search"></span>应急人员</a>
 					</div>
-				    <div style="padding-top:40px">
-                      <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-					  <div id="main" style="width: 100%;height:220px;"></div>   
-                    </div>					
+                  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+					<div id="main" style="width: 100%;height:250px;"></div>                
                 </div>
               </div>
             </div>
@@ -352,22 +261,24 @@ background-color: #2D3555;
           </div>
         </div>
         <div class="col-sm-4 col-md-3 mid"></div>
-        <div class="col-sm-4 col-md-3 sidebar">
+        <div id="searchpanel" class="col-sm-4 col-md-3 sidebar">
 			<div class="panel-group sidebar-body" id="accordion-right111">
 		    <!--Event Summary start-->
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <a data-toggle="collapse" href="#eventsummarypane111">
+                  <a data-toggle="collapse" href="#eventsearchlist">
                     <i class="fa fa-map-marker"></i>
                     周边查询
                   </a>				  
                   <span class="pull-right">
-                    <i class="fa fa-window-close"></i>
+					<a href="javascript:eventSearchListComponent.hide();">
+						<i class="fa fa-window-close"></i>
+					</a>
                   </span>
                 </h4>
               </div>
-              <div id="eventsummarypane1111" class="panel-collapse collapse in">
+              <div id="eventsearchlist" class="panel-collapse collapse in">
                 <div class="panel-body">				
 					<table data-toggle="table"	
 							data-classes="table table-video"
@@ -400,9 +311,16 @@ background-color: #2D3555;
                   <span class="pull-right slide-submenu">
                     <i class="fa fa-chevron-right"></i>
                   </span>
-				  <span class="pull-right event-search">
-                    <i class="fa fa-search"></i>
-                  </span>
+				  <a href="javascript:eventInfoComponent.search();">
+					  <span class="pull-right">
+						<i class="fa fa-search"></i>
+					  </span>
+				  </a>
+				  <a data-toggle="modal" href="#sendWeChatModal">
+					  <span class="pull-right">
+						<i class="fa fa-wechat"></i>
+					  </span>
+				  </a>
                 </h4>
               </div>
               <div id="eventsummarypane" class="panel-collapse collapse in">
@@ -419,7 +337,7 @@ background-color: #2D3555;
 						<div class="well span3 top-block-red">
 							<div>事故持续时间</div>
 							<br />
-							<div style="font-size: 32px;">00:21:33</div>
+							<div id="eventInfoDuraDiv" style="font-size: 32px;">00:21:33</div>
 						</div>
 					</div>
 			
@@ -468,6 +386,44 @@ background-color: #2D3555;
                 </div>
                 <div id="eventChronologyBody" class="modal-body" >
 					
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<div class="modal fade" id="sendWeChatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="width:32px;"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-wechat"></i>发送WeChat</h4>
+                </div>
+                <div id="sendWeChatBody" class="modal-body" >
+					<form class="form-horizontal">
+					  <div class="form-group">
+						<label for="InputEmail1" class="col-sm-2 control-label">标 题</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="InputEmail1" placeholder="您收到了一个新得应急工作任务">
+						</div>
+					  </div>
+					  <div class="form-group">
+						<label for="InputDesc" class="col-sm-2 control-label">描 述</label>
+						<div class="col-sm-10">
+							<textarea id="InputDesc" class="form-control" rows="3" placeholder="危险化学品生产安全事故应急演练"></textarea>
+						</div>
+					  </div>					  
+					  <div class="form-group">
+						<label for="InputTime" class="col-sm-2 control-label">时限</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="InputTime" value="2018/9/13 10:52:00" />
+						</div>
+					  </div>
+					  <div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-default">发送</button>
+							</div>
+						</div>
+					</form>
                 </div>
             </div>
         </div>
