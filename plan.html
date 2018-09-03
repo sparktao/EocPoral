@@ -66,16 +66,16 @@ display: inline-block;
   background-color: #1A1E35;
 }
 
-.popover {
-    background: #2D3555;
-}
-
-.popover-title {
-    background: #2D3555;
-}
+.popover {background-color: tomato;}
+.popover.right .arrow::after {border-right-color: tomato; }
+.popover-content {background-color: tomato;}
 
 .table-hover > tbody > tr:hover {
-background-color: #2D3555;
+    background-color: #2D3555;
+}
+
+.pagination-info{
+    display:none;
 }
   </style>
   
@@ -99,100 +99,136 @@ background-color: #2D3555;
 		},
 	];
 
-	function addContextMenuByID(sId) {
+	function addEventByID(sId) {
 
 		d3.select(sId).on("mouseover", setCursor);
-		
-		d3.select(sId).on("click", onClick);
+
+		$(sId).popover({
+			title: null,
+			html: true,
+			content: "<p>P203, 09:37AM dispatched.</p><p>P203, 09:39AM arrived main avenue.</p><p>F104, 09:38AM dispatched, on route.</p>",
+			container: 'body'
+		});
+
+		//d3.select(sId).on("click", onClick);
+
+		//d3.select(sId).popover({title:'ssss', content: '<div id="contentTable" style="background:#2D3555; color:#FFF"><table id="myTable"></table></div>', container:"body", html:true});
 
 		/*d3.select(sId).on('contextmenu', d3.contextMenu(menu, {
-				theme: function () {
-				if (useDarkTheme) {
-				return 'd3-context-menu-theme dark';
-				} else {
-				return 'd3-context-menu-theme';
-				}
-				},
-				onOpen: function (data, index) {
-					//console.log('Menu Opened!', 'element:', this, 'data:', data, 'index:', index);
-				},
-				onClose: function (data, index) {
-					//console.log('Menu Closed!', 'element:', this, 'data:', data, 'index:', index);
-				},
-				position: function (data, index) {
-					var bounds = this.getBoundingClientRect();
-					if (data === 'green') {
-						// first circle will have the menu aligned top-right
-						return {
-							left: bounds.left + bounds.width + 10,
-							top: bounds.top
-						}
-					}
-				}
-			})); // attach menu to element*/
+		theme: function () {
+		if (useDarkTheme) {
+		return 'd3-context-menu-theme dark';
+		} else {
+		return 'd3-context-menu-theme';
+		}
+		},
+		onOpen: function (data, index) {
+		//console.log('Menu Opened!', 'element:', this, 'data:', data, 'index:', index);
+		},
+		onClose: function (data, index) {
+		//console.log('Menu Closed!', 'element:', this, 'data:', data, 'index:', index);
+		},
+		position: function (data, index) {
+		var bounds = this.getBoundingClientRect();
+		if (data === 'green') {
+		// first circle will have the menu aligned top-right
+		return {
+		left: bounds.left + bounds.width + 10,
+		top: bounds.top
+		}
+		}
+		}
+		})); // attach menu to element*/
+	}
+
+	function addClickEventByID(sId) {
+
+		d3.select(sId).on("mouseover", setCursor);
+
+		d3.select(sId).on("click", onClick);
 	}
 
 	function setCursor() {
 		this.style.cursor = 'hand';
 	}
-	
+
 	var dialogCalling;
 
 	function refreshCallingState() {
-		
+
 		dialogCalling.setMessage('通话中...');
 	}
-	
+
 	function hangUp() {
-		
+
 		//alert();
 	}
 
 	function onClick() {
 
-		var t1 = window.setTimeout(refreshCallingState, 1000 * 2);
+		/*var t1 = window.setTimeout(refreshCallingState, 1000 * 2);
 
 		dialogCalling = new BootstrapDialog({
-				type: BootstrapDialog.TYPE_SUCCESS,
-				size: BootstrapDialog.SIZE_SMALL,
-				//cssClass: 'call-dialog',
-				title: '电话-110',
-				message: '拨号中...',
-				draggable: true,
-				closable: false,
-				buttons: [{
-						label: '挂断',
-						icon: 'glyphicon glyphicon-phone-alt',
-						cssClass: 'btn-danger',
-						action: function (dialogRef) {
-							dialogRef.close();
-							hangUp();
-						}
-					}
-				]
-			});
+		type: BootstrapDialog.TYPE_SUCCESS,
+		size: BootstrapDialog.SIZE_SMALL,
+		//cssClass: 'call-dialog',
+		title: '电话-110',
+		message: '拨号中...',
+		draggable: true,
+		closable: false,
+		buttons: [{
+		label: '挂断',
+		icon: 'glyphicon glyphicon-phone-alt',
+		cssClass: 'btn-danger',
+		action: function (dialogRef) {
+		dialogRef.close();
+		hangUp();
+		}
+		}
+		]
+		});
 
-		dialogCalling.open();
+		dialogCalling.open();*/
+
+		$("#svgDiv").empty();
+		
+		d3.xml("/web/samples/EocPortal/diagram/s2.svg").mimeType("image/svg+xml").get(function (error, xml) {
+			if (error) {
+				alert("加载预案失败！");
+				throw error;
+			}
+
+			var svgDiv = document.getElementById("svgDiv");
+
+			svgDiv.appendChild(xml.documentElement);
+
+			//addEventByID("#Group-27-Copy-9");
+
+		});
+
 	}
 
-	d3.xml("/web/samples/EocPortal/diagram/plan-flow.svg").mimeType("image/svg+xml").get(function (error, xml) {
-		if (error)
-		{
-		    alert("加载预案失败！");
-			throw error;
-		}
+	$(function () {
 
-		var svgDiv = document.getElementById("svgDiv");
+		$('#planModal').on('show.bs.modal', function () {
 
-		svgDiv.appendChild(xml.documentElement);
+			$("#svgDiv").empty();
+			
+			d3.xml("/web/samples/EocPortal/diagram/s1.svg").mimeType("image/svg+xml").get(function (error, xml) {
+				if (error) {
+					alert("加载预案失败！");
+					throw error;
+				}
 
-		addContextMenuByID("#Group-27-Copy-9");
+				var svgDiv = document.getElementById("svgDiv");
 
+				svgDiv.appendChild(xml.documentElement);
+
+				addClickEventByID("#arrow-left");
+
+			});
+		}).on('hide.bs.modal', function () {})
 	});
-	
-	
-	
-				
 
 	function applyMargins() {
 		var leftToggler = $(".mini-submenu-left");
@@ -305,25 +341,25 @@ background-color: #2D3555;
 		applyInitialUIState();
 		applyMargins();
 	});
-	
-	
+
 	function onClickCall(e) {
 		var phone = e.getAttribute("data-id");
 		//var name = e.getAttribute("data-name");
 		//alert("Id: " + id + " ; Name: " + name);
-		
+
 		alert("phone: " + phone);
 	}
-	
+
 	function onClickWechat(e) {
 		var id = e.getAttribute("data-id");
 		//var name = e.getAttribute("data-name");
 		//alert("Id: " + id + " ; Name: " + name);
-		
+
 		alert("Id: " + id);
 	}
-	
+
 	$(function () {
+
 		$('[data-toggle="popover"]').popover({
 			html: true,
 			content: '<div id="contentTable" style="background:#2D3555; color:#FFF"><table id="myTable"></table></div>'
@@ -339,11 +375,10 @@ background-color: #2D3555;
 
 				columns: [{
 						field: 'name',
-						title: '姓名'
-					}/*, {
-						field: 'distance',
-						title: 'Item Name'
-					}*/, {
+						title: '姓名',
+						width: '100px',
+						align: 'center'
+					}, {
 						field: null,
 						title: '电话',
 						align: 'center',
@@ -366,6 +401,7 @@ background-color: #2D3555;
 			});
 		});
 	});
+	
     </script>
   </head>
   <body>
@@ -454,7 +490,7 @@ background-color: #2D3555;
               <div id="properties" class="panel-collapse collapse in">
                 <div class="panel-body">
 				    <div class="btn-group btn-group-justified" role="group" style="position:absolute;width:90%;">
-					  <a href="#" class="btn btn-primary" role="button" data-toggle="popover" data-placement="right" data-container="body" title="人员" data-content=""><span class="fa fa-search"></span>应急人员</a>
+					  <a href="#" class="btn btn-primary" role="button" data-toggle="popover" data-placement="right" data-container="body" data-content=""><span class="fa fa-search"></span>应急人员</a>
 					</div>
                     <div style="padding-top:40px">
                       <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
@@ -602,7 +638,7 @@ background-color: #2D3555;
                 </div>
                 <div class="modal-body" >
 				    <div id="svgDiv"></div>
-					<button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#0077FF;width:120px;color:#FFFFFF;display:block;margin:0 auto">关 闭</button>
+					<!--<button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#0077FF;width:120px;color:#FFFFFF;display:block;margin:0 auto">关 闭</button>-->
                 </div>
             </div>
         </div>
