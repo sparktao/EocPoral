@@ -60,7 +60,11 @@
 }
 
 .table-hover > tbody > tr:hover {
-background-color: #2D3555;
+    background-color: #2D3555;
+}
+
+.pagination-info{
+    display:none;
 }
   </style>
   
@@ -174,7 +178,9 @@ background-color: #2D3555;
 
 				columns: [{
 						field: 'name',
-						title: '姓名'
+						title: '姓名',
+						width: '100px',
+						align: 'center'
 					}/*, {
 						field: 'distance',
 						title: 'Item Name'

@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="lib/bootstrap-popover/css/tooltip.css" />
 	<link rel="stylesheet" href="lib/d3/css/d3-context-menu.css" >
 	<link rel="stylesheet" href="lib/bootstrap-dialog/css/bootstrap-dialog.min.css">
+	<link rel="stylesheet" href="css/preplan.css" />
 	
     <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="lib/bootstrap-popover/js/transition.js"></script>
@@ -28,208 +29,14 @@
 	<script type="text/javascript" src="lib/d3/js/d3.js"></script>
 	<script type="text/javascript" src="lib/d3/js/d3-context-menu.js"></script>
 	<script type="text/javascript" src="lib/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+	<script type="text/javascript" src="js/preplan.js"></script>
 	
 	<link rel="icon" href="images/favicon.ico">
 	
-	<style>
-.call-dialog{
-   position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-} 
-
-.bootstrap-dialog .modal-header.bootstrap-dialog-draggable {
-                cursor: move;
-}
-
-#planModal.modal::before {
-  content: "";	  
-display: inline-block;
-  height: 100%;	 
-  margin-right: -4px;
-  vertical-align: middle;
-}
-#planModal .modal-dialog {	
-     display: inline-block;	
-     text-align: left;	
-     vertical-align: middle;
-}
-#planModal.modal{
-	text-align:center;
-}
-.modal-header {
-  background-color: #2D3555;
-  color: white;
-}
-.modal-body {
-  background-color: #1A1E35;
-}
-
-.popover {background-color: tomato;}
-.popover.right .arrow::after {border-right-color: tomato; }
-.popover-content {background-color: tomato;}
-
-.table-hover > tbody > tr:hover {
-    background-color: #2D3555;
-}
-
-.pagination-info{
-    display:none;
-}
-  </style>
+	
   
     <script type="text/javascript">
 	
-	var menu = [{
-			title: '呼叫110',
-			action: function (data, index) {
-				//console.log('Item clicked', 'element:', this, 'data:', data, 'index:', index);
-			}
-		}, {
-			title: '呼叫120',
-			action: function (data, index) {
-				//console.log('Item clicked', 'element:', this, 'data:', data, 'index:', index);
-			}
-		}, {
-			title: '呼叫119',
-			action: function (data, index) {
-				//console.log('Item clicked', 'element:', this, 'data:', data, 'index:', index);
-			}
-		},
-	];
-
-	function addEventByID(sId) {
-
-		d3.select(sId).on("mouseover", setCursor);
-
-		$(sId).popover({
-			title: null,
-			html: true,
-			content: "<p>P203, 09:37AM dispatched.</p><p>P203, 09:39AM arrived main avenue.</p><p>F104, 09:38AM dispatched, on route.</p>",
-			container: 'body'
-		});
-
-		//d3.select(sId).on("click", onClick);
-
-		//d3.select(sId).popover({title:'ssss', content: '<div id="contentTable" style="background:#2D3555; color:#FFF"><table id="myTable"></table></div>', container:"body", html:true});
-
-		/*d3.select(sId).on('contextmenu', d3.contextMenu(menu, {
-		theme: function () {
-		if (useDarkTheme) {
-		return 'd3-context-menu-theme dark';
-		} else {
-		return 'd3-context-menu-theme';
-		}
-		},
-		onOpen: function (data, index) {
-		//console.log('Menu Opened!', 'element:', this, 'data:', data, 'index:', index);
-		},
-		onClose: function (data, index) {
-		//console.log('Menu Closed!', 'element:', this, 'data:', data, 'index:', index);
-		},
-		position: function (data, index) {
-		var bounds = this.getBoundingClientRect();
-		if (data === 'green') {
-		// first circle will have the menu aligned top-right
-		return {
-		left: bounds.left + bounds.width + 10,
-		top: bounds.top
-		}
-		}
-		}
-		})); // attach menu to element*/
-	}
-
-	function addClickEventByID(sId) {
-
-		d3.select(sId).on("mouseover", setCursor);
-
-		d3.select(sId).on("click", onClick);
-	}
-
-	function setCursor() {
-		this.style.cursor = 'hand';
-	}
-
-	var dialogCalling;
-
-	function refreshCallingState() {
-
-		dialogCalling.setMessage('通话中...');
-	}
-
-	function hangUp() {
-
-		//alert();
-	}
-
-	function onClick() {
-
-		/*var t1 = window.setTimeout(refreshCallingState, 1000 * 2);
-
-		dialogCalling = new BootstrapDialog({
-		type: BootstrapDialog.TYPE_SUCCESS,
-		size: BootstrapDialog.SIZE_SMALL,
-		//cssClass: 'call-dialog',
-		title: '电话-110',
-		message: '拨号中...',
-		draggable: true,
-		closable: false,
-		buttons: [{
-		label: '挂断',
-		icon: 'glyphicon glyphicon-phone-alt',
-		cssClass: 'btn-danger',
-		action: function (dialogRef) {
-		dialogRef.close();
-		hangUp();
-		}
-		}
-		]
-		});
-
-		dialogCalling.open();*/
-
-		$("#svgDiv").empty();
-		
-		d3.xml("/web/samples/EocPortal/diagram/s2.svg").mimeType("image/svg+xml").get(function (error, xml) {
-			if (error) {
-				alert("加载预案失败！");
-				throw error;
-			}
-
-			var svgDiv = document.getElementById("svgDiv");
-
-			svgDiv.appendChild(xml.documentElement);
-
-			//addEventByID("#Group-27-Copy-9");
-
-		});
-
-	}
-
-	$(function () {
-
-		$('#planModal').on('show.bs.modal', function () {
-
-			$("#svgDiv").empty();
-			
-			d3.xml("/web/samples/EocPortal/diagram/s1.svg").mimeType("image/svg+xml").get(function (error, xml) {
-				if (error) {
-					alert("加载预案失败！");
-					throw error;
-				}
-
-				var svgDiv = document.getElementById("svgDiv");
-
-				svgDiv.appendChild(xml.documentElement);
-
-				addClickEventByID("#arrow-left");
-
-			});
-		}).on('hide.bs.modal', function () {})
-	});
-
 	function applyMargins() {
 		var leftToggler = $(".mini-submenu-left");
 		var rightToggler = $(".mini-submenu-right");
@@ -340,66 +147,6 @@ display: inline-block;
 
 		applyInitialUIState();
 		applyMargins();
-	});
-
-	function onClickCall(e) {
-		var phone = e.getAttribute("data-id");
-		//var name = e.getAttribute("data-name");
-		//alert("Id: " + id + " ; Name: " + name);
-
-		alert("phone: " + phone);
-	}
-
-	function onClickWechat(e) {
-		var id = e.getAttribute("data-id");
-		//var name = e.getAttribute("data-name");
-		//alert("Id: " + id + " ; Name: " + name);
-
-		alert("Id: " + id);
-	}
-
-	$(function () {
-
-		$('[data-toggle="popover"]').popover({
-			html: true,
-			content: '<div id="contentTable" style="background:#2D3555; color:#FFF"><table id="myTable"></table></div>'
-		}).on('shown.bs.popover', function () {
-			$('#myTable').bootstrapTable({
-				url: 'json/resource.json',
-
-				pagination: true, //是否开启分页（*）
-				pageNumber: 1, //初始化加载第一页，默认第一页
-				pageSize: 3, //每页的记录行数（*）
-				//pageList: [2, 3, 4], //可供选择的每页的行数（*）
-				sidePagination: "client", //分页方式：client客户端分页，server服务端分页（*）
-
-				columns: [{
-						field: 'name',
-						title: '姓名',
-						width: '100px',
-						align: 'center'
-					}, {
-						field: null,
-						title: '电话',
-						align: 'center',
-						formatter: function (value, row, index) {
-							var element =
-								"<a class='phone0' data-id='" + row.phone + "' onclick='onClickCall(this)' href='#'><i class='fa fa-phone'></i></a>";
-							return element;
-						}
-					}, {
-						field: null,
-						title: '微信',
-						align: 'center',
-						formatter: function (value, row, index) {
-							var element =
-								"<a class='wechat' data-id='" + row.id + "' onclick='onClickWechat(this)' href='#'><i class='fa fa-weixin'></i></a> ";
-							return element;
-						}
-					}
-				]
-			});
-		});
 	});
 	
     </script>

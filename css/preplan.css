@@ -1,0 +1,45 @@
+.call-dialog{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} 
+
+.bootstrap-dialog .modal-header.bootstrap-dialog-draggable {
+                cursor: move;
+}
+
+#planModal.modal::before {
+  content: "";	  
+display: inline-block;
+  height: 100%;	 
+  margin-right: -4px;
+  vertical-align: middle;
+}
+#planModal .modal-dialog {	
+     display: inline-block;	
+     text-align: left;	
+     vertical-align: middle;
+}
+#planModal.modal{
+	text-align:center;
+}
+.modal-header {
+  background-color: #2D3555;
+  color: white;
+}
+.modal-body {
+  background-color: #1A1E35;
+}
+
+.popover {background-color: white;}
+.popover.right .arrow::after {border-right-color: white; }
+.popover-content {background-color: white;}
+
+.table-hover > tbody > tr:hover {
+    background-color: #2D3555;
+}
+
+.pagination-info{
+    display:none;
+}
