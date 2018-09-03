@@ -171,24 +171,6 @@ function InitSteppers()
 	$.getJSON( "json/data3.json", function( data ) {
     var tcount = data.length;
 	$.each( data, function( i, item ) {	
-			if(i == tcount-1)
-			{
-				eventDetailList.push( '<div class="step">' 
-								+			'<div>'
-								+				'<div class="circle">' + item.id + '</div>'
-								+				'<div class="line"></div>'
-								+			'</div>'
-								+			 '<div>'
-								+				'<div class="title yellow">' + item.title + '</div>'
-								+				'<div class="row">'							
-								+					'<div class="col-md-10 yellow"><p>' + item.description + '</p> </div>'
-								+					'<div class="col-md-2"><span class="fa fa-check-circle" ></span></div>  ' 								
-								+				'</div>'
-								+			'</div>'
-								+       '</div>' );
-			}
-			else
-			{
 				eventDetailList.push( '<div class="step">' 
 								+			'<div>'
 								+				'<div class="circle">' + item.id + '</div>'
@@ -202,7 +184,6 @@ function InitSteppers()
 								+				'</div>'
 								+			'</div>'
 								+       '</div>' );
-			}
 		  });
 		  for(var i=0; i<4; i++) {
 			$( "#eventdetailsbody" ).append(eventDetailList[i]);
@@ -216,6 +197,11 @@ function resetEventDetailStyle()
 	for(var i=1; i<5; i++) {
 		$('#eventdetailsbody > :nth-child(' + i +')').fadeTo(250 * i, 0.25 * i);
 	}
+	
+	$('#eventdetailsbody .yellow').removeClass('yellow')
+	//设置最后一个元素为黄色
+	$('#eventdetailsbody > div:last  .col-md-10').addClass('yellow');
+	
 }
 
 function loopSteppers()
@@ -289,6 +275,22 @@ function EventInfoComponent(){
 		{
 			eventSearchListComponent.show();
 		}
+		
+		try {
+			// For modern browsers except IE:
+			var event = new CustomEvent('map_addTempCircle', {detail:_self.currentEventInfo.coordinates});
+		} catch(err) {
+		  // If IE 11 (or 10 or 9...?) do it this way:
+			// Create the event.
+			var event = document.createEvent('Event');
+			// Define that the event name is 'build'.
+			event.initEvent('map_addTempCircle', true, true);
+			event.detail = _self.currentEventInfo.coordinates;
+		}
+
+		// Dispatch/Trigger/Fire the event
+		document.dispatchEvent(event);
+
 		//显示缓冲区
 		//removeTempCircle();
 		//createTempCircle(ShapeFactory.createPoint("", _self.currentEventInfo.coordinates), 500);
@@ -309,6 +311,24 @@ function EventSearchListComponent()
 	{
 		$("#searchpanel").hide();			
 	}	
+	
+	this.removeBuffer = function()
+	{
+		try {
+			// For modern browsers except IE:
+			var event = new CustomEvent('map_removeBuffer', {detail:""});
+		} catch(err) {
+		  // If IE 11 (or 10 or 9...?) do it this way:
+			// Create the event.
+			var event = document.createEvent('Event');
+			// Define that the event name is 'build'.
+			event.initEvent('map_removeBuffer', true, true);
+			event.detail = "";
+		}
+
+		// Dispatch/Trigger/Fire the event
+		document.dispatchEvent(event);		
+	}
 }
 
 var eventSearchListComponent = new EventSearchListComponent();

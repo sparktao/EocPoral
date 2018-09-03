@@ -6,7 +6,7 @@
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" name="viewport">
 	<meta data-lcd-included-files="" id="include_highlights_from">
 	
-    <title>指挥决策系统</title>
+    <title>海克斯康指挥决策系统</title>
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="lib/bootstrap-table/bootstrap-table.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" /> 	
@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="lib/bootstrap-table/bootstrap-table.js"></script>
 	<script type="text/javascript" src="js/echarts.min.js"></script>
 	<script type="text/javascript" src="js/flv.js?v=2"></script> 
-	<link rel="icon" href="images/logo.ico">
+	<link rel="icon" href="images/favicon.ico">
     <script type="text/javascript">
           window.__lcdBasePath = '../../';
           window.__lcdMobileTemplate = false;
@@ -146,8 +146,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img alt="指挥决策系统" src="images/logo.png"></image></a>
-			<a class="navbar-brand" href="#">指挥决策系统</a>
+            <a class="navbar-brand" style="padding-top:10px;" href="#"><img alt="指挥决策系统" src="images/logo.png"></image></a>
+			<a class="navbar-brand" href="#">海克斯康指挥决策系统</a>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -163,7 +163,7 @@
 			  <li><a href="#"><span class="fa fa-user-circle" aria-hidden="true"></span></a></li>			  
             </ul>
 			<div class="nav navbar-nav navbar-right" style="height:50px; z-index:37;">
-				<iframe id="fancybox-frame" name="fancybox-frame1534136791957" frameborder="0" scrolling="no" hspace="0"  src="http://i.tianqi.com/index.php?c=code&a=getcode&id=42&h=54&w=214"></iframe>
+				<iframe id="fancybox-frame" name="fancybox-frame1534136791957" style="height:60px;" frameborder="0" scrolling="no" hspace="0"  src="http://i.tianqi.com/index.php?c=code&a=getcode&id=42&h=54&w=214"></iframe>
 			</div>
 			<form class="navbar-form navbar-right" role="search">              
 				<div class="input-group">
@@ -292,6 +292,9 @@
 					  <a href="javascript:eventSearchListComponent.hide();">					  
 						<span class="pull-right"><i class="fa fa-window-close"></i></span>
 					  </a>
+					  <a href="javascript:eventSearchListComponent.removeBuffer();">					  
+						<span class="pull-right" style="padding-right:20px;"><i class="fa fa-undo"></i></span>
+					  </a>
 					  <a href="javascript:videoComponent.show();">					  
 						<span class="pull-right" style="padding-right:20px;"><i class="fa fa-video-camera"></i></span>
 					  </a>
@@ -354,12 +357,12 @@
                     <i class="fa fa-chevron-right"></i>
                   </span>
 				  <a href="javascript:eventInfoComponent.search();">
-					  <span class="pull-right">
+					  <span class="pull-right" style="padding-right:10px;">
 						<i class="fa fa-search"></i>
 					  </span>
 				  </a>
 				  <a data-toggle="modal" href="#sendWeChatModal">
-					  <span class="pull-right">
+					  <span class="pull-right" style="padding-right:10px;">
 						<i class="fa fa-wechat"></i>
 					  </span>
 				  </a>
