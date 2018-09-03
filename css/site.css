@@ -16,16 +16,19 @@ body {
 	font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-#eventChronologyModal.modal{
+#sendWeChatModal.modal, #eventChronologyModal.modal{
 }
-#eventChronologyModal .modal-header {
+#sendWeChatModal .modal-header, #eventChronologyModal .modal-header {
   background-color: #2D3555;
 }
-#eventChronologyModal .modal-body {
+#sendWeChatModal .modal-body, #eventChronologyModal .modal-body {
   background-color: #1A1E35;
-  overflow-x:hidden;
-  overflow-y: auto;
-  height:500px;
+}
+
+#eventChronologyModal .modal-body {
+	overflow-x:hidden;
+	overflow-y: auto;
+	height:500px;
 }
 
 /***************map style **************************/

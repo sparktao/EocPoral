@@ -256,7 +256,7 @@ var eventInfoComponent = null;
 function EventInfoComponent(){
 	var _self = this;
 	this.eventInfoList=[];
-	this.currentEventInfo="undefined";
+	this.currentEventInfo= {id:"1111", name:"某广场聚众闹事，疑似多人聚集", happenedtime:new Date("2018-08-30 09:32:21"), coordinates:[]};
 	
 	this.Load = function() {
 		$.getJSON( "Luciad/data/events.json", function( data ) {
@@ -264,6 +264,7 @@ function EventInfoComponent(){
 				var ev = {};
 				ev.id = item.properties.uid;
 				ev.name = item.properties.NAME;
+				ev.happenedtime = new Date("2018-08-30 09:32:21");
 				ev.coordinates = item.geometry.coordinates;
 				_self.eventInfoList.push(ev);
 			});
@@ -282,9 +283,52 @@ function EventInfoComponent(){
 		_self.currentEventInfo = eventinfo;
 		$("#eventInfoNameDiv").html("事件名称：" + _self.currentEventInfo.name);
 	}
+	
+	this.search = function(){
+		if(!!eventSearchListComponent)
+		{
+			eventSearchListComponent.show();
+		}
+		//显示缓冲区
+		//removeTempCircle();
+		//createTempCircle(ShapeFactory.createPoint("", _self.currentEventInfo.coordinates), 500);
+	}
 }
 
 
+function EventSearchListComponent()
+{
+	var _self = this;
+	
+	this.show = function()
+	{
+		$("#searchpanel").show();		
+	}
+	
+	this.hide = function()
+	{
+		$("#searchpanel").hide();			
+	}	
+}
+
+var eventSearchListComponent = new EventSearchListComponent();
+
+function VideoComponent()
+{
+	var _self = this;
+	
+	this.show = function()
+	{
+		$("#videopanel").show();		
+	}
+	
+	this.hide = function()
+	{
+		$("#videopanel").hide();			
+	}	
+}
+
+var videoComponent = new VideoComponent();
 
 /***************************************EventInfo Start******************************/
 
@@ -295,11 +339,30 @@ $(function() {// 初始化内容
 	loopSteppers();
 	InitStepperModal();
 	eventInfoComponent = new EventInfoComponent();
-	eventInfoComponent.Load();
+	eventInfoComponent.Load();	
 	
-	$('.sidebar-right .event-search').on('click',function() {
-          alert();
-	});
+	eventSearchListComponent.hide();
+	videoComponent.hide();
+	//定时器
+	setInterval(function(){
+		var nowdate=new Date();
+		var s1 = nowdate.getTime();
+		var s2 = eventInfoComponent.currentEventInfo.happenedtime.getTime();
+		var total = (s1 - s2)/1000;
+		var day = parseInt(total / (24*60*60));//计算整数天数
+		var afterDay = total - day*24*60*60;//取得算出天数后剩余的秒数
+		var hour = parseInt(afterDay/(60*60));//计算整数小时数
+		var afterHour = total - day*24*60*60 - hour*60*60;//取得算出小时数后剩余的秒数
+		var min = parseInt(afterHour/60);//计算整数分
+		var afterMin = parseInt(total - day*24*60*60 - hour*60*60 - min*60);//取得算出分后剩余的秒数
+		hour = day *24 + hour;
+		if(hour<10) hour="0"+hour;
+		if(min<10) min="0"+min;
+		if(afterMin<10) afterMin="0"+afterMin;
+		$("#eventInfoDuraDiv").html(hour + ":" + min +":" + afterMin);
+	} ,1000);
+
+	
 	
 	buildAccidentTrendChart();	
 });  
