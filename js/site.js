@@ -339,18 +339,101 @@ function VideoComponent()
 	
 	this.show = function()
 	{
-		$("#videopanel").show();		
+		if(!!$("#videopanel")) {
+			$("#videopanel").show();
+		}		
 	}
 	
 	this.hide = function()
 	{
-		$("#videopanel").hide();			
+		if(!!$("#videopanel")) {
+			$("#videopanel").hide();	
+		}		
 	}	
 }
 
 var videoComponent = new VideoComponent();
 
-/***************************************EventInfo Start******************************/
+/***************************************EventInfo End******************************/
+
+/*****************************************Wechat Start ****************************/
+
+function sendWeChatMessage()
+{
+	var titleValue = $("#formTitle").val();
+	if(titleValue == undefined || titleValue == "")
+	{
+		titleValue = $("#formTitle").attr("placeholder");
+	}
+	
+	var descValue = $("#InputDesc").val();
+	if(descValue == undefined || descValue == "")
+	{
+		descValue = $("#InputDesc").attr("placeholder");
+	}
+	
+	var timeValue = $("#InputTime").val();
+	if(timeValue == undefined || timeValue == "")
+	{
+		timeValue = $("#InputTime").attr("placeholder");
+	}
+	var nowdate = new Date().Format("yyyy-MM-ddTHH:mm:ss");
+	var msgStr = '{"ID":"962c701a-556c-4f7b-967b-a8d9f492271d","SourceType":"IPR","SubsourceType":"Task","SourceNode":"","SyncTime":"2018-09-04T09:10:54.3719555+08:00",'
+	+'"Content":{"ID":"'+guid()+'","OPERATION":"危险化学品生产安全事故应急演练","REPORTTIME":"'+nowdate+'","REPORTER":"公安分局","DEADLINETIME":"'+timeValue+'",'
+	+'"ABSTRACT":"'+ titleValue +'","DESCRIPTION":"'+descValue+'","ACTIONS":"感谢您的体验","BEGINTIME":"'+nowdate+'","ENDTIME":"1970-01-01T00:00:00","CREATIONTIME":"'+nowdate+'","CREATEDBY":"2018用户大会","RECIPIENT":"大会来宾"}}';
+	var msg = JSON.parse(msgStr);
+	var msglst = [];
+	msglst.push(msg);	
+	
+	window.setTimeout(function () {
+		$.ajax({
+			type: 'POST',
+			url: "http://www.hexagonsi-ps.com/WeChatIntegration/Home/SentInfo",			
+			data: JSON.stringify(msglst),
+			dataType: "json",
+			async: true,
+			success: function (data) {
+				
+			},
+			complete: function() {
+			//请求完成的处理
+				alert("发送wechat消息成功!");
+			},
+			error: function (data) {
+				alert('data');
+			}
+		});
+	}, 200);
+	
+}
+
+function guid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+}
+
+Date.prototype.Format = function(fmt) { 
+  var o = {   
+	"M+" : this.getMonth()+1,                 //月份   
+	"d+" : this.getDate(),                    //日   
+	"h+" : this.getHours()%12 == 0 ? 12 : this.getHours()%12, //小时           
+	"H+" : this.getHours(), //小时
+	"m+" : this.getMinutes(),                 //分   
+	"s+" : this.getSeconds(),                 //秒   
+	"q+" : Math.floor((this.getMonth()+3)/3), //季度   
+	"S"  : this.getMilliseconds()             //毫秒   
+  };   
+  if(/(y+)/.test(fmt))   
+	fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
+  for(var k in o)   
+	if(new RegExp("("+ k +")").test(fmt))   
+  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+  return fmt;   
+} 
+
+/*****************************************Wechat End ****************************/
 
 $(function() {// 初始化内容
     
