@@ -10,8 +10,12 @@
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="lib/bootstrap-table/bootstrap-table.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" /> 	
-	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" /> 	
-	<link rel="stylesheet" href="css/site.css" />    
+	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" /> 	   
+	<link rel="stylesheet" href="css/site.css" /> 
+    <link rel="stylesheet" href="lib/bootstrap-popover/css/tooltip.css" />
+    <link rel="stylesheet" href="css/preplan.css" />	
+    
+	<script type="text/javascript" src="lib/d3/js/d3.js"></script>
 	<link rel="stylesheet" href="css/video.css" />
     <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -36,7 +40,11 @@
     <script type="text/javascript">
         require(["samples/EocPortal/main"]);
     </script>
-	<script type="text/javascript" src="js/site.js"></script>	
+	<script type="text/javascript" src="js/site.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-popover/js/transition.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-popover/js/tooltip.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-popover/js/popover.js"></script>
+	<script type="text/javascript" src="js/preplan.js"></script>
 	<script type="text/javascript">
       function applyMargins() {
         var leftToggler = $(".mini-submenu-left");
@@ -136,7 +144,10 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">事件核查</a></li>
-              <li><a href="plan.html" target="_blank">预案启动</a></li>
+              <li><a data-toggle="modal" href="#planModal">
+                    预案启动
+                  </a>
+			  </li>
 			  <li><a href="#">现场指挥</a></li>
 			  <li><a href="#">事故总结</a></li>
             </ul>
@@ -396,6 +407,21 @@
 		  </div>
         </div>
       </div>
+	  
+	  <div class="modal fade" id="planModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document" style="width:1280px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="width:32px;"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">预案启动</h4>
+                </div>
+                <div class="modal-body" >
+				    <div id="svgDiv"></div>
+					<!--<button type="button" class="btn btn-default" data-dismiss="modal" style="background-color:#0077FF;width:120px;color:#FFFFFF;display:block;margin:0 auto">关 闭</button>-->
+                </div>
+            </div>
+        </div>
+      </div>
       
 	  
 	  <div class="mini-submenu mini-submenu-left pull-left">
@@ -456,7 +482,6 @@
             </div>
         </div>
     </div>
-	
     </div>
   </body>
-</html>
+</html></html>
