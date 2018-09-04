@@ -16,7 +16,7 @@ body {
 	font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-#sendWeChatModal.modal, #eventChronologyModal.modal{
+#sendWeChatModal.modal, #eventChronologyModal.modal {
 }
 #sendWeChatModal .modal-header, #eventChronologyModal .modal-header {
   background-color: #2D3555;
