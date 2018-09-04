@@ -41,8 +41,8 @@ define([
 
 	var map = templateSample.makeMap("map", {includeLayerControl:false, includeElevation:true, includeZoomControl:true});
 	var CRS84 = ReferenceProvider.getReference("CRS:84");
-	var fillColors = ["#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4", "#2c7fb8", "#253494"];
-	var lineColors = ["#ddddaa", "#a7c994", "#5fad9b", "#2196a4", "#0c5f98", "#051474"];
+	var fillColors = ["#3949AB", "#3F51B5", "#5C6BC0", "#7986CB", "#9FA8DA", "#C5CAE9"];
+	var lineColors = ["#1F2D88", "#2E3F9E", "#48549A", "#6470AD", "#8891C4", "#ACB2D9"];
 	var thematicHeights = [220, 180, 150, 100, 50, 0];
 
 	function getColor(height, heightThresholds, colors) {
@@ -164,8 +164,8 @@ define([
 				if(!!eventInfoComponent) {
 					eventInfoComponent.setCurrentEventInfoById(feature.properties.uid);
 				}
-				removeTempCircle();
-				createTempCircle(ShapeFactory.createPoint(shape.reference, [shape.focusPoint.x, shape.focusPoint.y]), 500);
+				//removeTempCircle();
+				//createTempCircle(ShapeFactory.createPoint(shape.reference, [shape.focusPoint.x, shape.focusPoint.y]), 500);
 			  }
 			}
 		};
@@ -354,4 +354,16 @@ define([
 		  }
 		}
   });
+  
+  // Add an event listener
+	document.addEventListener("map_addTempCircle", function(e) {
+	   //console.log(e.detail); // Prints "Example of an event"
+	   removeTempCircle();
+	   createTempCircle(ShapeFactory.createPoint(CRS84, e.detail), 500);
+	});
+	
+	document.addEventListener("map_removeBuffer", function(e) {
+	   removeTempCircle();
+	});
+
 });
