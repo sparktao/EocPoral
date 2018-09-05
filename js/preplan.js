@@ -1,3 +1,4 @@
+var dialogCalling;
 
 function setCursor() {
 	this.style.cursor = 'hand';
@@ -13,7 +14,7 @@ function setPopover() {
 			title: null,
 			html: true,
 			content: "<p style='color:black'>P203, 09:37AM 已派遣.</p><p style='color:black'>P203, 09:39AM 已到达现场.</p><p style='color:black'>F104, 09:38AM 正在赶往现场.</p>",
-			container: 'body'
+			container: '#planModal'
 		});
 	});
 
@@ -26,7 +27,7 @@ function setPopover() {
 			"<td><a class='phone' data-id='13955555555' onclick='onClickCall(this)' href='#'><img src='images/Phone.png'/></a></td>" +
 			"<td><a class='wechat' data-id='0000' onclick='onClickWechat(this)' href='#'><img src='images/Wechat.png'/></a></td>" +
 			"</tr></table></div>",
-			container: 'body'
+			container: '#planModal'
 		});
 	});
 }
@@ -50,6 +51,141 @@ function onClickGoto2() {
 		svgDiv.appendChild(xml.documentElement);
 
 		d3.select("#arrow-left").on("mouseover", setCursor);
+		d3.select("#arrow-left").on("click", onClickGoto3);
+
+		setPopover();
+
+	});
+
+}
+
+function onClickGoto3() {
+
+	$("#svgDiv").empty();
+
+	d3.xml("/web/samples/EocPortal/diagram/s3.svg").mimeType("image/svg+xml").get(function (error, xml) {
+		if (error) {
+			alert("加载预案失败！");
+			throw error;
+		}
+
+		d3.selectAll(".popover").each(function () {
+			$(this).popover('hide');
+		});
+
+		var svgDiv = document.getElementById("svgDiv");
+
+		svgDiv.appendChild(xml.documentElement);
+
+		d3.select("#arrow-left").on("mouseover", setCursor);
+		d3.select("#arrow-left").on("click", onClickGoto4);
+
+		setPopover();
+
+	});
+
+}
+
+function onClickGoto4() {
+
+	$("#svgDiv").empty();
+
+	d3.xml("/web/samples/EocPortal/diagram/s4.svg").mimeType("image/svg+xml").get(function (error, xml) {
+		if (error) {
+			alert("加载预案失败！");
+			throw error;
+		}
+
+		d3.selectAll(".popover").each(function () {
+			$(this).popover('hide');
+		});
+
+		var svgDiv = document.getElementById("svgDiv");
+
+		svgDiv.appendChild(xml.documentElement);
+
+		d3.select("#arrow-left").on("mouseover", setCursor);
+		d3.select("#arrow-left").on("click", onClickGoto5);
+
+		setPopover();
+
+	});
+
+}
+
+function onClickGoto5() {
+
+	$("#svgDiv").empty();
+
+	d3.xml("/web/samples/EocPortal/diagram/s5.svg").mimeType("image/svg+xml").get(function (error, xml) {
+		if (error) {
+			alert("加载预案失败！");
+			throw error;
+		}
+
+		d3.selectAll(".popover").each(function () {
+			$(this).popover('hide');
+		});
+
+		var svgDiv = document.getElementById("svgDiv");
+
+		svgDiv.appendChild(xml.documentElement);
+
+		d3.select("#arrow-left").on("mouseover", setCursor);
+		d3.select("#arrow-left").on("click", onClickGoto6);
+
+		setPopover();
+
+	});
+
+}
+
+function onClickGoto6() {
+
+	$("#svgDiv").empty();
+
+	d3.xml("/web/samples/EocPortal/diagram/s6.svg").mimeType("image/svg+xml").get(function (error, xml) {
+		if (error) {
+			alert("加载预案失败！");
+			throw error;
+		}
+
+		d3.selectAll(".popover").each(function () {
+			$(this).popover('hide');
+		});
+
+		var svgDiv = document.getElementById("svgDiv");
+
+		svgDiv.appendChild(xml.documentElement);
+
+		d3.select("#arrow-left").on("mouseover", setCursor);
+		d3.select("#arrow-left").on("click", onClickGoto7);
+
+		setPopover();
+
+	});
+
+}
+
+function onClickGoto7() {
+
+	$("#svgDiv").empty();
+
+	d3.xml("/web/samples/EocPortal/diagram/s7.svg").mimeType("image/svg+xml").get(function (error, xml) {
+		if (error) {
+			alert("加载预案失败！");
+			throw error;
+		}
+
+		d3.selectAll(".popover").each(function () {
+			$(this).popover('hide');
+		});
+
+		var svgDiv = document.getElementById("svgDiv");
+
+		svgDiv.appendChild(xml.documentElement);
+
+		//d3.select("#arrow-left").on("mouseover", setCursor);
 
 		setPopover();
 
@@ -98,43 +234,70 @@ function onClickSms(e) {
 	alert("sms: " + id);
 }
 
+function hangUp() {
+	//挂断电话
+}
+
 function onClickCall(e) {
+
+	dialogCalling = new BootstrapDialog({
+			type: BootstrapDialog.TYPE_SUCCESS,
+			size: BootstrapDialog.SIZE_SMALL,
+			//cssClass: 'call-dialog',
+			title: '电话',
+			message: '拨号中...',
+			draggable: true,
+			closable: false,
+			buttons: [{
+					label: '挂断',
+					icon: 'glyphicon glyphicon-phone-alt',
+					cssClass: 'btn-danger',
+					action: function (dialogRef) {
+						dialogRef.close();
+						hangUp();
+					}
+				}
+			]
+		});
+	dialogCalling.open();
+
 	var id = e.getAttribute("data-id");
 
-    var serverIp = "172.17.184.150";
-//    var serverIp = "192.168.32.128";
-    var agentId = 104;
-    var agentPhone = 80003;
-    var callTo = 80004;
-    
-    window.setTimeout(function () {
-    $.ajax({
-        type: 'POST',
-        url: "http://" + serverIp + "/IPCCServer/api/v1/VoiceCall/" + agentId + "/" + agentPhone + "?CallTo=" + callTo,			
-        data: {},
-        dataType: "json",
-        async: true,
-        success: function (data) {
-            var dialMsg = "呼叫" + callTo;
-            if (data != undefined)
-            {
-                dialMsg += (data.IsSuccess) ? "成功" : ("失败" + (data.Code != undefined) ? data.Code : "");
-            }
-            else
-            {
-                dialMsg += "超时";
-            }
-            alert(dialMsg);
-        },
-        complete: function() {
-        //请求完成的处理
-            //alert("发送wechat消息成功!");
-        },
-        error: function (data) {
-            alert('data');
-        }
-    });
-   }, 200);
+	var serverIp = "172.17.184.150";
+	//    var serverIp = "192.168.32.128";
+	var agentId = 104;
+	var agentPhone = 80003;
+	var callTo = 80004;
+
+	dialogCalling.setTitle("电话-80004");
+
+	window.setTimeout(function () {
+		$.ajax({
+			type: 'POST',
+			url: "http://" + serverIp + "/IPCCServer/api/v1/VoiceCall/" + agentId + "/" + agentPhone + "?CallTo=" + callTo,
+			data: {},
+			dataType: "json",
+			async: true,
+			success: function (data) {
+				var dialMsg = "呼叫" + callTo;
+				if (data != undefined) {
+					dialMsg += (data.IsSuccess) ? "成功" : ("失败" + (data.Code != undefined) ? data.Code : "");
+				} else {
+					dialMsg += "超时";
+				}
+				//alert(dialMsg);
+				dialogCalling.setMessage(dialMsg);
+			},
+			complete: function () {
+				//请求完成的处理
+				//alert("发送wechat消息成功!");
+			},
+			error: function (data) {
+				//alert(data);
+				dialogCalling.setMessage("错误:" + JSON.stringify(data));
+			}
+		});
+	}, 200);
 }
 
 function onClickWechat(e) {
