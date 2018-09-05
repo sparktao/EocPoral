@@ -124,11 +124,11 @@ function onClickCall(e) {
             {
                 dialMsg += "超时";
             }
+			console.log(dialMsg);
             alert(dialMsg);
         },
         complete: function() {
-        //请求完成的处理
-            //alert("发送wechat消息成功!");
+			console.log("打电话" + callTo + "完成");
         },
         error: function (data) {
             alert('data');
