@@ -100,10 +100,41 @@ function onClickSms(e) {
 
 function onClickCall(e) {
 	var id = e.getAttribute("data-id");
-	//var name = e.getAttribute("data-name");
-	//alert("Id: " + id + " ; Name: " + name);
 
-	alert("phone: " + id);
+    var serverIp = "172.17.184.150";
+//    var serverIp = "192.168.32.128";
+    var agentId = 104;
+    var agentPhone = 80003;
+    var callTo = 80004;
+    
+    window.setTimeout(function () {
+    $.ajax({
+        type: 'POST',
+        url: "http://" + serverIp + "/IPCCServer/api/v1/VoiceCall/" + agentId + "/" + agentPhone + "?CallTo=" + callTo,			
+        data: {},
+        dataType: "json",
+        async: true,
+        success: function (data) {
+            var dialMsg = "呼叫" + callTo;
+            if (data != undefined)
+            {
+                dialMsg += (data.IsSuccess) ? "成功" : ("失败" + ((data.Code != undefined) ? ", 错误码: " + data.Code : ""));
+            }
+            else
+            {
+                dialMsg += "超时";
+            }
+            alert(dialMsg);
+        },
+        complete: function() {
+        //请求完成的处理
+            //alert("发送wechat消息成功!");
+        },
+        error: function (data) {
+            alert('data');
+        }
+    });
+   }, 200);
 }
 
 function onClickWechat(e) {
