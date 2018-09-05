@@ -5,7 +5,7 @@
 "id":"city_1",
 "geometry":{"type":"Point","coordinates":[-122.391111,37.785833]},
 "geometry_name":"geometry",
-"properties":{"uid":1,"NAME":"事件1","TYPE":"电力"}
+"properties":{"uid":1,"NAME":"危化品运输车辆发生交通事故","TYPE":"电力"}
 }
 ,
 {

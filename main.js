@@ -6,9 +6,11 @@ define([
   "luciad/view/LayerType",
   "luciad/view/style/PinEndPosition",
   "luciad/reference/ReferenceProvider",
+  "luciad/shape/ExtrudedShape",
   "luciad/shape/ShapeFactory",
   "luciad/shape/ShapeType",
   "luciad/view/controller/EditController",
+  "luciad/view/input/GestureEventType",
   "luciad/model/store/MemoryStore",
   "luciad/view/feature/FeatureLayer",
   "luciad/view/feature/FeaturePainter",
@@ -26,9 +28,11 @@ define([
             LayerType,
             PinEndPosition,
             ReferenceProvider,
+			ExtrudedShape,
             ShapeFactory,
             ShapeType,
 			EditController,
+			GestureEventType,
             MemoryStore,
             FeatureLayer,
             FeaturePainter,
@@ -41,8 +45,12 @@ define([
 
 	var map = templateSample.makeMap("map", {includeLayerControl:false, includeElevation:true, includeZoomControl:true});
 	var CRS84 = ReferenceProvider.getReference("CRS:84");
+	//var fillColors = ["#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4", "#2c7fb8", "#253494"];
+	//var lineColors = ["#ddddaa", "#a7c994", "#5fad9b", "#2196a4", "#0c5f98", "#051474"];
 	var fillColors = ["#3949AB", "#3F51B5", "#5C6BC0", "#7986CB", "#9FA8DA", "#C5CAE9"];
 	var lineColors = ["#1F2D88", "#2E3F9E", "#48549A", "#6470AD", "#8891C4", "#ACB2D9"];
+
+	
 	var thematicHeights = [220, 180, 150, 100, 50, 0];
 
 	function getColor(height, heightThresholds, colors) {
@@ -130,7 +138,7 @@ define([
 			geoCanvas.drawIcon(shape.focusPoint, {
 			  width: iconFeatureLayerDefaultIconSize + "px",
 			  height: iconFeatureLayerDefaultIconSize + "px",
-			  url: state.selected?"Luciad/themePic/eventSelect.png" : "Luciad/themePic/event_" + feature.properties.TYPE + ".png"
+			  url: state.selected?"Luciad/themePic/event_" + feature.properties.TYPE + "Select.png" : "Luciad/themePic/event_" + feature.properties.TYPE + ".png"
 			  //anchorX : 0 + "px"
 			});
 			geoCanvas.drawShape(ShapeFactory.createPolyline(shape.reference, [shape.focusPoint, ShapeFactory.createPoint(shape.reference, [shape.focusPoint.x, shape.focusPoint.y])]), {
@@ -197,8 +205,8 @@ define([
 			  endPosition: PinEndPosition.MIDDLE,
 			  width: 1
 			}
-		};
-		var emptyStyleVideo = {
+        };
+        var emptyStyleVideo = {
 			offset: 50,
 			pin: {
 			  endPosition: PinEndPosition.MIDDLE,
@@ -206,17 +214,15 @@ define([
 			}
 		};
 		var htmlTemplateNormal = '<div style="background-color: rgb(40,40,40); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name</div>';
-		var htmlTemplateSelect = '<div style="background-color: rgb(80,10,10); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name</div>';
-		
-		var htmlTemplateVideo = '<div style="background-color: rgb(80,10,10); padding: 5px; border-radius: 10px; color: rgb(238,233,233)"><video name="leftVideoElement" class="leftVideo" id="leftVideoElement" controls="" autoplay="" src="blob:http://localhost:8072/4486bcca-351d-4e65-800b-69bf0740ddd8"> Your browser is too old which doesn\'t support HTML5 video. </video></div>';
-					
+        var htmlTemplateSelect = '<div style="background-color: rgb(80,10,10); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name</div>';
+        var htmlTemplateVideo = '<div style="background-color: rgb(80,10,10); padding: 5px; border-radius: 10px; color: rgb(238,233,233)"><video name="leftVideoElement" class="leftVideo" id="leftVideoElement" controls="" autoplay="" src="blob:http://localhost:8072/4486bcca-351d-4e65-800b-69bf0740ddd8"> Your browser is too old which doesn\'t support HTML5 video. </video></div>';
+
 		eventPainter.paintLabel = function(labelCanvas, feature, shape, layer, map, state) {
 			var html;
 			if (state.selected || options.labelsAlwaysVisible) {
 			  html = state.selected ? htmlTemplateSelect : htmlTemplateNormal;
 			  html = html.replace('$name', feature.properties.NAME);
 			  labelCanvas.drawLabel(html, shape, emptyStyle);
-			  
 			  
 			  if(state.selected) {
 				labelCanvas.drawLabel(htmlTemplateVideo, shape, emptyStyleVideo);
@@ -299,7 +305,7 @@ define([
 
 		tempCircleFeatureLayer = new FeatureLayer(new FeatureModel(new MemoryStore({
 		  data: [
-			new Feature(ShapeFactory.createCircleByCenterPoint(reference, centerPoint, Radius), {}, 1)
+			new Feature(ShapeFactory.createExtrudedShape(reference, ShapeFactory.createCircleByCenterPoint(reference, centerPoint, Radius), 0, 100), {}, 1)
 		  ]
 		}), {
 		  reference: reference
@@ -363,23 +369,33 @@ define([
 		  selectedFeature = e.selectionChanges[iFirstFindSelectIndex].selected[0];
 		  if(e.selectionChanges[iFirstFindSelectIndex].layer.label == 'redlineCircleLayer'){
 			  map.controller = new EditController(e.selectionChanges[iFirstFindSelectIndex].layer, selectedFeature, {finishOnSingleClick: true});
+			  /*map.controller.onGestureEvent = function(event) {
+				  if(event.type == GestureEventType.DRAG)
+				  {
+					  console.log(this._editingContext._object.geometry.baseShape.radius);
+				  }
+				  else if(event.type == GestureEventType.DRAG_END){
+					  console.log("end");
+					  console.log(this._editingContext._object.geometry.baseShape.radius);
+				  }
+				  return EditController.prototype.onGestureEvent.apply(this, arguments);
+			  };*/
 			  map.controller.onDeactivate = function(map) {
-			  	alert(this._editingContext._object.geometry.radius);
+			  	alert(this._editingContext._object.geometry.baseShape.radius);
 				EditController.prototype.onDeactivate.apply(this, arguments);
 			  }
 		  }
 		}
   });
-  
-  // Add an event listener
-	document.addEventListener("map_addTempCircle", function(e) {
-	   //console.log(e.detail); // Prints "Example of an event"
-	   removeTempCircle();
-	   createTempCircle(ShapeFactory.createPoint(CRS84, e.detail), 500);
-	});
-	
-	document.addEventListener("map_removeBuffer", function(e) {
-	   removeTempCircle();
-	});
 
+    // Add an event listener
+	document.addEventListener("map_addTempCircle", function(e) {
+        //console.log(e.detail); // Prints "Example of an event"
+        removeTempCircle();
+        createTempCircle(ShapeFactory.createPoint(CRS84, e.detail), 500);
+     });
+     
+     document.addEventListener("map_removeBuffer", function(e) {
+        removeTempCircle();
+     });
 });
