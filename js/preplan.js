@@ -118,17 +118,17 @@ function onClickCall(e) {
             var dialMsg = "呼叫" + callTo;
             if (data != undefined)
             {
-                dialMsg += (data.IsSuccess) ? "成功" : ("失败" + (data.Code != undefined) ? data.Code : "");
+                dialMsg += (data.IsSuccess) ? "成功" : ("失败" + ((data.Code != undefined) ? ", 错误码: " + data.Code : ""));
             }
             else
             {
                 dialMsg += "超时";
             }
+            console.log(dialMsg);
             alert(dialMsg);
         },
         complete: function() {
-        //请求完成的处理
-            //alert("发送wechat消息成功!");
+            console.log("打电话" + callTo + "完成");
         },
         error: function (data) {
             alert('data');
