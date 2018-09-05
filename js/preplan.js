@@ -124,11 +124,11 @@ function onClickCall(e) {
             {
                 dialMsg += "超时";
             }
-			console.log(dialMsg);
+            console.log(dialMsg);
             alert(dialMsg);
         },
         complete: function() {
-			console.log("打电话" + callTo + "完成");
+            console.log("打电话" + callTo + "完成");
         },
         error: function (data) {
             alert('data');
