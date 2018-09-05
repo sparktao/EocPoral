@@ -13,6 +13,44 @@ var rescueRes = [
 
 function buildChart()
 {
+	var textStyle1 = {
+					rich:{
+                        a:{
+                            fontSize:20,
+							color:'#fff',
+                            verticalAlign:'top',
+                            align:'center',
+                            padding:[0,0,0,0]
+                        },
+                        b:{
+                            fontSize:14,
+							color:'#fff',
+                            align:'center',
+                            padding:[0,10,-5,0],
+                            lineHeight:25
+                        }
+                    }
+				};
+	if(document.body.clientWidth <1300) {
+		textStyle1 = {
+					rich:{
+                        a:{
+                            fontSize:12,
+							color:'#fff',
+                            verticalAlign:'top',
+                            align:'center',
+                            padding:[0,0,0,0]
+                        },
+                        b:{
+                            fontSize:12,
+							color:'#fff',
+                            align:'center',
+                            padding:[0,10,-10,0],
+                            lineHeight:25
+                        }
+                    }
+				};
+	}
 	// 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
 
@@ -20,9 +58,9 @@ function buildChart()
         var option = {
 			legend: {
 				x : 'center',
-				//y : 'bottom',
-				bottom:5,
-                itemGap:30,
+				y : 'top',
+				bottom:15,
+                itemGap:20,
                 itemWidth:10,
 				formatter:  function(name){
 					var total = 0;
@@ -38,24 +76,7 @@ function buildChart()
                     ]
                     return arr.join('\n')
 				},
-				textStyle: {
-					rich:{
-                        a:{
-                            fontSize:20,
-							color:'#fff',
-                            verticalAlign:'top',
-                            align:'center',
-                            padding:[0,0,28,0]
-                        },
-                        b:{
-                            fontSize:14,
-							color:'#fff',
-                            align:'center',
-                            padding:[0,10,0,0],
-                            lineHeight:25
-                        }
-                    }
-				},
+				textStyle: textStyle1,
 				data:[{name:'交警', icon:'circle'},
 						{name:'公安', icon:'circle'},
 						{name:'消防', icon:'circle'},
