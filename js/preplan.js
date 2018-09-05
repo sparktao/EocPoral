@@ -3,6 +3,34 @@ function setCursor() {
 	this.style.cursor = 'hand';
 }
 
+function setPopover() {
+
+	d3.selectAll("#info-circle").on("mouseover", setCursor);
+	d3.selectAll("#message").on("mouseover", setCursor);
+
+	d3.selectAll("#info-circle").each(function () {
+		$(this).popover({
+			title: null,
+			html: true,
+			content: "<p style='color:black'>P203, 09:37AM 已派遣.</p><p style='color:black'>P203, 09:39AM 已到达现场.</p><p style='color:black'>F104, 09:38AM 正在赶往现场.</p>",
+			container: 'body'
+		});
+	});
+
+	d3.selectAll("#message").each(function () {
+		$(this).popover({
+			title: null,
+			html: true,
+			content: "<div style='text-align:center'><table border='0' style='width:120px;margin:auto'><tr>" +
+			"<td><a class='sms' data-id='1312313' onclick='onClickSms(this)' href='#'><img src='images/Sms.png'/></a></td>" +
+			"<td><a class='phone' data-id='13955555555' onclick='onClickCall(this)' href='#'><img src='images/Phone.png'/></a></td>" +
+			"<td><a class='wechat' data-id='0000' onclick='onClickWechat(this)' href='#'><img src='images/Wechat.png'/></a></td>" +
+			"</tr></table></div>",
+			container: 'body'
+		});
+	});
+}
+
 function onClickGoto2() {
 
 	$("#svgDiv").empty();
@@ -23,30 +51,7 @@ function onClickGoto2() {
 
 		d3.select("#arrow-left").on("mouseover", setCursor);
 
-		d3.selectAll("#info-circle").on("mouseover", setCursor);
-		d3.selectAll("#message").on("mouseover", setCursor);
-
-		d3.selectAll("#info-circle").each(function () {
-			$(this).popover({
-				title: null,
-				html: true,
-				content: "<p style='color:black'>P203, 09:37AM 已派遣.</p><p style='color:black'>P203, 09:39AM 已到达现场.</p><p style='color:black'>F104, 09:38AM 正在赶往现场.</p>",
-				container: 'body'
-			});
-		});
-
-		d3.selectAll("#message").each(function () {
-			$(this).popover({
-				title: null,
-				html: true,
-				content: "<div style='text-align:center'><table border='0' style='width:120px;margin:auto'><tr>" +
-				"<td><a class='sms' data-id='' onclick='onClickCall(this)' href='#'><img src='images/Sms.png'/></a></td>" +
-				"<td><a class='phone' data-id='' onclick='onClickCall(this)' href='#'><img src='images/Phone.png'/></a></td>" +
-				"<td><a class='wechat' data-id='0000' onclick='onClickWechat(this)' href='#'><img src='images/Wechat.png'/></a></td>" +
-				"</tr></table></div>",
-				container: 'body'
-			});
-		});
+		setPopover();
 
 	});
 
@@ -75,30 +80,7 @@ $(function () {
 			d3.select("#arrow-left").on("mouseover", setCursor);
 			d3.select("#arrow-left").on("click", onClickGoto2);
 
-			d3.selectAll("#info-circle").on("mouseover", setCursor);
-			d3.selectAll("#message").on("mouseover", setCursor);
-
-			d3.selectAll("#info-circle").each(function () {
-				$(this).popover({
-					title: null,
-					html: true,
-					content: "<p style='color:black'>P203, 09:37AM 已派遣.</p><p style='color:black'>P203, 09:39AM 已到达现场.</p><p style='color:black'>F104, 09:38AM 正在赶往现场.</p>",
-					container: 'body'
-				});
-			});
-
-			d3.selectAll("#message").each(function () {
-				$(this).popover({
-					title: null,
-					html: true,
-					content: "<div style='text-align:center'><table border='0' style='width:120px;margin:auto'><tr>" +
-					"<td><a class='sms' data-id='234' onclick='onClickSms(this)' href='#'><img src='images/Sms.png'/></a></td>" +
-					"<td><a class='phone' data-id='123456' onclick='onClickCall(this)' href='#'><img src='images/Phone.png'/></a></td>" +
-					"<td><a class='wechat' data-id='0000' onclick='onClickWechat(this)' href='#'><img src='images/Wechat.png'/></a></td>" +
-					"</tr></table></div>",
-					container: 'body'
-				});
-			});
+			setPopover();
 
 		});
 	}).on('hide.bs.modal', function () {
