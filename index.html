@@ -9,6 +9,7 @@
     <title>海克斯康指挥决策系统</title>
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/BootstrapXL.css" /> 
+	<link rel="stylesheet" href="lib/bootstrap-dialog/css/bootstrap-dialog.min.css">
 	<link rel="stylesheet" href="lib/bootstrap-table/bootstrap-table.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" /> 	
 	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" /> 	   
@@ -20,6 +21,7 @@
 	<link rel="stylesheet" href="css/video.css" />
     <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
 	<script type="text/javascript" src="lib/bootstrap-table/bootstrap-table.js"></script>
 	<script type="text/javascript" src="js/echarts.min.js"></script>
 	<script type="text/javascript" src="js/flv.js?v=2"></script> 
@@ -406,6 +408,13 @@
         </div>
       </div>
 	  
+	  <div class="mini-submenu mini-submenu-left pull-left">
+        <i class="fa fa-list-alt"></i>
+      </div>
+      <div class="mini-submenu mini-submenu-right pull-right">
+        <i class="fa fa-tasks"></i>
+      </div>
+	  
 	  <div class="modal fade" id="planModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document" style="width:1280px;">
             <div class="modal-content">
@@ -419,14 +428,6 @@
                 </div>
             </div>
         </div>
-      </div>
-      
-	  
-	  <div class="mini-submenu mini-submenu-left pull-left">
-        <i class="fa fa-list-alt"></i>
-      </div>
-      <div class="mini-submenu mini-submenu-right pull-right">
-        <i class="fa fa-tasks"></i>
       </div>
 	  
 	  <div class="modal fade" id="eventChronologyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
