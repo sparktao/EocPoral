@@ -41,9 +41,12 @@ define([
 
 	var map = templateSample.makeMap("map", {includeLayerControl:false, includeElevation:true, includeZoomControl:true});
 	var CRS84 = ReferenceProvider.getReference("CRS:84");
-	var fillColors = ["#3949AB", "#3F51B5", "#5C6BC0", "#7986CB", "#9FA8DA", "#C5CAE9"];
-	var lineColors = ["#1F2D88", "#2E3F9E", "#48549A", "#6470AD", "#8891C4", "#ACB2D9"];
-	var thematicHeights = [220, 180, 150, 100, 50, 0];
+	//var fillColors = ["#3949AB", "#3F51B5", "#5C6BC0", "#7986CB", "#9FA8DA", "#C5CAE9"];
+	var fillColors = ["#3400c4", "#3F51B5", "#5C6BC0", "#7986CB", "#9FA8DA", "#e2dedb"];
+	//var lineColors = ["#1F2D88", "#2E3F9E", "#48549A", "#6470AD", "#8891C4", "#ACB2D9"];
+	var lineColors = ["#1F2D88", "#2E3F9E", "#48549A", "#6470AD", "#8891C4", "#C5CAE9"];
+	//var thematicHeights = [220, 180, 150, 100, 50, 0];
+	var thematicHeights = [180, 140, 100, 60, 33, 0];
 
 	function getColor(height, heightThresholds, colors) {
 		var clampedValue = Math.min(Math.max(heightThresholds[heightThresholds.length - 1], height), heightThresholds[0]);
