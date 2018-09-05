@@ -51,6 +51,141 @@ function onClickGoto2() {
 		svgDiv.appendChild(xml.documentElement);
 
 		d3.select("#arrow-left").on("mouseover", setCursor);
+		d3.select("#arrow-left").on("click", onClickGoto3);
+
+		setPopover();
+
+	});
+
+}
+
+function onClickGoto3() {
+
+	$("#svgDiv").empty();
+
+	d3.xml("/web/samples/EocPortal/diagram/s3.svg").mimeType("image/svg+xml").get(function (error, xml) {
+		if (error) {
+			alert("加载预案失败！");
+			throw error;
+		}
+
+		d3.selectAll(".popover").each(function () {
+			$(this).popover('hide');
+		});
+
+		var svgDiv = document.getElementById("svgDiv");
+
+		svgDiv.appendChild(xml.documentElement);
+
+		d3.select("#arrow-left").on("mouseover", setCursor);
+		d3.select("#arrow-left").on("click", onClickGoto4);
+
+		setPopover();
+
+	});
+
+}
+
+function onClickGoto4() {
+
+	$("#svgDiv").empty();
+
+	d3.xml("/web/samples/EocPortal/diagram/s4.svg").mimeType("image/svg+xml").get(function (error, xml) {
+		if (error) {
+			alert("加载预案失败！");
+			throw error;
+		}
+
+		d3.selectAll(".popover").each(function () {
+			$(this).popover('hide');
+		});
+
+		var svgDiv = document.getElementById("svgDiv");
+
+		svgDiv.appendChild(xml.documentElement);
+
+		d3.select("#arrow-left").on("mouseover", setCursor);
+		d3.select("#arrow-left").on("click", onClickGoto5);
+
+		setPopover();
+
+	});
+
+}
+
+function onClickGoto5() {
+
+	$("#svgDiv").empty();
+
+	d3.xml("/web/samples/EocPortal/diagram/s5.svg").mimeType("image/svg+xml").get(function (error, xml) {
+		if (error) {
+			alert("加载预案失败！");
+			throw error;
+		}
+
+		d3.selectAll(".popover").each(function () {
+			$(this).popover('hide');
+		});
+
+		var svgDiv = document.getElementById("svgDiv");
+
+		svgDiv.appendChild(xml.documentElement);
+
+		d3.select("#arrow-left").on("mouseover", setCursor);
+		d3.select("#arrow-left").on("click", onClickGoto6);
+
+		setPopover();
+
+	});
+
+}
+
+function onClickGoto6() {
+
+	$("#svgDiv").empty();
+
+	d3.xml("/web/samples/EocPortal/diagram/s6.svg").mimeType("image/svg+xml").get(function (error, xml) {
+		if (error) {
+			alert("加载预案失败！");
+			throw error;
+		}
+
+		d3.selectAll(".popover").each(function () {
+			$(this).popover('hide');
+		});
+
+		var svgDiv = document.getElementById("svgDiv");
+
+		svgDiv.appendChild(xml.documentElement);
+
+		d3.select("#arrow-left").on("mouseover", setCursor);
+		d3.select("#arrow-left").on("click", onClickGoto7);
+
+		setPopover();
+
+	});
+
+}
+
+function onClickGoto7() {
+
+	$("#svgDiv").empty();
+
+	d3.xml("/web/samples/EocPortal/diagram/s7.svg").mimeType("image/svg+xml").get(function (error, xml) {
+		if (error) {
+			alert("加载预案失败！");
+			throw error;
+		}
+
+		d3.selectAll(".popover").each(function () {
+			$(this).popover('hide');
+		});
+
+		var svgDiv = document.getElementById("svgDiv");
+
+		svgDiv.appendChild(xml.documentElement);
+
+		//d3.select("#arrow-left").on("mouseover", setCursor);
 
 		setPopover();
 
