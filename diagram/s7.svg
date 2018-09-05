@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1250px" height="550px" viewBox="0 0 846 726" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title></title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="3.87276374%" cy="0%" fx="3.87276374%" fy="0%" r="252.491979%" gradientTransform="translate(0.038728,0.000000),scale(0.229885,1.000000),rotate(9.218115),translate(-0.038728,-0.000000)" id="radialGradient-1">
+            <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="0%"></stop>
+            <stop stop-color="#6B4AD5" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <rect id="path-2" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <rect id="path-3" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-5">
+            <stop stop-color="#1A67C4" offset="0%"></stop>
+            <stop stop-color="#0F2978" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-6" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-7">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-8" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <rect id="path-9" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-10">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-11" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-12">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-13" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <rect id="path-14" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-15">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-16" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-17">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-18" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <rect id="path-19" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-20">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-21" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-22">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-23" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <rect id="path-24" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-25">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-26" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-27">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-28" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <rect id="path-29" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-30">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-31" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-32">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-33" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-34">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-35" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <rect id="path-36" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-37">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-38" x="0" y="0" width="174" height="90" rx="4"></rect>
+        <filter x="-6.3%" y="-7.8%" width="112.6%" height="124.4%" filterUnits="objectBoundingBox" id="filter-39">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-40" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <rect id="path-41" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-42">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-43" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-44">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-45" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-46">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-47" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-48">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-49" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <rect id="path-50" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-51">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-52" x="20" y="21" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-53">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="0%" id="linearGradient-54">
+            <stop stop-color="#8CFF00" offset="0%"></stop>
+            <stop stop-color="#E0FF00" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-55" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-56">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-57" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-58">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-59" x="0" y="0" width="174" height="100" rx="4"></rect>
+        <filter x="-6.3%" y="-7.0%" width="112.6%" height="122.0%" filterUnits="objectBoundingBox" id="filter-60">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-61" x="0" y="0" width="174" height="60" rx="4"></rect>
+        <filter x="-6.3%" y="-11.7%" width="112.6%" height="136.7%" filterUnits="objectBoundingBox" id="filter-62">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-63" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <rect id="path-64" x="0" y="0" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-65">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-66" x="20" y="21" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-67">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-68" x="20" y="21" width="174" height="40" rx="4"></rect>
+        <filter x="-6.3%" y="-17.5%" width="112.6%" height="155.0%" filterUnits="objectBoundingBox" id="filter-69">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="7.现场救援与处置图片">
+            <g id="Group-8" transform="translate(42.000000, 42.000000)">
+                <rect id="Rectangle-9" stroke="#FFFFFF" stroke-width="4" x="-2" y="-2" width="766" height="646" rx="8"></rect>
+                <g id="Group-7" transform="translate(15.000000, 15.000000)">
+                    <g id="Group-3" transform="translate(30.000000, 13.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-2-Copy">
+                                    <use fill="#6848CE" xlink:href="#path-2"></use>
+                                    <use fill="url(#radialGradient-1)" xlink:href="#path-2"></use>
+                                </g>
+                                <g id="Rectangle-7">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                                    <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                                </g>
+                                <text id="综合协调组" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="18" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="42" y="26">综合协调组</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M4,0 L230,0 C232.209139,-4.05812251e-16 234,1.790861 234,4 L234,106 C234,108.209139 232.209139,110 230,110 L4,110 C1.790861,110 2.705415e-16,108.209139 0,106 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-10" stroke="#FFFD28" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <g id="Group-3-Copy" transform="translate(30.000000, 59.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-7)" xlink:href="#path-6"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-6"></use>
+                                </g>
+                                <text id="综合协调，上传下达" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="24" y="26">综合协调，上传下达</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-7-Copy-6" transform="translate(264.000000, 223.000000)">
+                    <g id="Group-3" transform="translate(30.000000, 13.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-2-Copy">
+                                    <use fill="#6848CE" xlink:href="#path-8"></use>
+                                    <use fill="url(#radialGradient-1)" xlink:href="#path-8"></use>
+                                </g>
+                                <g id="Rectangle-7">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-10)" xlink:href="#path-9"></use>
+                                    <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-9"></use>
+                                </g>
+                                <text id="专家组" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="18" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="60" y="26">专家组</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M4,0 L230,0 C232.209139,-4.05812251e-16 234,1.790861 234,4 L234,106 C234,108.209139 232.209139,110 230,110 L4,110 C1.790861,110 2.705415e-16,108.209139 0,106 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-10" stroke="#FFFD28" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <g id="Group-3-Copy" transform="translate(30.000000, 59.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-12)" xlink:href="#path-11"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-11"></use>
+                                </g>
+                                <text id="赶往事故现场，协助制定-应急方案或现场处" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="6" y="15">赶往事故现场，协助制定</tspan>
+                                    <tspan x="6" y="35">应急方案或现场处置工作。</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-7-Copy-7" transform="translate(264.000000, 343.000000)">
+                    <g id="Group-3" transform="translate(30.000000, 13.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-2-Copy">
+                                    <use fill="#6848CE" xlink:href="#path-13"></use>
+                                    <use fill="url(#radialGradient-1)" xlink:href="#path-13"></use>
+                                </g>
+                                <g id="Rectangle-7">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-15)" xlink:href="#path-14"></use>
+                                    <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-14"></use>
+                                </g>
+                                <text id="后勤保障组" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="18" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="42" y="26">后勤保障组</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M4,0 L230,0 C232.209139,-4.05812251e-16 234,1.790861 234,4 L234,106 C234,108.209139 232.209139,110 230,110 L4,110 C1.790861,110 2.705415e-16,108.209139 0,106 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-10" stroke="#FFFD28" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <g id="Group-3-Copy" transform="translate(30.000000, 59.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-17)" xlink:href="#path-16"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-16"></use>
+                                </g>
+                                <text id="组织调拨、配送、征用、-监管各类应急物资" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="6" y="15">组织调拨、配送、征用、</tspan>
+                                    <tspan x="6" y="35">监管各类应急物资。</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-7-Copy-8" transform="translate(15.000000, 348.000000)">
+                    <g id="Group-3" transform="translate(30.000000, 13.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-2-Copy">
+                                    <use fill="#6848CE" xlink:href="#path-18"></use>
+                                    <use fill="url(#radialGradient-1)" xlink:href="#path-18"></use>
+                                </g>
+                                <g id="Rectangle-7">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-20)" xlink:href="#path-19"></use>
+                                    <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-19"></use>
+                                </g>
+                                <text id="监测组" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="18" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="60" y="26">监测组</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M4,0 L230,0 C232.209139,-4.05812251e-16 234,1.790861 234,4 L234,106 C234,108.209139 232.209139,110 230,110 L4,110 C1.790861,110 2.705415e-16,108.209139 0,106 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-10" stroke="#FFFD28" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <g id="Group-3-Copy" transform="translate(30.000000, 59.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-22)" xlink:href="#path-21"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-21"></use>
+                                </g>
+                                <text id="监测污染，控制扩散。" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="17" y="25">监测污染，控制扩散。</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-7-Copy-9" transform="translate(15.000000, 468.000000)">
+                    <g id="Group-3" transform="translate(30.000000, 13.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-2-Copy">
+                                    <use fill="#6848CE" xlink:href="#path-23"></use>
+                                    <use fill="url(#radialGradient-1)" xlink:href="#path-23"></use>
+                                </g>
+                                <g id="Rectangle-7">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-25)" xlink:href="#path-24"></use>
+                                    <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-24"></use>
+                                </g>
+                                <text id="善后处理组" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="18" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="42" y="26">善后处理组</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M4,0 L230,0 C232.209139,-4.05812251e-16 234,1.790861 234,4 L234,106 C234,108.209139 232.209139,110 230,110 L4,110 C1.790861,110 2.705415e-16,108.209139 0,106 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-10" stroke="#FFFD28" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <g id="Group-3-Copy" transform="translate(30.000000, 59.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-27)" xlink:href="#path-26"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-26"></use>
+                                </g>
+                                <text id="安置受灾人员生活、-处理罹难者等" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="10" y="15">安置受灾人员生活、</tspan>
+                                    <tspan x="10" y="35">处理罹难者等</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-7-Copy-4" transform="translate(264.000000, 463.000000)">
+                    <g id="Group-3" transform="translate(30.000000, 13.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-2-Copy">
+                                    <use fill="#6848CE" xlink:href="#path-28"></use>
+                                    <use fill="url(#radialGradient-1)" xlink:href="#path-28"></use>
+                                </g>
+                                <g id="Rectangle-7">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-30)" xlink:href="#path-29"></use>
+                                    <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-29"></use>
+                                </g>
+                                <text id="新闻发布组" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="18" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="42" y="26">新闻发布组</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M4,0 L230,0 C232.209139,-4.05812251e-16 234,1.790861 234,4 L234,153 C234,155.209139 232.209139,157 230,157 L4,157 C1.790861,157 2.705415e-16,155.209139 0,153 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-10" stroke="#FFFD28" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <g id="Group-3-Copy" transform="translate(30.000000, 59.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-32)" xlink:href="#path-31"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-31"></use>
+                                </g>
+                                <text id="①记录处置工作情况、-起草文字材料" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="8" y="15">①记录处置工作情况、</tspan>
+                                    <tspan x="8" y="35">起草文字材料</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-3-Copy-6" transform="translate(30.000000, 105.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-34)" xlink:href="#path-33"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-33"></use>
+                                </g>
+                                <text id="②报道、联络和协调" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="8" y="24">②报道、联络和协调</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-7-Copy-5" transform="translate(513.000000, 416.000000)">
+                    <g id="Group-3" transform="translate(30.000000, 13.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-2-Copy">
+                                    <use fill="#6848CE" xlink:href="#path-35"></use>
+                                    <use fill="url(#radialGradient-1)" xlink:href="#path-35"></use>
+                                </g>
+                                <g id="Rectangle-7">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-37)" xlink:href="#path-36"></use>
+                                    <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-36"></use>
+                                </g>
+                                <text id="事故调查组" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="18" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="42" y="26">事故调查组</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M4,0 L230,0 C232.209139,-4.05812251e-16 234,1.790861 234,4 L234,153 C234,155.209139 232.209139,157 230,157 L4,157 C1.790861,157 2.705415e-16,155.209139 0,153 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-10" stroke="#FFFD28" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <g id="Group-3-Copy" transform="translate(30.000000, 59.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-39)" xlink:href="#path-38"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-38"></use>
+                                </g>
+                                <text id="跟进调查事件诱因、处置-单位履行职责情况" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="8" y="20">跟进调查事件诱因、处置</tspan>
+                                    <tspan x="8" y="40">单位履行职责情况，提出</tspan>
+                                    <tspan x="8" y="60">奖惩、评估损失和援助范</tspan>
+                                    <tspan x="8" y="80">围等方面的意见</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-7-Copy-3" transform="translate(15.000000, 135.000000)">
+                    <g id="Group-3" transform="translate(30.000000, 13.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-2-Copy">
+                                    <use fill="#6848CE" xlink:href="#path-40"></use>
+                                    <use fill="url(#radialGradient-1)" xlink:href="#path-40"></use>
+                                </g>
+                                <g id="Rectangle-7">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-42)" xlink:href="#path-41"></use>
+                                    <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-41"></use>
+                                </g>
+                                <text id="治安保卫组" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="18" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="42" y="26">治安保卫组</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M4,0 L230,0 C232.209139,-4.05812251e-16 234,1.790861 234,4 L234,199 C234,201.209139 232.209139,203 230,203 L4,203 C1.790861,203 2.705415e-16,201.209139 0,199 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-10" stroke="#FFFD28" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <g id="Group-3-Copy" transform="translate(30.000000, 59.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-44)" xlink:href="#path-43"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-43"></use>
+                                </g>
+                                <text id="①对事故区域进行警戒" font-family="PingFangSC-Regular, PingFang SC" font-size="16" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="7" y="26">①对事故区域进行警戒</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-3-Copy-3" transform="translate(30.000000, 105.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-46)" xlink:href="#path-45"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-45"></use>
+                                </g>
+                                <text id="②交通管制，保障抢险救-援车辆安全畅通" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="8" y="15">②交通管制，保障抢险救</tspan>
+                                    <tspan x="8" y="35">援车辆安全畅通</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-3-Copy-4" transform="translate(30.000000, 151.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-48)" xlink:href="#path-47"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-47"></use>
+                                </g>
+                                <text id="③疏散人员和物资" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="9" y="24">③疏散人员和物资</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-7-Copy" transform="translate(513.000000, 15.000000)">
+                    <g id="Group-3" transform="translate(30.000000, 13.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-2-Copy">
+                                    <use fill="#6848CE" xlink:href="#path-49"></use>
+                                    <use fill="url(#radialGradient-1)" xlink:href="#path-49"></use>
+                                </g>
+                                <g id="Rectangle-7">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-51)" xlink:href="#path-50"></use>
+                                    <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-50"></use>
+                                </g>
+                                <text id="现场抢险组" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="18" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="42" y="26">现场抢险组</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M4,0 L230,0 C232.209139,-4.05812251e-16 234,1.790861 234,4 L234,387 C234,389.209139 232.209139,391 230,391 L4,391 C1.790861,391 2.705415e-16,389.209139 0,387 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-10" stroke="#FFFD28" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <g id="Group-3-Copy" transform="translate(10.000000, 59.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-53)" xlink:href="#path-52"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-52"></use>
+                                </g>
+                                <g id="message" transform="translate(0.000000, 45.000000)" fill-rule="nonzero">
+                                    <rect id="Rectangle-path" fill="#000000" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                                    <path d="M7.25,8 C7.25,8.41421356 7.58578644,8.75 8,8.75 C8.41421356,8.75 8.75,8.41421356 8.75,8 C8.75,7.58578644 8.41421356,7.25 8,7.25 C7.58578644,7.25 7.25,7.58578644 7.25,8 Z M10.375,8 C10.375,8.41421356 10.7107864,8.75 11.125,8.75 C11.5392136,8.75 11.875,8.41421356 11.875,8 C11.875,7.58578644 11.5392136,7.25 11.125,7.25 C10.7107864,7.25 10.375,7.58578644 10.375,8 Z M4.125,8 C4.125,8.41421356 4.46078644,8.75 4.875,8.75 C5.28921356,8.75 5.625,8.41421356 5.625,8 C5.625,7.58578644 5.28921356,7.25 4.875,7.25 C4.46078644,7.25 4.125,7.58578644 4.125,8 Z M14.45625,5.2875 C14.103125,4.4484375 13.596875,3.6953125 12.9515625,3.0484375 C12.30625,2.403125 11.553125,1.8953125 10.7125,1.54375 C9.853125,1.1828125 8.940625,1 8,1 L7.96875,1 C7.021875,1.0046875 6.1046875,1.1921875 5.2421875,1.5609375 C4.409375,1.9171875 3.6625,2.4234375 3.0234375,3.06875 C2.384375,3.7140625 1.8828125,4.4640625 1.5359375,5.3 C1.1765625,6.165625 0.9953125,7.0859375 1,8.0328125 C1.0046875,9.1171875 1.2640625,10.19375 1.75,11.15625 L1.75,13.53125 C1.75,13.928125 2.071875,14.25 2.46875,14.25 L4.8453125,14.25 C5.8078125,14.7359375 6.884375,14.9953125 7.96875,15 L8.0015625,15 C8.9375,15 9.8453125,14.81875 10.7,14.4640625 C11.5359375,14.115625 12.2875,13.615625 12.93125,12.9765625 C13.5765625,12.3375 14.084375,11.590625 14.4390625,10.7578125 C14.8078125,9.8953125 14.9953125,8.978125 15,8.03125 C15.0046875,7.0796875 14.8203125,6.15625 14.45625,5.2875 Z M12.0953125,12.13125 C11,13.215625 9.546875,13.8125 8,13.8125 L7.9734375,13.8125 C7.03125,13.8078125 6.0953125,13.5734375 5.26875,13.1328125 L5.1375,13.0625 L2.9375,13.0625 L2.9375,10.8625 L2.8671875,10.73125 C2.4265625,9.9046875 2.1921875,8.96875 2.1875,8.0265625 C2.18125,6.46875 2.7765625,5.00625 3.86875,3.9046875 C4.959375,2.803125 6.4171875,2.19375 7.975,2.1875 L8.0015625,2.1875 C8.7828125,2.1875 9.540625,2.3390625 10.2546875,2.6390625 C10.9515625,2.93125 11.5765625,3.3515625 12.1140625,3.8890625 C12.65,4.425 13.071875,5.0515625 13.3640625,5.7484375 C13.6671875,6.4703125 13.81875,7.2359375 13.815625,8.0265625 C13.80625,9.5828125 13.1953125,11.040625 12.0953125,12.13125 Z" id="Shape" fill="url(#linearGradient-54)"></path>
+                                </g>
+                                <g id="info-circle" transform="translate(198.000000, 21.000000)" fill-rule="nonzero">
+                                    <rect id="Rectangle-path" fill="#000000" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                                    <path d="M8,1 C4.134375,1 1,4.134375 1,8 C1,11.865625 4.134375,15 8,15 C11.865625,15 15,11.865625 15,8 C15,4.134375 11.865625,1 8,1 Z M8,13.8125 C4.790625,13.8125 2.1875,11.209375 2.1875,8 C2.1875,4.790625 4.790625,2.1875 8,2.1875 C11.209375,2.1875 13.8125,4.790625 13.8125,8 C13.8125,11.209375 11.209375,13.8125 8,13.8125 Z" id="Shape" fill="#FFFFFF"></path>
+                                    <path d="M7.25,5.25 C7.25,5.66421356 7.58578644,6 8,6 C8.41421356,6 8.75,5.66421356 8.75,5.25 C8.75,4.83578644 8.41421356,4.5 8,4.5 C7.58578644,4.5 7.25,4.83578644 7.25,5.25 Z" id="Shape" fill="#FFFFFF"></path>
+                                    <path d="M8.375,7 L7.625,7 C7.55625,7 7.5,7.05625 7.5,7.125 L7.5,11.375 C7.5,11.44375 7.55625,11.5 7.625,11.5 L8.375,11.5 C8.44375,11.5 8.5,11.44375 8.5,11.375 L8.5,7.125 C8.5,7.05625 8.44375,7 8.375,7 Z" id="Shape" fill="#FFFFFF"></path>
+                                </g>
+                                <text id="10:15-AM" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="20.191" y="15">10:15 AM</tspan>
+                                </text>
+                                <text id="将泄漏区域隔离，通知无-关人员离开。划定" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="27" y="36">将泄漏区域隔离，通知无</tspan>
+                                    <tspan x="27" y="56">关人员离开。划定警戒区</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-3-Copy-5" transform="translate(30.000000, 126.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-56)" xlink:href="#path-55"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-55"></use>
+                                </g>
+                                <text id="佩戴防护手套、穿防护靴；" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="7" y="24">佩戴防护手套、穿防护靴；</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-3-Copy-7" transform="translate(30.000000, 172.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-58)" xlink:href="#path-57"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-57"></use>
+                                </g>
+                                <text id="选择性关闭电源、设备等，-并安排人员看护" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="7" y="15">选择性关闭电源、设备等，</tspan>
+                                    <tspan x="7" y="35">并安排人员看护现场；</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-3-Copy-8" transform="translate(30.000000, 218.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-60)" xlink:href="#path-59"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-59"></use>
+                                </g>
+                                <text id="寻找泄漏源，在熟知泄漏-化学品性质和现场" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="7" y="15">寻找泄漏源，在熟知泄漏</tspan>
+                                    <tspan x="7" y="35">化学品性质和现场环境的</tspan>
+                                    <tspan x="7" y="55">基础上，采取转罐或转槽</tspan>
+                                    <tspan x="7" y="75">车、收容等措施处理，防</tspan>
+                                    <tspan x="7" y="95">止危险化学品进一步泄漏；</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-3-Copy-9" transform="translate(30.000000, 324.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-62)" xlink:href="#path-61"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-61"></use>
+                                </g>
+                                <text id="尽可能切断泄漏源。防止-泄漏物通过下水道" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="7" y="15">尽可能切断泄漏源。防止</tspan>
+                                    <tspan x="7" y="35">泄漏物通过下水道、通风</tspan>
+                                    <tspan x="7" y="55">系统和密闭性空间扩散。</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-7-Copy-2" transform="translate(264.000000, 15.000000)">
+                    <g id="Group-3" transform="translate(30.000000, 13.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-2-Copy">
+                                    <use fill="#6848CE" xlink:href="#path-63"></use>
+                                    <use fill="url(#radialGradient-1)" xlink:href="#path-63"></use>
+                                </g>
+                                <g id="Rectangle-7">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-65)" xlink:href="#path-64"></use>
+                                    <use fill-opacity="0.2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-64"></use>
+                                </g>
+                                <text id="医疗救护组" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="18" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="42" y="26">医疗救护组</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M4,0 L230,0 C232.209139,-4.05812251e-16 234,1.790861 234,4 L234,194 C234,196.209139 232.209139,198 230,198 L4,198 C1.790861,198 2.705415e-16,196.209139 0,194 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-10" stroke="#FFFD28" stroke-width="2" stroke-linecap="round" stroke-dasharray="4"></path>
+                    <g id="Group-3-Copy" transform="translate(10.000000, 59.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-67)" xlink:href="#path-66"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-66"></use>
+                                </g>
+                                <g id="message" transform="translate(0.000000, 45.000000)" fill-rule="nonzero">
+                                    <rect id="Rectangle-path" fill="#000000" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                                    <path d="M7.25,8 C7.25,8.41421356 7.58578644,8.75 8,8.75 C8.41421356,8.75 8.75,8.41421356 8.75,8 C8.75,7.58578644 8.41421356,7.25 8,7.25 C7.58578644,7.25 7.25,7.58578644 7.25,8 Z M10.375,8 C10.375,8.41421356 10.7107864,8.75 11.125,8.75 C11.5392136,8.75 11.875,8.41421356 11.875,8 C11.875,7.58578644 11.5392136,7.25 11.125,7.25 C10.7107864,7.25 10.375,7.58578644 10.375,8 Z M4.125,8 C4.125,8.41421356 4.46078644,8.75 4.875,8.75 C5.28921356,8.75 5.625,8.41421356 5.625,8 C5.625,7.58578644 5.28921356,7.25 4.875,7.25 C4.46078644,7.25 4.125,7.58578644 4.125,8 Z M14.45625,5.2875 C14.103125,4.4484375 13.596875,3.6953125 12.9515625,3.0484375 C12.30625,2.403125 11.553125,1.8953125 10.7125,1.54375 C9.853125,1.1828125 8.940625,1 8,1 L7.96875,1 C7.021875,1.0046875 6.1046875,1.1921875 5.2421875,1.5609375 C4.409375,1.9171875 3.6625,2.4234375 3.0234375,3.06875 C2.384375,3.7140625 1.8828125,4.4640625 1.5359375,5.3 C1.1765625,6.165625 0.9953125,7.0859375 1,8.0328125 C1.0046875,9.1171875 1.2640625,10.19375 1.75,11.15625 L1.75,13.53125 C1.75,13.928125 2.071875,14.25 2.46875,14.25 L4.8453125,14.25 C5.8078125,14.7359375 6.884375,14.9953125 7.96875,15 L8.0015625,15 C8.9375,15 9.8453125,14.81875 10.7,14.4640625 C11.5359375,14.115625 12.2875,13.615625 12.93125,12.9765625 C13.5765625,12.3375 14.084375,11.590625 14.4390625,10.7578125 C14.8078125,9.8953125 14.9953125,8.978125 15,8.03125 C15.0046875,7.0796875 14.8203125,6.15625 14.45625,5.2875 Z M12.0953125,12.13125 C11,13.215625 9.546875,13.8125 8,13.8125 L7.9734375,13.8125 C7.03125,13.8078125 6.0953125,13.5734375 5.26875,13.1328125 L5.1375,13.0625 L2.9375,13.0625 L2.9375,10.8625 L2.8671875,10.73125 C2.4265625,9.9046875 2.1921875,8.96875 2.1875,8.0265625 C2.18125,6.46875 2.7765625,5.00625 3.86875,3.9046875 C4.959375,2.803125 6.4171875,2.19375 7.975,2.1875 L8.0015625,2.1875 C8.7828125,2.1875 9.540625,2.3390625 10.2546875,2.6390625 C10.9515625,2.93125 11.5765625,3.3515625 12.1140625,3.8890625 C12.65,4.425 13.071875,5.0515625 13.3640625,5.7484375 C13.6671875,6.4703125 13.81875,7.2359375 13.815625,8.0265625 C13.80625,9.5828125 13.1953125,11.040625 12.0953125,12.13125 Z" id="Shape" fill="url(#linearGradient-54)"></path>
+                                </g>
+                                <g id="info-circle" transform="translate(198.000000, 21.000000)" fill-rule="nonzero">
+                                    <rect id="Rectangle-path" fill="#000000" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                                    <path d="M8,1 C4.134375,1 1,4.134375 1,8 C1,11.865625 4.134375,15 8,15 C11.865625,15 15,11.865625 15,8 C15,4.134375 11.865625,1 8,1 Z M8,13.8125 C4.790625,13.8125 2.1875,11.209375 2.1875,8 C2.1875,4.790625 4.790625,2.1875 8,2.1875 C11.209375,2.1875 13.8125,4.790625 13.8125,8 C13.8125,11.209375 11.209375,13.8125 8,13.8125 Z" id="Shape" fill="#FFFFFF"></path>
+                                    <path d="M7.25,5.25 C7.25,5.66421356 7.58578644,6 8,6 C8.41421356,6 8.75,5.66421356 8.75,5.25 C8.75,4.83578644 8.41421356,4.5 8,4.5 C7.58578644,4.5 7.25,4.83578644 7.25,5.25 Z" id="Shape" fill="#FFFFFF"></path>
+                                    <path d="M8.375,7 L7.625,7 C7.55625,7 7.5,7.05625 7.5,7.125 L7.5,11.375 C7.5,11.44375 7.55625,11.5 7.625,11.5 L8.375,11.5 C8.44375,11.5 8.5,11.44375 8.5,11.375 L8.5,7.125 C8.5,7.05625 8.44375,7 8.375,7 Z" id="Shape" fill="#FFFFFF"></path>
+                                </g>
+                                <text id="10:15-AM" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="20.191" y="15">10:15 AM</tspan>
+                                </text>
+                                <text id="①对受伤人员进行紧急救护" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="22" y="47">①对受伤人员进行紧急救护</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-3-Copy-2" transform="translate(10.000000, 126.000000)">
+                        <g id="Group-5">
+                            <g id="Group-Copy-11">
+                                <g id="Rectangle-3-Copy-3">
+                                    <use fill="black" fill-opacity="1" filter="url(#filter-69)" xlink:href="#path-68"></use>
+                                    <use fill="url(#linearGradient-5)" fill-rule="evenodd" xlink:href="#path-68"></use>
+                                </g>
+                                <g id="message" transform="translate(0.000000, 45.000000)" fill-rule="nonzero">
+                                    <rect id="Rectangle-path" fill="#000000" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                                    <path d="M7.25,8 C7.25,8.41421356 7.58578644,8.75 8,8.75 C8.41421356,8.75 8.75,8.41421356 8.75,8 C8.75,7.58578644 8.41421356,7.25 8,7.25 C7.58578644,7.25 7.25,7.58578644 7.25,8 Z M10.375,8 C10.375,8.41421356 10.7107864,8.75 11.125,8.75 C11.5392136,8.75 11.875,8.41421356 11.875,8 C11.875,7.58578644 11.5392136,7.25 11.125,7.25 C10.7107864,7.25 10.375,7.58578644 10.375,8 Z M4.125,8 C4.125,8.41421356 4.46078644,8.75 4.875,8.75 C5.28921356,8.75 5.625,8.41421356 5.625,8 C5.625,7.58578644 5.28921356,7.25 4.875,7.25 C4.46078644,7.25 4.125,7.58578644 4.125,8 Z M14.45625,5.2875 C14.103125,4.4484375 13.596875,3.6953125 12.9515625,3.0484375 C12.30625,2.403125 11.553125,1.8953125 10.7125,1.54375 C9.853125,1.1828125 8.940625,1 8,1 L7.96875,1 C7.021875,1.0046875 6.1046875,1.1921875 5.2421875,1.5609375 C4.409375,1.9171875 3.6625,2.4234375 3.0234375,3.06875 C2.384375,3.7140625 1.8828125,4.4640625 1.5359375,5.3 C1.1765625,6.165625 0.9953125,7.0859375 1,8.0328125 C1.0046875,9.1171875 1.2640625,10.19375 1.75,11.15625 L1.75,13.53125 C1.75,13.928125 2.071875,14.25 2.46875,14.25 L4.8453125,14.25 C5.8078125,14.7359375 6.884375,14.9953125 7.96875,15 L8.0015625,15 C8.9375,15 9.8453125,14.81875 10.7,14.4640625 C11.5359375,14.115625 12.2875,13.615625 12.93125,12.9765625 C13.5765625,12.3375 14.084375,11.590625 14.4390625,10.7578125 C14.8078125,9.8953125 14.9953125,8.978125 15,8.03125 C15.0046875,7.0796875 14.8203125,6.15625 14.45625,5.2875 Z M12.0953125,12.13125 C11,13.215625 9.546875,13.8125 8,13.8125 L7.9734375,13.8125 C7.03125,13.8078125 6.0953125,13.5734375 5.26875,13.1328125 L5.1375,13.0625 L2.9375,13.0625 L2.9375,10.8625 L2.8671875,10.73125 C2.4265625,9.9046875 2.1921875,8.96875 2.1875,8.0265625 C2.18125,6.46875 2.7765625,5.00625 3.86875,3.9046875 C4.959375,2.803125 6.4171875,2.19375 7.975,2.1875 L8.0015625,2.1875 C8.7828125,2.1875 9.540625,2.3390625 10.2546875,2.6390625 C10.9515625,2.93125 11.5765625,3.3515625 12.1140625,3.8890625 C12.65,4.425 13.071875,5.0515625 13.3640625,5.7484375 C13.6671875,6.4703125 13.81875,7.2359375 13.815625,8.0265625 C13.80625,9.5828125 13.1953125,11.040625 12.0953125,12.13125 Z" id="Shape" fill="url(#linearGradient-54)"></path>
+                                </g>
+                                <g id="info-circle" transform="translate(198.000000, 21.000000)" fill-rule="nonzero">
+                                    <rect id="Rectangle-path" fill="#000000" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                                    <path d="M8,1 C4.134375,1 1,4.134375 1,8 C1,11.865625 4.134375,15 8,15 C11.865625,15 15,11.865625 15,8 C15,4.134375 11.865625,1 8,1 Z M8,13.8125 C4.790625,13.8125 2.1875,11.209375 2.1875,8 C2.1875,4.790625 4.790625,2.1875 8,2.1875 C11.209375,2.1875 13.8125,4.790625 13.8125,8 C13.8125,11.209375 11.209375,13.8125 8,13.8125 Z" id="Shape" fill="#FFFFFF"></path>
+                                    <path d="M7.25,5.25 C7.25,5.66421356 7.58578644,6 8,6 C8.41421356,6 8.75,5.66421356 8.75,5.25 C8.75,4.83578644 8.41421356,4.5 8,4.5 C7.58578644,4.5 7.25,4.83578644 7.25,5.25 Z" id="Shape" fill="#FFFFFF"></path>
+                                    <path d="M8.375,7 L7.625,7 C7.55625,7 7.5,7.05625 7.5,7.125 L7.5,11.375 C7.5,11.44375 7.55625,11.5 7.625,11.5 L8.375,11.5 C8.44375,11.5 8.5,11.44375 8.5,11.375 L8.5,7.125 C8.5,7.05625 8.44375,7 8.375,7 Z" id="Shape" fill="#FFFFFF"></path>
+                                </g>
+                                <text id="10:15-AM" font-family="STYuanti-SC-Regular, Yuanti SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="20.191" y="15">10:15 AM</tspan>
+                                </text>
+                                <text id="②负责事故后卫生防疫" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal" fill="#FFFFFF">
+                                    <tspan x="35" y="47">②负责事故后卫生防疫</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

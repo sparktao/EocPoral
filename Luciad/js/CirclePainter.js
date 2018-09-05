@@ -36,8 +36,8 @@ define([
         color: "rgba(255, 187, 0, 0.4)"
       },
       stroke: {
-        color: paintState.selected ? "rgb(255, 0, 0)" : "rgb(255, 187, 0)",
-        width: paintState.selected ? 3 : 3
+        color: paintState.selected ? "rgba(255, 0, 0, 0.4)" : "rgb(255, 187, 0)",
+        width: paintState.selected ? 1 : 2
       }
     });
     /*geoCanvas.drawIcon(ShapeFactory.createPoint(shape.reference, [shape.center.x, shape.center.y, 10]), {
