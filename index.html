@@ -8,6 +8,7 @@
 	
     <title>海克斯康指挥决策系统</title>
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/BootstrapXL.css" /> 
 	<link rel="stylesheet" href="lib/bootstrap-table/bootstrap-table.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" /> 	
 	<link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" /> 	   
@@ -156,10 +157,10 @@
               <li><a href="#"><span class="fa fa-bell" aria-hidden="true"></span></a></li>
 			  <li><a href="#"><span class="fa fa-user-circle" aria-hidden="true"></span></a></li>			  
             </ul>
-			<div class="nav navbar-nav navbar-right" style="height:50px; z-index:37;">
+			<div class="nav navbar-nav navbar-right hidden-lenovo" style="height:50px; z-index:37;">
 				<iframe id="fancybox-frame" name="fancybox-frame1534136791957" style="height:60px;" frameborder="0" scrolling="no" hspace="0"  src="http://i.tianqi.com/index.php?c=code&a=getcode&id=42&h=54&w=214"></iframe>
 			</div>
-			<form class="navbar-form navbar-right" role="search">              
+			<form class="navbar-form navbar-right hidden-lenovo" role="search">              
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search">
 					<span class="input-group-addon" aria-hidden="true">查 询</span>
@@ -189,7 +190,7 @@
     </div>
 -->      
   <div class="row main-row">
-        <div class="col-sm-4 col-md-3 sidebar sidebar-left pull-left">
+        <div class="col-sm-4 col-md-3 col-xl-2 sidebar sidebar-left pull-left">
           <div class="panel-group sidebar-body" id="accordion-left">
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -232,15 +233,12 @@
               </div>
               <div id="properties" class="panel-collapse collapse in">
                 <div class="panel-body">
-				<div class="btn-group btn-group-justified" role="group" style="position:absolute;width:90%;">
-						<a href="#" class="btn btn-primary" role="button"><span class="fa fa-search"></span>应急人员</a>
-					</div>
                   <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 					<div id="main" style="width: 100%;height:250px;"></div>                
                 </div>
               </div>
             </div>
-			<div class="panel panel-default">
+			<div class="panel panel-default hidden-lenovo">
               <div class="panel-heading">
                 <h4 class="panel-title">
                   <a data-toggle="collapse" href="#roundInfo">
@@ -272,8 +270,8 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4 col-md-3 mid"></div>
-        <div class="col-sm-4 col-md-3 sidebar">
+        <div class="col-sm-4 col-md-3 col-xl-6 mid"></div>
+        <div class="col-sm-4 col-md-3 col-xl-2 sidebar">
 			<div class="panel-group sidebar-body" id="accordion-right111">
 				<!--Event Summary start-->
 				<div id="searchpanel" class="panel panel-default">
@@ -337,7 +335,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-4 col-md-3 sidebar sidebar-right pull-right">
+		<div class="col-sm-4 col-md-3 col-xl-2 sidebar sidebar-right pull-right">
           <div class="panel-group sidebar-body" id="accordion-right">
 		    <!--Event Summary start-->
             <div class="panel panel-default">
@@ -370,13 +368,13 @@
 						<div class="well span3 top-block-blue">
 							<div>事故发生时间</div>
 							<br />
-							<div style="font-size: 32px;">09:32:21</div>
+							<div class="top-block-time">09:32:21</div>
 						</div>
 
 						<div class="well span3 top-block-red">
 							<div>事故持续时间</div>
 							<br />
-							<div id="eventInfoDuraDiv" style="font-size: 32px;">00:21:33</div>
+							<div id="eventInfoDuraDiv" class="top-block-time">00:21:33</div>
 						</div>
 					</div>
 			
