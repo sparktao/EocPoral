@@ -263,7 +263,7 @@ var eventInfoComponent = null;
 function EventInfoComponent(){
 	var _self = this;
 	this.eventInfoList=[];
-	this.currentEventInfo= {id:"1111", name:"危化品运输车辆发生交通事故", happenedtime:new Date("2018-09-5 09:32:21"), coordinates:[]};
+	this.currentEventInfo= {id:"1111", name:"危险化学品生产安全事故应急演练", happenedtime:new Date("2018-09-5 09:32:21"), coordinates:[]};
 	
 	this.Load = function() {
 		$.getJSON( "Luciad/data/events.json", function( data ) {
