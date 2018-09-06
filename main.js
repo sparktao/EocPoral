@@ -215,7 +215,7 @@ define([
 		};
 		var htmlTemplateNormal = '<div style="background-color: rgb(40,40,40); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name</div>';
         var htmlTemplateSelect = '<div style="background-color: rgb(80,10,10); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name</div>';
-        var htmlTemplateVideo = '<div style="background-color: rgb(80,10,10); padding: 5px; border-radius: 10px; color: rgb(238,233,233)"><video name="leftVideoElement" class="leftVideo" id="leftVideoElement" controls="" autoplay="" src="blob:http://localhost:8072/4486bcca-351d-4e65-800b-69bf0740ddd8"> Your browser is too old which doesn\'t support HTML5 video. </video></div>';
+        var htmlTemplateVideo = '<div style="background-color: #9932CC; padding: 5px; border-radius: 10px; color: rgb(238,233,233)"><video name="leftVideoElement" class="leftVideo" id="leftVideoElement" controls="" autoplay="" src="blob:http://localhost:8072/4486bcca-351d-4e65-800b-69bf0740ddd8"> Your browser is too old which doesn\'t support HTML5 video. </video></div>';
 
 		eventPainter.paintLabel = function(labelCanvas, feature, shape, layer, map, state) {
 			var html;
