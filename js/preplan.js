@@ -170,6 +170,7 @@ function onClickGoto6() {
 function onClickGoto7() {
 
 	$("#svgDiv").empty();
+	$('#planModalContent').attr('style','width:1700px;');
 
 	d3.xml("/web/samples/EocPortal/diagram/s7.svg").mimeType("image/svg+xml").get(function (error, xml) {
 		if (error) {
@@ -182,7 +183,7 @@ function onClickGoto7() {
 		});
 
 		var svgDiv = document.getElementById("svgDiv");
-
+		
 		svgDiv.appendChild(xml.documentElement);
 
 		//d3.select("#arrow-left").on("mouseover", setCursor);
@@ -198,6 +199,7 @@ $(function () {
 	$('#planModal').on('show.bs.modal', function () {
 
 		$("#svgDiv").empty();
+		$('#planModalContent').attr('style','width:1280px;');
 
 		d3.xml("/web/samples/EocPortal/diagram/s1.svg").mimeType("image/svg+xml").get(function (error, xml) {
 			if (error) {
