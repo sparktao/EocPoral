@@ -49,13 +49,13 @@ define([
 
 	var map = templateSample.makeMap("map", {includeLayerControl:false, includeElevation:true, includeZoomControl:true});
 	var CRS84 = ReferenceProvider.getReference("CRS:84");
-	//var fillColors = ["#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4", "#2c7fb8", "#253494"];
-	//var lineColors = ["#ddddaa", "#a7c994", "#5fad9b", "#2196a4", "#0c5f98", "#051474"];
-	var fillColors = ["#3949AB", "#3F51B5", "#5C6BC0", "#7986CB", "#9FA8DA", "#C5CAE9"];
-	var lineColors = ["#1F2D88", "#2E3F9E", "#48549A", "#6470AD", "#8891C4", "#ACB2D9"];
 
-	
-	var thematicHeights = [220, 180, 150, 100, 50, 0];
+	//var fillColors = ["#3949AB", "#3F51B5", "#5C6BC0", "#7986CB", "#9FA8DA", "#C5CAE9"];
+	var fillColors = ["#3400c4", "#3F51B5", "#5C6BC0", "#7986CB", "#9FA8DA", "#e2dedb"];
+	//var lineColors = ["#1F2D88", "#2E3F9E", "#48549A", "#6470AD", "#8891C4", "#ACB2D9"];
+	var lineColors = ["#1F2D88", "#2E3F9E", "#48549A", "#6470AD", "#8891C4", "#C5CAE9"];
+	//var thematicHeights = [220, 180, 150, 100, 50, 0];
+	var thematicHeights = [180, 140, 100, 60, 33, 0];
 
 	function getColor(height, heightThresholds, colors) {
 		var clampedValue = Math.min(Math.max(heightThresholds[heightThresholds.length - 1], height), heightThresholds[0]);
@@ -316,7 +316,7 @@ define([
 		}), {
 		  label: "redlineCircleLayer",
 		  painter: new CirclePainter(),
-		  selectable: true
+		  selectable: false
 		});
 		
 		map.layerTree.addChild(tempCircleFeatureLayer);
@@ -403,7 +403,8 @@ define([
   });
 
  	//LoopsCircle Begin
-    var l = 0.65;
+    var l = 0.75;
+	//var l = 0.65;
     var rgba = function(rgb, a) {
       return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + a + ")";
     };
@@ -463,9 +464,9 @@ define([
 		  var points = [];
 		  var points1 = [];
 		  var points2 = [];
-		  for (var t = 0; t < 2 * Math.PI; t += Math.PI / 32) {
-			points[points.length] = ShapeFactory.createPoint(CRS84, [feature.shape.x + 0.0002 * Math.cos(t), feature.shape.y + 0.0002 * Math.sin(t), 200]);
-			points1[points1.length] = ShapeFactory.createPoint(CRS84, [feature.shape.x + 0.0003 * Math.cos(t+Math.PI/2), feature.shape.y + 0.0003 * Math.sin(t+Math.PI/2), 200]);
+		  for (var t = 0; t < 2 * Math.PI; t += Math.PI / 24) {
+			points[points.length] = ShapeFactory.createPoint(CRS84, [feature.shape.x + 0.00028 * Math.cos(t), feature.shape.y + 0.00028 * Math.sin(t), 200]);
+			points1[points1.length] = ShapeFactory.createPoint(CRS84, [feature.shape.x + 0.00031 * Math.cos(t+Math.PI/2), feature.shape.y + 0.00031 * Math.sin(t+Math.PI/2), 200]);
 			points2[points2.length] = ShapeFactory.createPoint(CRS84, [feature.shape.x + 0.00037 * Math.cos(t+Math.PI), feature.shape.y + 0.00037 * Math.sin(t+Math.PI), 200]);
 		  }
 		  var circle = ShapeFactory.createPolyline(CRS84, points);
@@ -482,8 +483,8 @@ define([
     setInterval(function() {
       painterParameteredCircleArray[0].rangeColorMap = createColorMap(r, [255, 0, 255], [0, 255, 255]);
 	  painterParameteredCircleArray[1].rangeColorMap = createColorMap(r, [18, 117, 252], [255, 255, 0]);
-      painterParameteredCircleArray[2].rangeColorMap = createColorMap(r, [1, 65, 187], [145, 199, 174]);
-      //painterParameteredCircleArray[1].rangeColorMap = createColorMap(r, [255, 255, 255], [139, 28, 177]);
+      painterParameteredCircleArray[2].rangeColorMap = createColorMap(r, [1, 65, 187], [211, 237, 224]);
+      //painterParameteredCircleArray[2].rangeColorMap = createColorMap(r, [1, 65, 187], [145, 199, 174]);
       //painterParameteredCircleArray[2].rangeColorMap = createColorMap(r, [255, 255, 255], [139, 28, 177]);
       r += 0.05;
       if (r >= 1) {
