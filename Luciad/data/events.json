@@ -1,35 +1,19 @@
-{ "type": "FeatureCollection",
-"features": [
-{
-"type": "Feature",
-"id":"city_1",
-"geometry":{"type":"Point","coordinates":[-122.391111,37.785833]},
-"geometry_name":"geometry",
-"properties":{"uid":1,"NAME":"危险化学品生产安全事故应急演练","TYPE":"电力"}
-}
-,
-{
-"type": "Feature",
-"id":"city_2",
-"geometry":{"type":"Point","coordinates":[-122.3930556,37.7886111]},
-"geometry_name":"geometry",
-"properties":{"uid":2,"NAME":"事件2","TYPE":"公安"}
-}
-,
-{
-"type": "Feature",
-"id":"city_3",
-"geometry":{"type":"Point","coordinates":[-122.3980556,37.7880556]},
-"geometry_name":"geometry",
-"properties":{"uid":3,"NAME":"事件3","TYPE":"消防"}
-}
-,
-{
-"type": "Feature",
-"id":"city_4",
-"geometry":{"type":"Point","coordinates":[-122.4,37.7836111]},
-"geometry_name":"geometry",
-"properties":{"uid":4,"NAME":"事件4","TYPE":"自来水"}
-}
-]
+{ 
+    "type": "FeatureCollection",
+    "features": [
+        {
+        "type": "Feature",
+        "id":"city_1",
+        "geometry":{"type":"Point","coordinates":[-122.391111,37.785833]},
+        "geometry_name":"geometry",
+        "properties":{"uid":1,"NAME":"危险化学品生产安全事故应急演练","TYPE":"电力"}
+        },
+        {
+        "type": "Feature",
+        "id":"city_2",
+        "geometry":{"type":"Point","coordinates":[-122.3930556,37.7886111]},
+        "geometry_name":"geometry",
+        "properties":{"uid":2,"NAME":"事件2","TYPE":"公安"}
+        }
+    ]
 }

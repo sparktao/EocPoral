@@ -1,4 +1,5 @@
 define([
+  'luciad/util/ColorMap',
   "luciad/model/codec/GeoJsonCodec",
   "luciad/model/store/UrlStore",
   "luciad/model/feature/Feature",
@@ -14,6 +15,7 @@ define([
   "luciad/model/store/MemoryStore",
   "luciad/view/feature/FeatureLayer",
   "luciad/view/feature/FeaturePainter",
+  'luciad/view/feature/ParameterizedLinePainter',
   "../common/URLUtil",
   "../common/LayerConfigUtil",
   "../common/ShapePainter",
@@ -21,7 +23,8 @@ define([
   "./Luciad/js/CirclePainter",
   "../template/sample",
   "loader/domReady!"
-], function(GeoJsonCodec,
+], function(ColorMap,
+			GeoJsonCodec,
             UrlStore,
             Feature,
             FeatureModel,
@@ -36,6 +39,7 @@ define([
             MemoryStore,
             FeatureLayer,
             FeaturePainter,
+			ParameterizedLinePainter,
             URLUtil,
             LayerConfigUtil,
             ShapePainter,
@@ -156,7 +160,7 @@ define([
 			  width: 1
 			}
 		};
-		var htmlTemplateNormal = '<div style="background-color: rgba(253,42,9,0.8); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name, $type</div>';
+		var htmlTemplateNormal = '<div style="background-color: rgba(212,130,101,0.8); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name, $type</div>';
 		var htmlTemplateSelect = '<div style="background-color: rgba(80,10,10,0.8); padding: 5px; border-radius: 10px; color: rgb(238,233,233)">$name, $type</div>';
 		eventPainter.paintLabel = function(labelCanvas, feature, shape, layer, map, state) {
 			var html;
@@ -323,21 +327,30 @@ define([
 		map.layerTree.removeChild(tempCircleFeatureLayer);
 	}
 	//tempCircleLayer End//
+    
+    //Unit simulate moving Start //
+    var refreshUnitIntervalId = null;
+    function StartSimulateUnits()
+    {
+        var count = 0;
+        refreshUnitIntervalId = window.setInterval(function(){
+                count++;                
+                if(unitFeatureLayer!=null)
+                        map.layerTree.removeChild(unitFeatureLayer);        
+                
+                unitFeatureLayer = createIconFeatureLayer("tempRedlineCircle", "Luciad/data/unitsSimulatior/units" + count%7 + ".json", createUnitPainter({labelsAlwaysVisible: true}));
+            },5000
+        );
+    }
+
+    function StopSimulateUnits()
+    {
+        if(refreshUnitIntervalId!=null || !!refreshUnitIntervalId)
+            window.clearInterval(refreshUnitIntervalId);
+    }
 	
-
-	var count = 0;
-       var timer=window.setInterval(function(){
-              count++;
-              
-              if(unitFeatureLayer!=null)
-                     map.layerTree.removeChild(unitFeatureLayer);
-       
-              
-              unitFeatureLayer = createIconFeatureLayer("tempRedlineCircle", "Luciad/data/unitsSimulatior/units" + count%7 + ".json", createUnitPainter({labelsAlwaysVisible: true}));
-              
-       },5000
-	);
-
+    
+    //Unit simulate moving End //
 
 	//Create model, layer, and add the result to the layer tree
 	var buildingsModel = createBuildingsModel();
@@ -369,25 +382,119 @@ define([
 		  selectedFeature = e.selectionChanges[iFirstFindSelectIndex].selected[0];
 		  if(e.selectionChanges[iFirstFindSelectIndex].layer.label == 'redlineCircleLayer'){
 			  map.controller = new EditController(e.selectionChanges[iFirstFindSelectIndex].layer, selectedFeature, {finishOnSingleClick: true});
-			  /*map.controller.onGestureEvent = function(event) {
+			  map.controller.onGestureEvent = function(event) {
 				  if(event.type == GestureEventType.DRAG)
 				  {
-					  console.log(this._editingContext._object.geometry.baseShape.radius);
+                      console.log(this._editingContext._object.geometry.baseShape.radius);
+                      eventSearchListComponent.changeTableRow(this._editingContext._object.geometry.baseShape.radius);
 				  }
 				  else if(event.type == GestureEventType.DRAG_END){
 					  console.log("end");
 					  console.log(this._editingContext._object.geometry.baseShape.radius);
 				  }
 				  return EditController.prototype.onGestureEvent.apply(this, arguments);
-			  };*/
+			  };
 			  map.controller.onDeactivate = function(map) {
-			  	alert(this._editingContext._object.geometry.baseShape.radius);
+			  	//alert(this._editingContext._object.geometry.baseShape.radius);
 				EditController.prototype.onDeactivate.apply(this, arguments);
 			  }
 		  }
 		}
   });
 
+ 	//LoopsCircle Begin
+    var l = 0.65;
+    var rgba = function(rgb, a) {
+      return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + a + ")";
+    };
+    var createColorMap = function(r, c1, c2) {
+      if (r + l <= 1.0) {
+        return ColorMap.createGradientColorMap([
+          {level: 0, color: rgba(c1, 0)},
+          {level: r, color: rgba(c1, 0)},
+          {level: r + 0.02, color: rgba(c1, 1)},
+          {level: r + l - 0.02, color: rgba(c2, 1)},
+          {level: r + l, color: rgba(c2, 0)},
+          {level: 1, color: rgba(c2, 0)}
+        ]);
+      }
+      else {
+        var factor = (1 - r ) / l;
+        var inv = 1 - factor;
+        var c12 = [factor * c2[0] + inv * c1[0], factor * c2[1] + inv * c1[1], factor * c2[2] + inv * c1[2]];
+        return ColorMap.createGradientColorMap([
+          {level: 0, color: rgba(c12, 1)},
+          {level: l - (1 - r) - 0.02, color: rgba(c2, 1)},
+          {level: l - (1 - r), color: rgba(c2, 0)},
+          {level: r, color: rgba(c1, 0)},
+          {level: r + 0.02, color: rgba(c1, 1)},
+          {level: 1, color: rgba(c12, 1)}
+        ]);
+      }
+    }
+
+	var loopsModelArray = new Array(3);
+	var painterParameteredCircleArray = new Array(3);
+	var loopsLayerArray = new Array(3);
+	for(var i=0;i<3;i++)
+	{
+		loopsModelArray[i] = new FeatureModel(new MemoryStore(), {
+		  reference: CRS84
+		});
+		
+		painterParameteredCircleArray[i] = new ParameterizedLinePainter({
+		  lineWidth: 3,
+		  rangePropertyProvider: function(feature, shape, pointIndex) {
+			return pointIndex / shape.pointCount;
+		  },
+		});
+		loopsLayerArray[i] = new FeatureLayer(loopsModelArray[i], {
+			  label: "Loops",
+			  selectable: true,
+			  painter: painterParameteredCircleArray[i]
+	
+		});
+		map.layerTree.addChild(loopsLayerArray[i]);
+    }
+
+	Promise.resolve(eventFeatureLayer.model.query()).then(function(cursor) {
+        while (cursor.hasNext()) {
+          var feature = cursor.next();
+		  var points = [];
+		  var points1 = [];
+		  var points2 = [];
+		  for (var t = 0; t < 2 * Math.PI; t += Math.PI / 32) {
+			points[points.length] = ShapeFactory.createPoint(CRS84, [feature.shape.x + 0.0002 * Math.cos(t), feature.shape.y + 0.0002 * Math.sin(t), 200]);
+			points1[points1.length] = ShapeFactory.createPoint(CRS84, [feature.shape.x + 0.0003 * Math.cos(t+Math.PI/2), feature.shape.y + 0.0003 * Math.sin(t+Math.PI/2), 200]);
+			points2[points2.length] = ShapeFactory.createPoint(CRS84, [feature.shape.x + 0.00037 * Math.cos(t+Math.PI), feature.shape.y + 0.00037 * Math.sin(t+Math.PI), 200]);
+		  }
+		  var circle = ShapeFactory.createPolyline(CRS84, points);
+		  loopsModelArray[0].add(new Feature(circle, {}, feature.properties.uid*100+1));
+		  var circle1 = ShapeFactory.createPolyline(CRS84, points1);
+		  loopsModelArray[1].add(new Feature(circle1, {}, feature.properties.uid*100+2));
+		  var circle2 = ShapeFactory.createPolyline(CRS84, points2);
+		  loopsModelArray[2].add(new Feature(circle2, {}, feature.properties.uid*100+3));
+		}
+      });
+    
+      
+    var r = 0;
+    setInterval(function() {
+      painterParameteredCircleArray[0].rangeColorMap = createColorMap(r, [255, 0, 255], [0, 255, 255]);
+	  painterParameteredCircleArray[1].rangeColorMap = createColorMap(r, [18, 117, 252], [255, 255, 0]);
+      painterParameteredCircleArray[2].rangeColorMap = createColorMap(r, [1, 65, 187], [145, 199, 174]);
+      //painterParameteredCircleArray[1].rangeColorMap = createColorMap(r, [255, 255, 255], [139, 28, 177]);
+      //painterParameteredCircleArray[2].rangeColorMap = createColorMap(r, [255, 255, 255], [139, 28, 177]);
+      r += 0.05;
+      if (r >= 1) {
+        r = 0;
+      }
+	  
+    }, 15);
+	
+	//LoopsCircle End
+	
+	
     // Add an event listener
 	document.addEventListener("map_addTempCircle", function(e) {
         //console.log(e.detail); // Prints "Example of an event"
@@ -397,5 +504,13 @@ define([
      
      document.addEventListener("map_removeBuffer", function(e) {
         removeTempCircle();
+     });
+
+     document.addEventListener("unit_startSimulate", function(e) {
+        StartSimulateUnits();
+     });
+
+     document.addEventListener("unit_stopSimulate", function(e) {
+        StopSimulateUnits();
      });
 });
