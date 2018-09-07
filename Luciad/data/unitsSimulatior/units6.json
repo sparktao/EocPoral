@@ -10,7 +10,7 @@
 		"geometry_name": "geometry",
 		"properties": {
 			"uid": 1,
-			"NAME": "车辆1",
+			"NAME": "警车101",
 			"TYPE": ""
 		}
 	},
@@ -24,7 +24,7 @@
 		"geometry_name": "geometry",
 		"properties": {
 			"uid": 2,
-			"NAME": "车辆2",
+			"NAME": "警车102",
 			"TYPE": ""
 		}
 	},
@@ -38,7 +38,7 @@
 		"geometry_name": "geometry",
 		"properties": {
 			"uid": 3,
-			"NAME": "车辆3",
+			"NAME": "警车103",
 			"TYPE": ""
 		}
 	}]

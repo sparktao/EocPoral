@@ -56,6 +56,7 @@ function buildChart()
 
         // 指定图表的配置项和数据
         var option = {
+            color:['#c23531','#ffff00', '#00ff00', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
 			legend: {
 				x : 'center',
 				y : 'top',
@@ -263,7 +264,7 @@ var eventInfoComponent = null;
 function EventInfoComponent(){
 	var _self = this;
 	this.eventInfoList=[];
-	this.currentEventInfo= {id:"1111", name:"危险化学品生产安全事故应急演练", happenedtime:new Date("2018-09-5 09:32:21"), coordinates:[]};
+	this.currentEventInfo= {id:"1111", name:"危险化学品生产安全事故应急演练", happenedtime:moment("2018-09-06T09:32:21"), coordinates:[]};
 	
 	this.Load = function() {
 		$.getJSON( "Luciad/data/events.json", function( data ) {
@@ -271,7 +272,8 @@ function EventInfoComponent(){
 				var ev = {};
 				ev.id = item.properties.uid;
 				ev.name = item.properties.NAME;
-				ev.happenedtime = new Date("2018-08-30 09:32:21");
+                //ev.happenedtime = new Date("2018-09-06T09:32:21".replace(/-/g, "/"));
+                ev.happenedtime = moment("2018-09-06T09:32:21");
 				ev.coordinates = item.geometry.coordinates;
 				_self.eventInfoList.push(ev);
 			});
@@ -349,7 +351,13 @@ function EventSearchListComponent()
 
 		// Dispatch/Trigger/Fire the event
 		document.dispatchEvent(event);		
-	}
+    }
+    
+    this.changeTableRow = function(circleRadius)
+    {
+        $("#economictable > tbody .col-md-6:first").html("周边影响人口" + parseInt(circleRadius * Math.random()) + "万人");
+        $("#economictable > tbody .col-md-6:last").html("造成经济影响" + parseInt(circleRadius * 100 * Math.random())+ "万元");
+    }
 }
 
 var eventSearchListComponent = new EventSearchListComponent();
@@ -374,6 +382,50 @@ function VideoComponent()
 }
 
 var videoComponent = new VideoComponent();
+
+function UnitComponent()
+{
+    var _self = this;
+	
+	this.StartSimulate = function()
+	{
+		try {
+			// For modern browsers except IE:
+			var event = new CustomEvent('unit_startSimulate', {detail:""});
+		} catch(err) {
+		  // If IE 11 (or 10 or 9...?) do it this way:
+			// Create the event.
+			var event = document.createEvent('Event');
+			// Define that the event name is 'build'.
+			event.initEvent('unit_startSimulate', true, true);
+			event.detail = "";
+		}
+
+		// Dispatch/Trigger/Fire the event
+		document.dispatchEvent(event);			
+	}
+	
+	this.StopSimulate = function()
+	{
+		try {
+			// For modern browsers except IE:
+			var event = new CustomEvent('unit_stopSimulate', {detail:""});
+		} catch(err) {
+		  // If IE 11 (or 10 or 9...?) do it this way:
+			// Create the event.
+			var event = document.createEvent('Event');
+			// Define that the event name is 'build'.
+			event.initEvent('unit_stopSimulate', true, true);
+			event.detail = "";
+		}
+
+		// Dispatch/Trigger/Fire the event
+		document.dispatchEvent(event);			
+	}	
+
+}
+
+var unitComponent = new UnitComponent();
 
 /***************************************EventInfo End******************************/
 
@@ -401,7 +453,7 @@ function sendWeChatMessage()
 	var nowdate = new Date().Format("yyyy-MM-ddTHH:mm:ss");
 	var msgStr = '{"ID":"962c701a-556c-4f7b-967b-a8d9f492271d","SourceType":"IPR","SubsourceType":"Task","SourceNode":"","SyncTime":"2018-09-04T09:10:54.3719555+08:00",'
 	+'"Content":{"ID":"'+guid()+'","OPERATION":"危险化学品生产安全事故应急演练","REPORTTIME":"'+nowdate+'","REPORTER":"公安分局","DEADLINETIME":"'+timeValue+'",'
-	+'"ABSTRACT":"'+ titleValue +'","DESCRIPTION":"'+descValue+'","ACTIONS":"感谢您的体验","BEGINTIME":"'+nowdate+'","ENDTIME":"1970-01-01T00:00:00","CREATIONTIME":"'+nowdate+'","CREATEDBY":"2018用户大会","RECIPIENT":"大会来宾"}}';
+	+'"ABSTRACT":"'+ titleValue +'","DESCRIPTION":"'+descValue+'","ACTIONS":"请立即派遣处置人员到达事故现场","BEGINTIME":"'+nowdate+'","ENDTIME":"1970-01-01T00:00:00","CREATIONTIME":"'+nowdate+'","CREATEDBY":"专项指挥部","RECIPIENT":"安监局"}}';
 	var msg = JSON.parse(msgStr);
 	var msglst = [];
 	msglst.push(msg);	
@@ -466,15 +518,20 @@ $(function() {// 初始化内容
 	eventInfoComponent.Load();	
 	
 	eventSearchListComponent.hide();
-	videoComponent.hide();
+    videoComponent.hide();
+    
+    $("#planModal").on('shown.bs.modal',function(){
+        $(document).off('focusin.bs.modal');
+    });
+
 	//定时器
 	setInterval(function(){
-		var nowdate=new Date();
-		var s1 = nowdate.getTime();
-		var s2 = eventInfoComponent.currentEventInfo.happenedtime.getTime();
-		var total = (s1 - s2)/1000;
-		var day = parseInt(total / (24*60*60));//计算整数天数
-		var afterDay = total - day*24*60*60;//取得算出天数后剩余的秒数
+        var nowdate=moment();       
+        var s1 = nowdate.valueOf();
+        var s2 = eventInfoComponent.currentEventInfo.happenedtime.valueOf();
+        var total = (s1 - s2)/1000;
+        var day = parseInt(total / (24*60*60));//计算整数天数
+        var afterDay = total - day*24*60*60;//取得算出天数后剩余的秒数
 		var hour = parseInt(afterDay/(60*60));//计算整数小时数
 		var afterHour = total - day*24*60*60 - hour*60*60;//取得算出小时数后剩余的秒数
 		var min = parseInt(afterHour/60);//计算整数分

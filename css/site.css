@@ -391,8 +391,8 @@ cursor: pointer;
 
 @media (min-width: 1301px) {
 	.panel-title {
-		font-size: 16px;
-		color: inherit;
+		font-size: 20px;
+        color: inherit;
 	}
 }
 
